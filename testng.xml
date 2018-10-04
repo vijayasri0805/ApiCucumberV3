@@ -1,10 +1,17 @@
 <?xml version= "1.0" encoding= "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Levi API Suite" parallel="tests">
-	<test name="CDHINV API RestAssured">
+	<!-- <test name="CDHINV API RestAssured">
 		<classes>
 			<class name="com.levi.api.cdhinv.CDHInventoryPC13Test" />
 			<class name="com.levi.api.cdhinv.CDHInventoryPC9Test" />
 		</classes>
+	</test> -->
+	<test name="AOSLSE API">
+		<classes>
+			<class name="com.levi.api.aoslse.Promo" />
+			<class name="com.levi.api.aoslse.HappyPath" />
+			<class name="com.levi.api.aoslse.RemoveCart" />
+		</classes>	
 	</test>
 </suite>

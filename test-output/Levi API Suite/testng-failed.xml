@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Levi API Suite]" parallel="tests">
+  <test name="CDHINV API RestAssured">
+    <classes>
+      <class name="com.levi.api.cdhinv.CDHInventoryPC13Test"/>
+      <class name="com.levi.api.cdhinv.CDHInventoryPC9Test"/>
+    </classes>
+  </test> <!-- CDHINV API RestAssured -->
+  <test name="CDHINV API RestAssured(failed)" parallel="tests">
+    <classes>
+      <class name="com.levi.api.cdhinv.CDHInventoryPC9Test">
+        <methods>
+          <include name="cleanup"/>
+          <include name="checkPC9"/>
+          <include name="setup"/>
+          <include name="captureStatus"/>
+        </methods>
+      </class> <!-- com.levi.api.cdhinv.CDHInventoryPC9Test -->
+      <class name="com.levi.api.cdhinv.CDHInventoryPC13Test">
+        <methods>
+          <include name="setup"/>
+          <include name="captureStatus"/>
+          <include name="cleanup"/>
+        </methods>
+      </class> <!-- com.levi.api.cdhinv.CDHInventoryPC13Test -->
+    </classes>
+  </test> <!-- CDHINV API RestAssured(failed) -->
+</suite> <!-- Failed suite [Levi API Suite] -->

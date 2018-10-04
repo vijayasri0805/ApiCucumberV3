@@ -324,7 +324,7 @@ public class HappyPath {
 		Response resp = given().when().contentType(ContentType.JSON).auth().oauth2(authToken).expect().statusCode(200).when().
 				get("https://reg-200.levi-site.com/api/aos/rest/v2/leviGBSite/aoslse/users/"+uid+"/carts/"+cartID+"/deliverymodes");
 		
-		System.out.println(resp.asString());
+		System.out.println(resp);
 		
 	}
 }
