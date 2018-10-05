@@ -1,2 +1,0 @@
-BaseURL,Locale,EAN,BuyCode1,L_W_S1,Qty1,BuyCode2,L_W_S2,Qty2,EmailID,LastName,FirstName,Line1,Line2,town,PostalCode,Phone,DeliveryMethod,pspRefernce
-"https://dev-api.levi-site.com/aos/rest/v2/","leviFRSite","5412456142664","005010113",3436,1,"005010113",3236,2,test456@yupmail.com,TestAPI,AOSLSE,"10 Downing Street",,London,"SW1A 2AA","0752345679",UPS,32566565633232359
