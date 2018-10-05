@@ -102,7 +102,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.levi.api.aoslse.EditCart" hash-for-method="editCart">editCart</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.levi.api.aoslse.Promo" hash-for-method="promo">promo</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -120,14 +120,14 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.levi.api.aoslse.EditCart</span>
+              <span class="class-name">com.levi.api.aoslse.Promo</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="editCart">
-                  </a> <!-- editCart -->
-                  <span class="method-name">editCart</span>
+                  <a name="promo">
+                  </a> <!-- promo -->
+                  <span class="method-name">promo</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -135,7 +135,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/2g/qx494kb961jgjm3363ndlv_80000gp/T/testng-eclipse--1355604035/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/2g/qx494kb961jgjm3363ndlv_80000gp/T/testng-eclipse--361297827/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -144,7 +144,7 @@
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.levi.api.aoslse.EditCart&quot;/&gt;
+      &lt;class name=&quot;com.levi.api.aoslse.Promo&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -186,14 +186,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'editCart')
-data.setCell(0, 2, 'com.levi.api.aoslse.EditCart')
-data.setCell(0, 3, 37902);
+data.setCell(0, 1, 'promo')
+data.setCell(0, 2, 'com.levi.api.aoslse.Promo')
+data.setCell(0, 3, 52918);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 37 seconds</span>
+              <span class="suite-total-time">Total running time: 52 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -219,22 +219,30 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.levi.api.aoslse.EditCart</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.levi.api.aoslse.Promo</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
+              <div class="configuration-method before">
+                <span class="method-name">authToken</span>
+                <span class="method-start">377 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createCartID</span>
+                <span class="method-start">2597 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">editCart</span>
-                <span class="method-start">495 ms</span>
+                <span class="method-name">promo</span>
+                <span class="method-start">3566 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">captureStatus([TestResult name=editCart status=SUCCESS method=EditCart.editCart()[pri:0, instance:com.levi.api.aos...)</span>
-                <span class="method-start">38398 ms</span>
+                <span class="method-name">captureStatus([TestResult name=promo status=SUCCESS method=Promo.promo()[pri:0, instance:com.levi.api.aoslse.Promo...)</span>
+                <span class="method-start">56485 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-test after">
                 <span class="method-name">cleanup</span>
-                <span class="method-start">38400 ms</span>
+                <span class="method-start">56487 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

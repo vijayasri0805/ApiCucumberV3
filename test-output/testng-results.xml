@@ -2,35 +2,43 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="38648" started-at="2018-10-04T21:12:33Z" finished-at="2018-10-04T21:13:12Z">
+  <suite name="Default suite" duration-ms="56694" started-at="2018-10-05T19:16:49Z" finished-at="2018-10-05T19:17:46Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="38648" started-at="2018-10-04T21:12:33Z" finished-at="2018-10-04T21:13:12Z">
-      <class name="com.levi.api.aoslse.EditCart">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.levi.api.aoslse.EditCart@ae45eb6]" name="setup" is-config="true" duration-ms="489" started-at="2018-10-04T14:12:33Z" finished-at="2018-10-04T14:12:34Z">
+    <test name="Default test" duration-ms="56694" started-at="2018-10-05T19:16:49Z" finished-at="2018-10-05T19:17:46Z">
+      <class name="com.levi.api.aoslse.Promo">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0]" name="setup" is-config="true" duration-ms="372" started-at="2018-10-05T12:16:49Z" finished-at="2018-10-05T12:16:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="editCart()[pri:0, instance:com.levi.api.aoslse.EditCart@ae45eb6]" name="editCart" duration-ms="37902" started-at="2018-10-04T14:12:34Z" finished-at="2018-10-04T14:13:12Z">
+        <test-method status="PASS" signature="authToken()[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0]" name="authToken" is-config="true" duration-ms="2220" started-at="2018-10-05T12:16:50Z" finished-at="2018-10-05T12:16:52Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- editCart -->
-        <test-method status="PASS" signature="captureStatus(org.testng.ITestResult)[pri:0, instance:com.levi.api.aoslse.EditCart@ae45eb6]" name="captureStatus" is-config="true" duration-ms="1" started-at="2018-10-04T14:13:12Z" finished-at="2018-10-04T14:13:12Z">
+        </test-method> <!-- authToken -->
+        <test-method status="PASS" signature="createCartID()[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0]" name="createCartID" is-config="true" duration-ms="969" started-at="2018-10-05T12:16:52Z" finished-at="2018-10-05T12:16:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createCartID -->
+        <test-method status="PASS" signature="promo()[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0]" name="promo" duration-ms="52918" started-at="2018-10-05T12:16:53Z" finished-at="2018-10-05T12:17:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- promo -->
+        <test-method status="PASS" signature="captureStatus(org.testng.ITestResult)[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0]" name="captureStatus" is-config="true" duration-ms="1" started-at="2018-10-05T12:17:46Z" finished-at="2018-10-05T12:17:46Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=editCart status=SUCCESS method=EditCart.editCart()[pri:0, instance:com.levi.api.aoslse.EditCart@ae45eb6] output={null}]]]>
+                <![CDATA[[TestResult name=promo status=SUCCESS method=Promo.promo()[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureStatus -->
-        <test-method status="PASS" signature="cleanup()[pri:0, instance:com.levi.api.aoslse.EditCart@ae45eb6]" name="cleanup" is-config="true" duration-ms="245" started-at="2018-10-04T14:13:12Z" finished-at="2018-10-04T14:13:12Z">
+        <test-method status="PASS" signature="cleanup()[pri:0, instance:com.levi.api.aoslse.Promo@604ed9f0]" name="cleanup" is-config="true" duration-ms="204" started-at="2018-10-05T12:17:46Z" finished-at="2018-10-05T12:17:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanup -->
-      </class> <!-- com.levi.api.aoslse.EditCart -->
+      </class> <!-- com.levi.api.aoslse.Promo -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

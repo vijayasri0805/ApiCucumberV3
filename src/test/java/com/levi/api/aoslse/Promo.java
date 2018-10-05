@@ -30,6 +30,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.jayway.jsonpath.internal.path.ArrayPathToken;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.http.Method;
 import com.jayway.restassured.response.Response;
@@ -132,15 +133,10 @@ public class Promo {
 			report.setSystemInfo("Environment", "AOSLSE");
 			report.attachReporter(htmlReporter);
 	}
-				
 	
-	@Test
-	public void promo() {
-			
-			testInfo = report.createTest("Test Scenario : Promo");
-			for(Map<String,String> testData : testDataMap) {
-				
-				
+	@BeforeMethod
+	public void authToken() {
+		
 		/*
 		 * AUTH TOKEN		
 		 */
@@ -158,7 +154,11 @@ public class Promo {
 				
 				
 				generatedToken=idToken;
-				
+	}
+	
+	@BeforeMethod
+	public void createCartID() {
+		
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
@@ -180,7 +180,17 @@ public class Promo {
 						path("guid");
 						
 				System.out.println("GUID : " + cartID);
-				generatedCartID=cartID;	
+				generatedCartID=cartID;
+	}
+				
+	
+	@Test
+	public void promo() {
+			
+			testInfo = report.createTest("Test Scenario : Promo");
+			for(Map<String,String> testData : testDataMap) {
+				
+			
 				
 		/*
 		 * SCAN BARCODE EAN		
