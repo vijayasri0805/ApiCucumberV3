@@ -2,9 +2,14 @@ package com.levi.api.aoslse.steps;
 
 import com.levi.api.aoslse.Promo;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
 
 public class AOSLSEPromoSteps {
 	
@@ -15,7 +20,7 @@ public class AOSLSEPromoSteps {
 		promo.authToken();
 	}
 
-	@Given("^create the cartID and Allocated Order number$")
+	@And("^create the cartID and Allocated Order number$")
 	public void create_the_cartID_and_Allocated_Order_number() throws Throwable {
 	   promo.createCartID();
 	}

@@ -2,7 +2,7 @@ package com.levi.api.aoslse;
 
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.nullValue;
+
 import static org.testng.Assert.assertEquals;
 
 import java.io.File;
@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -37,7 +38,12 @@ import com.jayway.restassured.response.Response;
 import com.levi.api.utils.PropertyReader;
 import com.levi.api.utils.TestDataUtils;
 
+import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
 
 public class Promo {
 	

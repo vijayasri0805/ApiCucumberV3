@@ -12,6 +12,7 @@ import java.util.Map;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -127,54 +128,62 @@ public class EditCart {
 			report.attachReporter(htmlReporter);
 	}
 	
+	@BeforeMethod
+	public void editAuthToken() {
+		
+		/*
+		 * AUTH TOKEN		
+		 */		
+				
+				JSONObject requestParams = new JSONObject();
+				requestParams.put("username", "testaoswebclient"); 
+				requestParams.put("password", "Test@0swebClient");
+				
+				resp = given().body(requestParams.toJSONString()). 
+						expect().statusCode(200).contentType(ContentType.JSON).
+						when().
+						post(AUTHTOKEN);
+				
+				String idToken = resp. 
+						then().extract().path("id_token");
+				
+				
+				generatedToken=idToken;
+		
+	}
+	
+	@BeforeMethod
+	public void editCartID() {
+		
+		/*
+		 * GUID AND ALLOCATED ORDER NUMBER
+		 */
+				
+				resp = given().
+						contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).
+						when().
+						post(CARTID);
+				
+				
+				String allocatedOrdNum = resp. 
+						then(). 
+						extract(). 
+						path("allocatedOrderNumber");
+				AllocatedOrderNumber=allocatedOrdNum;
+							
+				String cartID = resp. 
+						then().extract().
+						path("guid");
+						
+				System.out.println("GUID : " + cartID);
+				generatedCartID=cartID;
+	}
+	
 	@Test
 	public void editCart() {
 		
 		testInfo = report.createTest("Test Scenario : Promo");
-		for(Map<String,String> testData : testDataMap) {
-			
-			
-	/*
-	 * AUTH TOKEN		
-	 */		
-			
-			JSONObject requestParams = new JSONObject();
-			requestParams.put("username", "testaoswebclient"); 
-			requestParams.put("password", "Test@0swebClient");
-			
-			resp = given().body(requestParams.toJSONString()). 
-					expect().statusCode(200).contentType(ContentType.JSON).
-					when().
-					post(AUTHTOKEN);
-			
-			String idToken = resp. 
-					then().extract().path("id_token");
-			
-			
-			generatedToken=idToken;
-			
-	/*
-	 * GUID AND ALLOCATED ORDER NUMBER
-	 */
-			
-			resp = given().
-					contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).
-					when().
-					post(CARTID);
-			
-			
-			String allocatedOrdNum = resp. 
-					then(). 
-					extract(). 
-					path("allocatedOrderNumber");
-			AllocatedOrderNumber=allocatedOrdNum;
-						
-			String cartID = resp. 
-					then().extract().
-					path("guid");
-					
-			System.out.println("GUID : " + cartID);
-			generatedCartID=cartID;	
+		for(Map<String,String> testData : testDataMap) {	
 			
 	/*
 	 * SCAN BARCODE EAN		

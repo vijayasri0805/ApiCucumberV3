@@ -8,10 +8,14 @@
 		</classes>
 	</test> -->
 	<test name="AOSLSE API">
-		<classes>
-			<class name="com.levi.api.aoslse.Promo" />
-			<class name="com.levi.api.aoslse.HappyPath" />
-			<class name="com.levi.api.aoslse.RemoveCart" />
-		</classes>	
+		
+				 <classes>
+					<class name="com.levi.api.aoslse.Promo" />
+					<class name="com.levi.api.aoslse.RemoveCart" />
+					<class name="com.levi.api.aoslse.Happy" />
+					<class name="com.levi.api.aoslse.RemoveCart" />
+				</classes>
+		
+			
 	</test>
 </suite>
