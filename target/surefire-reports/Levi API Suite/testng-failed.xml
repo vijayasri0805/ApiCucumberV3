@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Levi API Suite]" parallel="tests">
+  <test name="AOSLSE API">
+    <classes>
+      <class name="com.levi.api.aoslse.Promo"/>
+      <class name="com.levi.api.aoslse.EditCart"/>
+      <class name="com.levi.api.aoslse.Happy"/>
+      <class name="com.levi.api.aoslse.RemoveCart"/>
+    </classes>
+  </test> <!-- AOSLSE API -->
+  <test name="AOSLSE API(failed)" parallel="tests">
+    <classes>
+      <class name="com.levi.api.aoslse.EditCart">
+        <methods>
+          <include name="cleanup"/>
+          <include name="editCartID"/>
+          <include name="editAuthToken"/>
+          <include name="captureStatus"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.levi.api.aoslse.EditCart -->
+      <class name="com.levi.api.aoslse.RemoveCart">
+        <methods>
+          <include name="setup"/>
+          <include name="cleanup"/>
+          <include name="createCartIDRemoveCart"/>
+          <include name="removeCart"/>
+        </methods>
+      </class> <!-- com.levi.api.aoslse.RemoveCart -->
+      <class name="com.levi.api.aoslse.Happy">
+        <methods>
+          <include name="cleanup"/>
+          <include name="Happy"/>
+          <include name="cartIDHappy"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.levi.api.aoslse.Happy -->
+      <class name="com.levi.api.aoslse.Promo">
+        <methods>
+          <include name="setup"/>
+          <include name="captureStatus"/>
+          <include name="cleanup"/>
+          <include name="createCartID"/>
+          <include name="authToken"/>
+        </methods>
+      </class> <!-- com.levi.api.aoslse.Promo -->
+    </classes>
+  </test> <!-- AOSLSE API(failed) -->
+</suite> <!-- Failed suite [Levi API Suite] -->

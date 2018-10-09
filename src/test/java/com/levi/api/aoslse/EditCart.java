@@ -498,6 +498,7 @@ public class EditCart {
 						System.out.println("Actual Order Number is not equal to Allocated Order Number");
 					}
 					System.out.println("Order NUmber : " + orderNumber);
+					System.out.println("Completed EditCart Scenario");
 					
 					testInfo.log(Status.PASS, "Selected PC9 from Response is : " + selectedPC9);
 					testInfo.log(Status.PASS, "Selected PC13 from Response is : " + SelectedPC13);
@@ -533,6 +534,11 @@ public class EditCart {
 	@AfterTest
 	public void cleanup() {
 		report.flush();
+	}
+
+	public void captureStatus() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

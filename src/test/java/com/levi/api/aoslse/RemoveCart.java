@@ -15,6 +15,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.*;
@@ -76,7 +77,7 @@ public class RemoveCart {
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 	
-	@BeforeTest
+	@BeforeSuite
 	public void setup() throws Exception {
 		
 		SCAN = reader.getData("scanBarCode");
@@ -100,11 +101,8 @@ public class RemoveCart {
 		
 	}
 	
-	@Test
-	public void removeCart() {
-		
-		testInfo = report.createTest("Test Scenario : RemoveCart");
-		for(Map<String,String> testData : testDataMap) {
+	@BeforeMethod
+	public void getTokenRemoveCart() {
 		
 		/*
 		 * AUTH TOKEN
@@ -118,13 +116,16 @@ public class RemoveCart {
 						expect().statusCode(200).contentType(ContentType.JSON).
 						when().
 						post(AUTHTOKEN);
-				System.out.println("resp " + resp.asString());
 		
 		
 		String idToken = resp. 
 				then().extract().path("id_token");
 
 		generatedToken=idToken;
+	}
+	
+	@BeforeMethod
+	public void createCartIDRemoveCart() {
 		
 		/*
 		 * GUID AND ALLOCATED ORDER
@@ -150,6 +151,15 @@ public class RemoveCart {
 				
 		System.out.println("GUID : " + cartID);
 		generatedCartID=cartID;
+		
+	}
+	
+	@Test
+	public void removeCart() {
+		
+		testInfo = report.createTest("Test Scenario : RemoveCart");
+		for(Map<String,String> testData : testDataMap) {
+		
 		
 		/*
 		 * SCAN BARCODE EAN		
@@ -293,7 +303,7 @@ public class RemoveCart {
 						 when().delete(DELETECART);
 				 
 				 /*
-				  * VIEW EDIT CART
+				  * VIEW DELETED CART
 				  */
 				
 				 resp = given().
@@ -313,6 +323,7 @@ public class RemoveCart {
 					 }else {
 						 System.out.println("CartID and View Cart GUID is not equal");
 					 }
+					 System.out.println("Completed Remove CArt Scenario");
 		
 					testInfo.log(Status.PASS, "Selected PC9 from Response is : " + selectedPC9);
 					testInfo.log(Status.PASS, "Selected PC13 from Response is : " + SelectedPC13);
@@ -341,6 +352,11 @@ public class RemoveCart {
 	@AfterTest
 	public void cleanup() {
 		report.flush();
+	}
+
+	public void captureStatus() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

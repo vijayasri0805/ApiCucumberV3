@@ -33,5 +33,15 @@ public class AOSLSEEditCartSteps {
 	public void remove_products_from_the_cart() {
 	    editCart.editCart();
 	}
+	
+	@And("^capture the status of the EditCart Scenario$")
+	public void capture_the_status_of_the_EditCart_Scenario() throws Throwable {
+	    editCart.captureStatus();
+	}
+
+	@Then("^flush the pervious results for the EditCart scenario$")
+	public void flush_the_pervious_results_for_the_EditCart_scenario() throws Throwable {
+	    editCart.cleanup();
+	}
 
 }

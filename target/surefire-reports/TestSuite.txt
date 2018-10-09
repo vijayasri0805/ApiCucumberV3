@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 2, Errors: 0, Skipped: 6, Time elapsed: 73.717 sec <<< FAILURE! - in TestSuite
+cartIDHappy(com.levi.api.aoslse.Happy)  Time elapsed: 26.146 sec  <<< FAILURE!
+java.lang.IllegalArgumentException: accessToken cannot be null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:60)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:235)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:247)
+	at com.jayway.restassured.internal.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at com.jayway.restassured.internal.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:56)
+	at com.jayway.restassured.internal.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:147)
+	at com.jayway.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at com.jayway.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:140)
+	at com.levi.api.aoslse.Happy.cartIDHappy(Happy.java:158)
+
+createCartIDRemoveCart(com.levi.api.aoslse.RemoveCart)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.IllegalArgumentException: accessToken cannot be null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:247)
+	at com.jayway.restassured.internal.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
+	at com.jayway.restassured.internal.assertion.AssertParameter$notNull.callStatic(Unknown Source)
+	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:147)
+	at com.jayway.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
+	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:140)
+	at com.levi.api.aoslse.RemoveCart.createCartIDRemoveCart(RemoveCart.java:135)
+
