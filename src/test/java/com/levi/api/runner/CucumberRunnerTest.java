@@ -1,9 +1,6 @@
 package com.levi.api.runner;
 
 import org.junit.runner.RunWith;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.equalTo;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -18,7 +15,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         )
 
 
-public class CucumberRunnerTest {
+public class CucumberRunnerTest extends AbstractTestNGCucumberTests{
 
 }
 

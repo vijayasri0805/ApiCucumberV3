@@ -13,6 +13,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -96,7 +97,7 @@ public class EditCart {
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 	
-	@BeforeTest
+	@BeforeSuite
 	public void setup() throws Exception {
 		
 		SCAN = reader.getData("scanBarCode");
@@ -143,6 +144,8 @@ public class EditCart {
 						expect().statusCode(200).contentType(ContentType.JSON).
 						when().
 						post(AUTHTOKEN);
+			
+			
 				
 				String idToken = resp. 
 						then().extract().path("id_token");

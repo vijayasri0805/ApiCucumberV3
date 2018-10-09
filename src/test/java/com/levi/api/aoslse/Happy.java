@@ -12,6 +12,8 @@ import java.util.Map;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -91,7 +93,7 @@ public class Happy {
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 	
-	@BeforeTest
+	@BeforeSuite
 	public void setup() throws Exception {
 		
 		SCAN = reader.getData("scanBarCode");
@@ -121,15 +123,10 @@ public class Happy {
 			report.setSystemInfo("Environment", "AOSLSE");
 			report.attachReporter(htmlReporter);
 	}
-				
 	
-	@Test
-	public void promo() {
-			
-			testInfo = report.createTest("Test Scenario : Promo");
-			for(Map<String,String> testData : testDataMap) {
-				
-				
+	@BeforeMethod
+	public void getTokenHappy() {
+		
 		/*
 		 * AUTH TOKEN		
 		 */
@@ -147,7 +144,12 @@ public class Happy {
 				
 				
 				generatedToken=idToken;
-				
+		
+	}
+	
+	@BeforeMethod
+	public void cartIDHappy() {
+		
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
@@ -169,7 +171,22 @@ public class Happy {
 						path("guid");
 						
 				System.out.println("GUID : " + cartID);
-				generatedCartID=cartID;	
+				generatedCartID=cartID;
+		
+		
+	}
+				
+	
+	@Test
+	public void Happy() {
+			
+			testInfo = report.createTest("Test Scenario : Promo");
+			for(Map<String,String> testData : testDataMap) {
+				
+				
+		
+				
+			
 				
 		/*
 		 * SCAN BARCODE EAN		
@@ -475,6 +492,11 @@ public class Happy {
 	@AfterTest
 	public void cleanup() {
 		report.flush();
+	}
+
+	public void captureStatus() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

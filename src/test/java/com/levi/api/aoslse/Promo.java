@@ -2,48 +2,31 @@ package com.levi.api.aoslse;
 
 
 import static com.jayway.restassured.RestAssured.given;
-
 import static org.testng.Assert.assertEquals;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import org.testng.asserts.*;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.jayway.jsonpath.internal.path.ArrayPathToken;
 import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.http.Method;
 import com.jayway.restassured.response.Response;
 import com.levi.api.utils.PropertyReader;
 import com.levi.api.utils.TestDataUtils;
 
-import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.equalTo;
 
 public class Promo {
 	
@@ -109,7 +92,7 @@ public class Promo {
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 	
-	@BeforeTest
+	@BeforeSuite
 	public void setup() throws Exception {
 		
 		SCAN = reader.getData("scanBarCode");
@@ -154,6 +137,7 @@ public class Promo {
 						expect().statusCode(200).contentType(ContentType.JSON).
 						when().
 						post(AUTHTOKEN);
+				
 				
 				String idToken = resp. 
 						then().extract().path("id_token");
@@ -513,6 +497,11 @@ public class Promo {
 	@AfterTest
 	public void cleanup() {
 		report.flush();
-	}	
+	}
+
+	public void captureStatus() {
+		
+		
+	}
 
 }
