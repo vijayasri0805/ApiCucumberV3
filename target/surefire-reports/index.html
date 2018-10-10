@@ -91,7 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">4 methods,  2 skipped,  2 passed</span>
+                    <span class="method-stats">4 methods,  1 skipped,  3 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title skipped">Skipped methods</span>
@@ -100,11 +100,6 @@
                       <a href="#" panel-name="suite-Levi_API_Suite" class="show-methods skipped suite-Levi_API_Suite"> (show)</a> <!-- show-methods skipped suite-Levi_API_Suite -->
                     </span>
                     <div class="method-list-content skipped suite-Levi_API_Suite">
-                      <span>
-                        <img width="3%" src="skipped.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Levi_API_Suite" title="com.levi.api.aoslse.Happy" hash-for-method="Happy">Happy</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
                       <span>
                         <img width="3%" src="skipped.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Levi_API_Suite" title="com.levi.api.aoslse.RemoveCart" hash-for-method="removeCart">removeCart</a> <!-- method navigator-link -->
@@ -122,6 +117,11 @@
                       <span>
                         <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Levi_API_Suite" title="com.levi.api.aoslse.EditCart" hash-for-method="editCart">editCart</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Levi_API_Suite" title="com.levi.api.aoslse.Happy" hash-for-method="happy">happy</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -156,21 +156,6 @@
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Levi_API_Suite-class-skipped -->
-          <div class="suite-Levi_API_Suite-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">com.levi.api.aoslse.Happy</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Happy">
-                  </a> <!-- Happy -->
-                  <span class="method-name">Happy</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Levi_API_Suite-class-skipped -->
           <div class="suite-Levi_API_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -182,6 +167,21 @@
                   <a name="editCart">
                   </a> <!-- editCart -->
                   <span class="method-name">editCart</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Levi_API_Suite-class-passed -->
+          <div class="suite-Levi_API_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.levi.api.aoslse.Happy</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="happy">
+                  </a> <!-- happy -->
+                  <span class="method-name">happy</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -241,8 +241,9 @@
       &lt;class name=&quot;com.levi.api.aoslse.Happy&quot;&gt;
         &lt;methods&gt;
           &lt;include name=&quot;cleanup&quot;/&gt;
-          &lt;include name=&quot;Happy&quot;/&gt;
-          &lt;include name=&quot;cartIDHappy&quot;/&gt;
+          &lt;include name=&quot;authToken&quot;/&gt;
+          &lt;include name=&quot;createCartID&quot;/&gt;
+          &lt;include name=&quot;captureStatus&quot;/&gt;
           &lt;include name=&quot;setup&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- com.levi.api.aoslse.Happy --&gt;
@@ -301,18 +302,18 @@ data.addRows(4);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'promo')
 data.setCell(0, 2, 'com.levi.api.aoslse.Promo')
-data.setCell(0, 3, 42097);
+data.setCell(0, 3, 22315);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'editCart')
 data.setCell(1, 2, 'com.levi.api.aoslse.EditCart')
-data.setCell(1, 3, 26135);
+data.setCell(1, 3, 19332);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'removeCart')
-data.setCell(2, 2, 'com.levi.api.aoslse.RemoveCart')
-data.setCell(2, 3, 0);
+data.setCell(2, 1, 'happy')
+data.setCell(2, 2, 'com.levi.api.aoslse.Happy')
+data.setCell(2, 3, 18829);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'Happy')
-data.setCell(3, 2, 'com.levi.api.aoslse.Happy')
+data.setCell(3, 1, 'removeCart')
+data.setCell(3, 2, 'com.levi.api.aoslse.RemoveCart')
 data.setCell(3, 3, 0);
 window.suiteTableData['Levi_API_Suite']= { tableData: data, tableDiv: 'times-div-Levi_API_Suite'}
 return data;
@@ -354,73 +355,79 @@ return data;
               <div class="chronological-class-name">com.levi.api.aoslse.Happy</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">setup</span>
-                <span class="method-start">478 ms</span>
+                <span class="method-start">363 ms</span>
               </div> <!-- configuration-suite before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.Promo</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">setup</span>
-                <span class="method-start">482 ms</span>
+                <span class="method-start">367 ms</span>
               </div> <!-- configuration-suite before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.RemoveCart</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">setup</span>
-                <span class="method-start">486 ms</span>
+                <span class="method-start">371 ms</span>
               </div> <!-- configuration-suite before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.Promo</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">authToken</span>
-                <span class="method-start">499 ms</span>
+                <span class="method-start">383 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">createCartID</span>
-                <span class="method-start">2791 ms</span>
+                <span class="method-start">2386 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">promo</span>
-                <span class="method-start">3790 ms</span>
+                <span class="method-start">3361 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">captureStatus([TestResult name=promo status=SUCCESS method=Promo.promo()[pri:0, instance:com.levi.api.aoslse.Promo...)</span>
-                <span class="method-start">45887 ms</span>
+                <span class="method-start">25676 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.EditCart</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">editAuthToken</span>
-                <span class="method-start">45888 ms</span>
+                <span class="method-start">25677 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">editCartID</span>
-                <span class="method-start">46399 ms</span>
+                <span class="method-start">26170 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">editCart</span>
-                <span class="method-start">46960 ms</span>
+                <span class="method-start">26675 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">captureStatus([TestResult name=editCart status=SUCCESS method=EditCart.editCart()[pri:0, instance:com.levi.api.aos...)</span>
-                <span class="method-start">73096 ms</span>
+                <span class="method-start">46007 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.Happy</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">cartIDHappy</span>
-                <span class="method-start">73096 ms</span>
+                <span class="method-name">authToken</span>
+                <span class="method-start">46007 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createCartID</span>
+                <span class="method-start">46461 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">Happy</span>
-                <span class="method-start">73106 ms</span>
+                <span class="method-name">happy</span>
+                <span class="method-start">47121 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">captureStatus([TestResult name=happy status=SUCCESS method=Happy.happy()[pri:0, instance:com.levi.api.aoslse.Happy...)</span>
+                <span class="method-start">65950 ms</span>
+              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.RemoveCart</div> <!-- chronological-class-name -->
@@ -428,39 +435,39 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">createCartIDRemoveCart</span>
-                <span class="method-start">73106 ms</span>
+                <span class="method-start">65951 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">removeCart</span>
-                <span class="method-start">73107 ms</span>
+                <span class="method-start">65961 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.EditCart</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">cleanup</span>
-                <span class="method-start">73107 ms</span>
+                <span class="method-start">65961 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.Happy</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">cleanup</span>
-                <span class="method-start">73357 ms</span>
+                <span class="method-start">66157 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.Promo</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">cleanup</span>
-                <span class="method-start">73357 ms</span>
+                <span class="method-start">66192 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.levi.api.aoslse.RemoveCart</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">cleanup</span>
-                <span class="method-start">73395 ms</span>
+                <span class="method-start">66222 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

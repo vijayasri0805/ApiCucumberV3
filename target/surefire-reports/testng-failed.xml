@@ -31,8 +31,9 @@
       <class name="com.levi.api.aoslse.Happy">
         <methods>
           <include name="cleanup"/>
-          <include name="Happy"/>
-          <include name="cartIDHappy"/>
+          <include name="authToken"/>
+          <include name="createCartID"/>
+          <include name="captureStatus"/>
           <include name="setup"/>
         </methods>
       </class> <!-- com.levi.api.aoslse.Happy -->

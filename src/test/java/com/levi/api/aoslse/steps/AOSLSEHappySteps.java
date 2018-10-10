@@ -20,22 +20,21 @@ public class AOSLSEHappySteps {
 	
 	@Then("^get the token for HappyPath$")
 	public void get_the_token_for_HappyPath() throws Throwable {
-	    happy.getTokenHappy();
+	    happy.authToken();
 	}
 
 	@And("^create cartID and GUID for Happy Path$")
 	public void create_cartID_and_GUID_for_Happy_Path() throws Throwable {
-	    happy.cartIDHappy();
+	    happy.createCartID();
 	}
 
 	@When("^user places an order using Happy Path$")
 	public void user_places_an_order_using_Happy_Path() {
-	    happy.Happy();
+	    happy.happy();
 	}
 
 	@Then("^capture the status of the Happy scenario$")
 	public void capture_the_status_of_the_Happy_scenario() throws Throwable {
-//	    ITestResult result = null;
 		happy.captureStatus();
 	}
 

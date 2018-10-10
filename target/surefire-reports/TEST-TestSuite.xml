@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestSuite" time="94.381" tests="10" errors="0" skipped="6" failures="2">
+<testsuite name="TestSuite" time="79.316" tests="7" errors="0" skipped="3" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="cucumber.options" value="src/test/resource/features/AOSLSEHappy.feature:3"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.172-b11"/>
     <property name="gopherProxySet" value="false"/>
@@ -25,13 +26,15 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/9tagor7/Documents/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf181346285810424661.tmp"/>
+    <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.5.4/libexec/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/9tagor7/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="maven.conf" value="/usr/local/Cellar/maven/3.5.4/libexec/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.13.3"/>
+    <property name="library.jansi.path" value="/usr/local/Cellar/maven/3.5.4/libexec/lib/jansi-native"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="user.home" value="/Users/9tagor7"/>
     <property name="user.timezone" value="US/Pacific"/>
@@ -39,11 +42,11 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="9tagor7"/>
-    <property name="java.class.path" value="/Applications/STS.app/Contents/Eclipse/plugins/org.eclipse.m2e.maven.runtime_1.8.3.20180227-2135/jars/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.class.path" value="/usr/local/Cellar/maven/3.5.4/libexec/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test -Dcucumber.options=src/test/resource/features/AOSLSEHappy.feature:3"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -52,7 +55,7 @@
     <property name="java.ext.dirs" value="/Users/9tagor7/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/Users/9tagor7/Documents/workspace/levi-api-automation/EMBEDDED"/>
+    <property name="maven.home" value="/usr/local/Cellar/maven/3.5.4/libexec"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -61,9 +64,10 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="promo" classname="com.levi.api.aoslse.Promo" time="42.098"/>
-  <testcase name="editCart" classname="com.levi.api.aoslse.EditCart" time="26.136"/>
-  <testcase name="cartIDHappy" classname="com.levi.api.aoslse.Happy" time="26.146">
+  <testcase name="promo" classname="com.levi.api.aoslse.Promo" time="22.315"/>
+  <testcase name="editCart" classname="com.levi.api.aoslse.EditCart" time="19.332"/>
+  <testcase name="happy" classname="com.levi.api.aoslse.Happy" time="18.829"/>
+  <testcase name="createCartIDRemoveCart" classname="com.levi.api.aoslse.RemoveCart" time="18.84">
     <failure message="accessToken cannot be null" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: accessToken cannot be null
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
@@ -82,33 +86,6 @@
 	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:147)
 	at com.jayway.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
-	at com.jayway.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
-	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:140)
-	at com.levi.api.aoslse.Happy.cartIDHappy(Happy.java:158)
-</failure>
-  </testcase>
-  <testcase name="getTokenHappy" classname="com.levi.api.aoslse.Happy" time="0">
-    <skipped/>
-  </testcase>
-  <testcase name="Happy" classname="com.levi.api.aoslse.Happy" time="0">
-    <skipped/>
-  </testcase>
-  <testcase name="captureStatus" classname="com.levi.api.aoslse.Happy" time="0">
-    <skipped/>
-  </testcase>
-  <testcase name="createCartIDRemoveCart" classname="com.levi.api.aoslse.RemoveCart" time="0.001">
-    <failure message="accessToken cannot be null" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: accessToken cannot be null
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
-	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
-	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:247)
-	at com.jayway.restassured.internal.assertion.AssertParameter.notNull(AssertParameter.groovy:26)
-	at com.jayway.restassured.internal.assertion.AssertParameter$notNull.callStatic(Unknown Source)
-	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:147)
 	at com.jayway.restassured.specification.AuthenticationSpecification$oauth2.callCurrent(Unknown Source)
 	at com.jayway.restassured.internal.AuthenticationSpecificationImpl.oauth2(AuthenticationSpecificationImpl.groovy:140)
 	at com.levi.api.aoslse.RemoveCart.createCartIDRemoveCart(RemoveCart.java:135)

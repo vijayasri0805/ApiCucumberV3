@@ -9,6 +9,7 @@ import cucumber.api.java.en.When;
 import gherkin.formatter.model.Result;
 
 import org.hamcrest.Matchers;
+import org.testng.ITestResult;
 
 public class AOSLSEPromoSteps {
 	

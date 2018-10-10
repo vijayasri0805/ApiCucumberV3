@@ -102,7 +102,7 @@ public class RemoveCart {
 	}
 	
 	@BeforeMethod
-	public void getTokenRemoveCart() {
+	public void authToken() {
 		
 		/*
 		 * AUTH TOKEN
@@ -125,7 +125,7 @@ public class RemoveCart {
 	}
 	
 	@BeforeMethod
-	public void createCartIDRemoveCart() {
+	public void createCartID() {
 		
 		/*
 		 * GUID AND ALLOCATED ORDER
@@ -301,6 +301,7 @@ public class RemoveCart {
 						 contentType(ContentType.JSON).auth().
 						 oauth2(generatedToken).expect().statusCode(200). 
 						 when().delete(DELETECART);
+				 System.out.println("Deleted Sucessfully");
 				 
 				 /*
 				  * VIEW DELETED CART
@@ -309,10 +310,11 @@ public class RemoveCart {
 				 resp = given().
 							pathParameter("guid", generatedCartID).
 							when().get(VIEWCART);
+				 System.out.println(resp.asString());
 					
 					String totalPriceWithTax1 = resp.then().extract().path("totalPriceWithTax.value").toString();
-					if(totalPriceWithTax1.equals(AddedCartValue)) {
-						assertEquals(totalPriceWithTax1, CartValue);
+					if(totalPriceWithTax1.equals(ViewCartValue)) {
+						assertEquals(totalPriceWithTax1, ViewCartValue);
 					}else {
 						System.out.println("Actual cart value is not equal to view cart value");
 					}
@@ -323,7 +325,7 @@ public class RemoveCart {
 					 }else {
 						 System.out.println("CartID and View Cart GUID is not equal");
 					 }
-					 System.out.println("Completed Remove CArt Scenario");
+					 System.out.println("Completed Remove Cart Scenario");
 		
 					testInfo.log(Status.PASS, "Selected PC9 from Response is : " + selectedPC9);
 					testInfo.log(Status.PASS, "Selected PC13 from Response is : " + SelectedPC13);
@@ -346,6 +348,10 @@ public class RemoveCart {
 			testInfo.log(Status.FAIL, "The Actual PC9 is : " + selectedPC9);
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			testInfo.log(Status.SKIP, "The Test Method named :" + result.getAttributeNames() + " is SKIPPED");
+		} else if (result.getStatus() == ITestResult.SUCCESS_PERCENTAGE_FAILURE) {
+			testInfo.log(Status.ERROR, "The Test Method named : " + result.getHost() + "is ERROR");
+		}else {
+			testInfo.log(Status.DEBUG, "The Test Method can be Debugged : " + result.getInstanceName() + " can be DEBUGGED");
 		}
 	}
 	
@@ -359,9 +365,5 @@ public class RemoveCart {
 		
 	}
 	
-	
-	
-	
-
 
 }

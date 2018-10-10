@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="0" passed="0">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="5" started-at="2018-10-09T17:32:55Z" finished-at="2018-10-09T17:32:55Z">
+  <suite name="Default suite" duration-ms="29568" started-at="2018-10-10T06:50:26Z" finished-at="2018-10-10T06:50:56Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="5" started-at="2018-10-09T17:32:55Z" finished-at="2018-10-09T17:32:55Z">
+    <test name="Default test" duration-ms="29568" started-at="2018-10-10T06:50:26Z" finished-at="2018-10-10T06:50:56Z">
+      <class name="com.levi.api.aoslse.RemoveCart">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="setup" is-config="true" duration-ms="442" started-at="2018-10-09T23:50:26Z" finished-at="2018-10-09T23:50:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="authToken()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="authToken" is-config="true" duration-ms="2562" started-at="2018-10-09T23:50:26Z" finished-at="2018-10-09T23:50:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- authToken -->
+        <test-method status="PASS" signature="createCartID()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="createCartID" is-config="true" duration-ms="1191" started-at="2018-10-09T23:50:29Z" finished-at="2018-10-09T23:50:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createCartID -->
+        <test-method status="PASS" signature="removeCart()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="removeCart" duration-ms="25520" started-at="2018-10-09T23:50:30Z" finished-at="2018-10-09T23:50:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removeCart -->
+        <test-method status="PASS" signature="captureStatus(org.testng.ITestResult)[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="captureStatus" is-config="true" duration-ms="1" started-at="2018-10-09T23:50:56Z" finished-at="2018-10-09T23:50:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=removeCart status=SUCCESS method=RemoveCart.removeCart()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- captureStatus -->
+        <test-method status="PASS" signature="cleanup()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="cleanup" is-config="true" duration-ms="283" started-at="2018-10-09T23:50:56Z" finished-at="2018-10-09T23:50:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+      </class> <!-- com.levi.api.aoslse.RemoveCart -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

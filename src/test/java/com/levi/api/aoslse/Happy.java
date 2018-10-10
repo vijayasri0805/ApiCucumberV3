@@ -125,7 +125,7 @@ public class Happy {
 	}
 	
 	@BeforeMethod
-	public void getTokenHappy() {
+	public void authToken() {
 		
 		/*
 		 * AUTH TOKEN		
@@ -139,6 +139,7 @@ public class Happy {
 						when().
 						post(AUTHTOKEN);
 				
+				
 				String idToken = resp. 
 						then().extract().path("id_token");
 				
@@ -148,7 +149,7 @@ public class Happy {
 	}
 	
 	@BeforeMethod
-	public void cartIDHappy() {
+	public void createCartID() {
 		
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
@@ -158,6 +159,7 @@ public class Happy {
 						contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).
 						when().
 						post(CARTID);
+				
 				
 				
 				String allocatedOrdNum = resp. 
@@ -178,14 +180,10 @@ public class Happy {
 				
 	
 	@Test
-	public void Happy() {
+	public void happy() {
 			
 			testInfo = report.createTest("Test Scenario : Promo");
-			for(Map<String,String> testData : testDataMap) {
-				
-				
-		
-				
+			for(Map<String,String> testData : testDataMap) {		
 			
 				
 		/*
