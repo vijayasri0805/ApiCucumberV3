@@ -3,7 +3,21 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test verbose="2" name="Default test">
     <classes>
-      <class name="com.levi.api.aoslse.RemoveCart"/>
+      <class name="com.levi.api.aoslse.Happy"/>
     </classes>
   </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.levi.api.aoslse.Happy">
+        <methods>
+          <include name="happy"/>
+          <include name="authToken"/>
+          <include name="cleanup"/>
+          <include name="createCartID"/>
+          <include name="captureStatus"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.levi.api.aoslse.Happy -->
+    </classes>
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

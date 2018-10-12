@@ -1,44 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="29568" started-at="2018-10-10T06:50:26Z" finished-at="2018-10-10T06:50:56Z">
+  <suite name="Default suite" duration-ms="18984" started-at="2018-10-12T21:04:43Z" finished-at="2018-10-12T21:05:02Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="29568" started-at="2018-10-10T06:50:26Z" finished-at="2018-10-10T06:50:56Z">
-      <class name="com.levi.api.aoslse.RemoveCart">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="setup" is-config="true" duration-ms="442" started-at="2018-10-09T23:50:26Z" finished-at="2018-10-09T23:50:26Z">
+    <test name="Default test" duration-ms="18984" started-at="2018-10-12T21:04:43Z" finished-at="2018-10-12T21:05:02Z">
+      <class name="com.levi.api.aoslse.Happy">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.levi.api.aoslse.Happy@685cb137]" name="setup" is-config="true" duration-ms="365" started-at="2018-10-12T14:04:43Z" finished-at="2018-10-12T14:04:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="authToken()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="authToken" is-config="true" duration-ms="2562" started-at="2018-10-09T23:50:26Z" finished-at="2018-10-09T23:50:29Z">
+        <test-method status="PASS" signature="authToken()[pri:0, instance:com.levi.api.aoslse.Happy@685cb137]" name="authToken" is-config="true" duration-ms="2046" started-at="2018-10-12T14:04:43Z" finished-at="2018-10-12T14:04:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- authToken -->
-        <test-method status="PASS" signature="createCartID()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="createCartID" is-config="true" duration-ms="1191" started-at="2018-10-09T23:50:29Z" finished-at="2018-10-09T23:50:30Z">
+        <test-method status="PASS" signature="createCartID()[pri:0, instance:com.levi.api.aoslse.Happy@685cb137]" name="createCartID" is-config="true" duration-ms="1201" started-at="2018-10-12T14:04:45Z" finished-at="2018-10-12T14:04:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createCartID -->
-        <test-method status="PASS" signature="removeCart()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="removeCart" duration-ms="25520" started-at="2018-10-09T23:50:30Z" finished-at="2018-10-09T23:50:56Z">
+        <test-method status="FAIL" signature="happy()[pri:0, instance:com.levi.api.aoslse.Happy@685cb137]" name="happy" duration-ms="15477" started-at="2018-10-12T14:04:47Z" finished-at="2018-10-12T14:05:02Z">
+          <exception class="java.lang.IllegalArgumentException">
+            <message>
+              <![CDATA[Cannot get property 'orderedQuantity' on null object]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IllegalArgumentException: Cannot get property 'orderedQuantity' on null object
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:105)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:60)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:235)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:255)
+	at com.jayway.restassured.internal.path.json.JSONAssertion.getAsJsonObject(JSONAssertion.groovy:53)
+	at com.jayway.restassured.internal.path.json.JSONAssertion$getAsJsonObject.callCurrent(Unknown Source)
+	at com.jayway.restassured.internal.path.json.JSONAssertion.getResult(JSONAssertion.groovy:28)
+	at com.jayway.restassured.path.json.JsonPath.get(JsonPath.java:202)
+	at com.jayway.restassured.path.json.JsonPath$get$0.call(Unknown Source)
+	at com.jayway.restassured.internal.RestAssuredResponseOptionsGroovyImpl.path(RestAssuredResponseOptionsGroovyImpl.groovy:392)
+	at com.jayway.restassured.internal.RestAssuredResponseOptionsImpl.path(RestAssuredResponseOptionsImpl.java:195)
+	at com.levi.api.aoslse.Happy.happy(Happy.java:426)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.NullPointerException: Cannot get property 'orderedQuantity' on null object
+	at org.codehaus.groovy.runtime.NullObject.getProperty(NullObject.java:60)
+	at org.codehaus.groovy.runtime.InvokerHelper.getProperty(InvokerHelper.java:172)
+	at org.codehaus.groovy.runtime.callsite.NullCallSite.getProperty(NullCallSite.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callGetProperty(AbstractCallSite.java:296)
+	at Script1.run(Script1.groovy:1)
+	at groovy.lang.GroovyShell.evaluate(GroovyShell.java:591)
+	at groovy.lang.GroovyShell.evaluate(GroovyShell.java:629)
+	at groovy.lang.GroovyShell.evaluate(GroovyShell.java:600)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrap.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:71)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at com.jayway.restassured.internal.path.json.JSONAssertion.eval(JSONAssertion.groovy:76)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:210)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)
+	at com.jayway.restassured.internal.path.json.JSONAssertion.getAsJsonObject(JSONAssertion.groovy:46)
+	... 31 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IllegalArgumentException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- removeCart -->
-        <test-method status="PASS" signature="captureStatus(org.testng.ITestResult)[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="captureStatus" is-config="true" duration-ms="1" started-at="2018-10-09T23:50:56Z" finished-at="2018-10-09T23:50:56Z">
+        </test-method> <!-- happy -->
+        <test-method status="PASS" signature="captureStatus(org.testng.ITestResult)[pri:0, instance:com.levi.api.aoslse.Happy@685cb137]" name="captureStatus" is-config="true" duration-ms="6" started-at="2018-10-12T14:05:02Z" finished-at="2018-10-12T14:05:02Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=removeCart status=SUCCESS method=RemoveCart.removeCart()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745] output={null}]]]>
+                <![CDATA[[TestResult name=happy status=FAILURE method=Happy.happy()[pri:0, instance:com.levi.api.aoslse.Happy@685cb137] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureStatus -->
-        <test-method status="PASS" signature="cleanup()[pri:0, instance:com.levi.api.aoslse.RemoveCart@3c130745]" name="cleanup" is-config="true" duration-ms="283" started-at="2018-10-09T23:50:56Z" finished-at="2018-10-09T23:50:56Z">
+        <test-method status="PASS" signature="cleanup()[pri:0, instance:com.levi.api.aoslse.Happy@685cb137]" name="cleanup" is-config="true" duration-ms="242" started-at="2018-10-12T14:05:02Z" finished-at="2018-10-12T14:05:02Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanup -->
-      </class> <!-- com.levi.api.aoslse.RemoveCart -->
+      </class> <!-- com.levi.api.aoslse.Happy -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

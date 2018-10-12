@@ -142,6 +142,7 @@ public class Happy {
 				
 				String idToken = resp. 
 						then().extract().path("id_token");
+				System.out.println(idToken);
 				
 				
 				generatedToken=idToken;
@@ -325,6 +326,7 @@ public class Happy {
 				
 				String uid = resp.then().extract().path("uid");
 				generatedUid=uid;
+				System.out.println(uid);
 				
 				
 				/*
@@ -419,6 +421,7 @@ public class Happy {
 				
 				String reservationStatus = resp.then().extract().path("reservationStatus");
 				reservStatus = reservationStatus;
+				System.out.println(reservationStatus);
 				
 				List<Array> reservationQuantity = resp.then().extract().path("itemList.orderedQuantity");
 				reservQty = reservationQuantity;
@@ -459,7 +462,7 @@ public class Happy {
 				}else {
 					System.out.println("Actual Order Number is not equal to Allocated Order Number");
 				}
-				System.out.println("Order NUmber : " + orderNumber);
+				System.out.println("Order Number : " + orderNumber);
 				System.out.println("Completed Happy Path Scenario");
 				
 				testInfo.log(Status.PASS, "Selected PC9 from Response is : " + selectedPC9);
