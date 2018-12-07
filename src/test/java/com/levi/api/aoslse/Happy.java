@@ -134,16 +134,15 @@ public class Happy {
 				requestParams.put("username", "testaoswebclient"); 
 				requestParams.put("password", "Test@0swebClient");
 				
+				
 				resp = given().body(requestParams.toJSONString()). 
 						expect().statusCode(200).contentType(ContentType.JSON).
 						when().
 						post(AUTHTOKEN);
 				
 				
-				String idToken = resp. 
-						then().extract().path("id_token");
-				System.out.println(idToken);
-				
+				String idToken = resp.then().extract().path("id_token");
+				System.out.println(idToken);			
 				
 				generatedToken=idToken;
 		
