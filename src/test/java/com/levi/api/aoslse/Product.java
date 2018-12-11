@@ -27,6 +27,7 @@ import com.jayway.restassured.response.Response;
 import com.levi.api.utils.PropertyReader;
 import com.levi.api.utils.TestDataUtils;
 
+import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
 
 public class Product {
@@ -145,6 +146,8 @@ public class Product {
 		String idToken = resp.then().extract().path("access_token");
 		System.out.println("GeneratedToken:"+ idToken);				
 		generatedToken=idToken;
+		
+		createCartID();
 
 	}
 
@@ -180,7 +183,7 @@ public class Product {
 	@Test			
 	public void checkProduct()
 	{
-		testInfo = report.createTest("Test Scenario : Product");
+		//testInfo = report.createTest("Test Scenario : Product");
 
 		/*
 		 * PRODUCTDATA
@@ -310,7 +313,7 @@ public class Product {
 			JSONObject cartChildParam = new JSONObject();
 			cartChildParam.put("cartId", generatedCartID); 
 			cartChildParam.put("userId", testData.get("EmailID"));
-
+			System.out.println(cartChildParam);
 			resp = given().body(cartChildParam).contentType(ContentType.JSON). 
 					parameter("Authorization", "bearer "+generatedToken).expect().statusCode(200). 
 					when().post(CHECKOUT);

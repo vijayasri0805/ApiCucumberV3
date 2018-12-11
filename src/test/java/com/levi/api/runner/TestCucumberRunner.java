@@ -10,12 +10,11 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
         features = "src/test/resource/features",
         glue={"com.levi.api.aoslse.steps"},
-        plugin = {"pretty","html:target/cucumber/report.html"},
-        monochrome = true
+        plugin = {"pretty","html:target/cucumber/report.html"}
         )
 
 
-public class CucumberRunner extends AbstractTestNGCucumberTests{
+public class TestCucumberRunner extends AbstractTestNGCucumberTests{
 
 }
 
