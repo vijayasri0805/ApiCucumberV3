@@ -1,4 +1,4 @@
-package com.levi.api.aoslse;
+package com.levi.api.headless;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -30,7 +30,7 @@ import com.levi.api.utils.TestDataUtils;
 import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
 
-public class Product {
+public class ProductCheck {
 
 
 	public ExtentHtmlReporter htmlReporter;

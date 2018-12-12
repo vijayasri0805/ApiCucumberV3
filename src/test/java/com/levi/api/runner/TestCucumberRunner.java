@@ -9,7 +9,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resource/features",
-        glue={"com.levi.api.aoslse.steps"},
+        glue={"com.levi.api.headless.steps"},
         plugin = {"pretty","html:target/cucumber/report.html"}
         )
 
