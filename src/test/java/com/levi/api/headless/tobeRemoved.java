@@ -30,7 +30,7 @@ import com.levi.api.utils.TestDataUtils;
 import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
 
-public class ProductCheck {
+public class tobeRemoved {
 
 
 	public ExtentHtmlReporter htmlReporter;
@@ -95,7 +95,7 @@ public class ProductCheck {
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 
-	@BeforeSuite
+	@Before
 	public void setup() throws Exception {
 
 		SCAN = reader.getData("scanBarCode");
@@ -126,7 +126,7 @@ public class ProductCheck {
 		report.attachReporter(htmlReporter);
 	}
 
-	@BeforeMethod
+	//@BeforeMethod
 	public void authToken() {		
 		/*
 		 * AUTH TOKEN		
@@ -136,7 +136,7 @@ public class ProductCheck {
 		params.put("client_id", "headless_rest_client");
 		params.put("client_secret", "Levis1234");
 		params.put("grant_type", "client_credentials");
-
+		
 		resp = given().parameters(params).
 				expect().statusCode(200).contentType(ContentType.JSON).
 				when().
@@ -148,10 +148,9 @@ public class ProductCheck {
 		generatedToken=idToken;
 		
 		createCartID();
-
 	}
 
-	@BeforeMethod
+	//@BeforeMethod
 	public void createCartID() {
 
 		/*
@@ -163,9 +162,7 @@ public class ProductCheck {
 				when().
 				post(CARTID);
 
-
-
-		String allocatedOrdNum = resp. 
+		String allocatedOrdNum = resp.
 				then(). 
 				extract(). 
 				path("allocatedOrderNumber");
@@ -183,11 +180,14 @@ public class ProductCheck {
 	@Test			
 	public void checkProduct()
 	{
+		
 		//testInfo = report.createTest("Test Scenario : Product");
 
 		/*
 		 * PRODUCTDATA
 		 */
+		authToken();
+		createCartID();
 		resp = given().pathParam("PC9", "195870088").
 				expect().statusCode(200).contentType(ContentType.JSON).
 				when().get(PRODUCTDATA);
