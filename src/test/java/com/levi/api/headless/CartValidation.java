@@ -1,32 +1,23 @@
 package com.levi.api.headless;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import com.levi.api.utils.PropertyReader;
 import com.levi.api.utils.TestDataUtils;
 
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
 
@@ -228,20 +219,9 @@ public class CartValidation {
 	}
 
 
-	@AfterMethod
-	public void captureStatus(ITestResult result) {
-		if (result.getStatus() == ITestResult.SUCCESS) {
-			testInfo.log(Status.PASS, "The Test Method named " + result.getName() + " is PASSED");		
-		} else if (result.getStatus() == ITestResult.FAILURE) {
-			testInfo.log(Status.FAIL, "The Test Method named  " + result.getName() + " is FAILED");
-			testInfo.log(Status.FAIL, "Test Failure : " + result.getThrowable());
-			testInfo.log(Status.FAIL, "The Actual PC9 is : " + selectedPC9);
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			testInfo.log(Status.SKIP, "The Test Method named :" + result.getAttributeNames() + " is SKIPPED");
-		}
-	}
+	
 
-	@AfterTest
+	@After
 	public void cleanup() {
 		report.flush();
 	}

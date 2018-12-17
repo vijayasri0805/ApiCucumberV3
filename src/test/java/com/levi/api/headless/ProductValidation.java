@@ -1,7 +1,6 @@
 package com.levi.api.headless;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -10,13 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -148,36 +140,6 @@ public class ProductValidation {
 
 
 	}
-
-	
-
-	@AfterMethod
-	public void captureStatus(ITestResult result) {
-		if (result.getStatus() == ITestResult.SUCCESS) {
-			testInfo.log(Status.PASS, "The Test Method named " + result.getName() + " is PASSED");		
-		} else if (result.getStatus() == ITestResult.FAILURE) {
-			testInfo.log(Status.FAIL, "The Test Method named  " + result.getName() + " is FAILED");
-			testInfo.log(Status.FAIL, "Test Failure : " + result.getThrowable());
-			testInfo.log(Status.FAIL, "The Actual PC9 is : " + selectedPC9);
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			testInfo.log(Status.SKIP, "The Test Method named :" + result.getAttributeNames() + " is SKIPPED");
-		}
-	}
-
-	@AfterTest
-	public void cleanup() {
-		report.flush();
-	}
-
-	public void captureStatus() {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-
-
 
 
 }
