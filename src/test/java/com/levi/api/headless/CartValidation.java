@@ -9,6 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -21,7 +24,13 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
 
+
 public class CartValidation {
+	
+	
+	static final Logger logger = 
+			LoggerFactory.getLogger(CartValidation.class);
+
 
 
 	public ExtentHtmlReporter htmlReporter;
@@ -101,7 +110,7 @@ public class CartValidation {
 
 		System.out.println(resp.body());
 		String idToken = resp.then().extract().path("access_token");
-		System.out.println("GeneratedToken:"+ idToken);				
+		logger.info("GeneratedToken:"+ idToken);				
 		generatedToken=idToken;
 		
 
@@ -126,12 +135,12 @@ public class CartValidation {
 				extract(). 
 				path("allocatedOrderNumber");
 		AllocatedOrderNumber=allocatedOrdNum;
-		System.out.println("AllocatedOrderNumber: "+AllocatedOrderNumber);
+		logger.info("AllocatedOrderNumber: "+AllocatedOrderNumber);
 		String cartID = resp. 
 				then().extract().
 				path("guid");
 
-		System.out.println("GUID : " + cartID);
+		logger.info("GUID : " + cartID);
 		generatedCartID=cartID;
 
 
@@ -155,7 +164,7 @@ public class CartValidation {
 			String pc13 = selectedPC9 + "0" + testData.get("L_W_S1");
 			SelectedPC13 = pc13;
 
-			System.out.println("Selected PC13 : " + pc13);
+			logger.info("Selected PC13 : " + pc13);
 
 			/*
 			 * ADD TO CART
@@ -173,13 +182,13 @@ public class CartValidation {
 					when().post(ADDTOCART);
 
 			String Statuscode = resp.then().extract().path("statusCode");
-			System.out.println("Status Code for add to cart : " + Statuscode);
+			logger.info("Status Code for add to cart : " + Statuscode);
 
 			String addedpc13 = resp.then().extract().path("entry.product.code");
 			if(addedpc13.equals(pc13)) {
 				assertEquals(addedpc13, pc13);
 			}else {
-				System.out.println("Selected PC13 is not equals to Added PC13");
+				logger.info("Selected PC13 is not equals to Added PC13");
 			}
 
 			String CartValue = resp.then().extract().path("entry.totalPrice.value").toString();
@@ -200,14 +209,14 @@ public class CartValidation {
 			if(totalPriceWithTax.equals(AddedCartValue)) {
 				assertEquals(totalPriceWithTax, CartValue);
 			}else {
-				System.out.println("Actual cart value is not equal to view cart value");
+				logger.info("Actual cart value is not equal to view cart value");
 			}
 			ViewCartValue=totalPriceWithTax;
 			String viewCartGUID = resp.then().extract().path("guid");
 			if(viewCartGUID.equals(generatedCartID)) {
 				assertEquals(viewCartGUID, generatedCartID);
 			}else {
-				System.out.println("CartID and View Cart GUID is not equal");
+				logger.info("CartID and View Cart GUID is not equal");
 			}
 
 			

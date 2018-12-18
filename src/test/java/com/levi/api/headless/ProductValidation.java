@@ -21,8 +21,14 @@ import com.levi.api.utils.TestDataUtils;
 
 import cucumber.api.java.Before;
 import net.minidev.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductValidation {
+	
+	
+	static final Logger logger = 
+			LoggerFactory.getLogger(ProductValidation.class);
 
 
 	public ExtentHtmlReporter htmlReporter;
@@ -84,14 +90,14 @@ public class ProductValidation {
 				then().
 				extract().
 				path("price.formattedValue");
-		System.out.println("Price : " + itemPrice);
+		        logger.info("Price : " + itemPrice);
 
 		String selectedpc9 = resp. 
 				then(). 
 				extract(). 
 				path("code");
 
-		System.out.println("Selected PC9 : " + selectedpc9);
+		logger.info("Selected PC9 : " + selectedpc9);
 		selectedPC9 = selectedpc9;
 
 		String maxOrderValue = resp.
@@ -99,14 +105,14 @@ public class ProductValidation {
 				extract().
 				path("maxOrderQuantity").toString();
 
-		System.out.println("Max Order Quantity : " + maxOrderValue);
+		logger.info("Max Order Quantity : " + maxOrderValue);
 
 		String minOrderValue = resp.
 				then().
 				extract().
 				path("minOrderQuantity").toString();
 
-		System.out.println("Min Order Quantity : " + minOrderValue);
+		logger.info("Min Order Quantity : " + minOrderValue);
 
 		/*
 		 * SWATCH DATA
@@ -122,7 +128,7 @@ public class ProductValidation {
 				extract().
 				path("swatchAvailabilities[0].variantsAvailability").toString();	
 
-		System.out.println("Swatch Availablity:"+swatchAvailability);
+		logger.info("Swatch Availablity:"+swatchAvailability);
 
 		/*String swatchSelectedProductCode = resp. 
 				then(). 
