@@ -1,0 +1,2 @@
+BaseURL,Locale,EAN,BuyCode1,L_W_S1,Qty1,BuyCode2,L_W_S2,Qty2,EmailID,LastName,FirstName,Line1,Line2,town,PostalCode,Phone,DeliveryMethod,pspRefernce
+https://sprint-002.levi-site.com,leviGBSite,3.11E+12,770811668,M,1,821760003,M,1,test456@yupmail.com,TestAPI,HeadLess,10 Downing Street,,London,SW1A 2AA,752345679,UPS,3.26E+16

@@ -27,8 +27,7 @@ import net.minidev.json.JSONObject;
 
 public class CartValidation {
 	
-	
-	static final Logger logger = 
+static final Logger logger = 
 			LoggerFactory.getLogger(CartValidation.class);
 
 
@@ -108,8 +107,7 @@ public class CartValidation {
 				when().
 				post(AUTHTOKEN);
 
-		System.out.println(resp.body());
-		String idToken = resp.then().extract().path("access_token");
+		String idToken = resp.then().extract().path("	");
 		logger.info("GeneratedToken:"+ idToken);				
 		generatedToken=idToken;
 		
@@ -148,10 +146,6 @@ public class CartValidation {
 			
 	public void checkProduct()
 	{
-		
-		//testInfo = report.createTest("Test Scenario : Product");
-
-		
 
 		/*
 		 * SELECT PC13
@@ -197,6 +191,7 @@ public class CartValidation {
 			String addedQuantity = resp.then().extract().path("quantityAdded").toString();
 			addedQuantity.equals(testData.get("Qty1"));
 
+			
 			/*
 			 * VIEW CART
 			 */
@@ -219,16 +214,8 @@ public class CartValidation {
 				logger.info("CartID and View Cart GUID is not equal");
 			}
 
-			
-
-
 		}
-
-
 	}
-
-
-	
 
 	@After
 	public void cleanup() {
