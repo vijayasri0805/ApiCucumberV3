@@ -56,14 +56,17 @@
 		    <version>1.2.5</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
-<dependency>
-    <groupId>info.cukes</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>1.2.5</version>
-</dependency>
-		
-		
-	</dependencies>
+         <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.5</version>
+         </dependency>
+          <dependency>
+			  <groupId>org.testng</groupId>
+			  <artifactId>testng</artifactId>
+			  <version>6.9.10</version>
+		 </dependency>		
+	    </dependencies>
 	
 	<build>
 		<sourceDirectory>src/test/java</sourceDirectory>

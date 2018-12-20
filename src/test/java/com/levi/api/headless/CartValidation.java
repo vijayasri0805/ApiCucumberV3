@@ -2,8 +2,10 @@ package com.levi.api.headless;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.BeforeMethod;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -46,15 +49,16 @@ static final Logger logger =
 
 	public String AUTHTOKEN;
 
-
 	public String SELECTEDPC13;
 
 	public String ADDTOCART;
 
 	public String VIEWCART;
+	
+	public String EDITCART;
+
 
 	
-
 	public String PLACEORDER;
 	String generatedCartID;
 	String generatedToken;
@@ -65,12 +69,20 @@ static final Logger logger =
 	String QuantityAdded;
 	String AllocatedOrderNumber;
 	String ViewCartValue;
+	Integer standardShipping;
+	Float upsExpress;
+	String standardShippingName;
+	String expressShippingName;
+	String reservStatus;
+	String editedCartValue;
+	Integer editedQty;
+	List<Array> reservQty;
 
 
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 
-	@Before
+	@BeforeMethod
 	public void setup() throws Exception {
 
 		SCAN = reader.getData("scanBarCode");
@@ -82,16 +94,16 @@ static final Logger logger =
 		PLACEORDER = reader.getData("placeOrder");
 		AUTHTOKEN = reader.getData("authToken");
 
-		testDataMap = TestDataUtils.readFromFileAndConvertToMap(new File("src/test/resource/testdata/AOSLSE.csv"));
+		testDataMap = TestDataUtils.readFromFileAndConvertToMap(new File("src/test/resource/testdata/HeadLessAPI.csv"));
 
-		htmlReporter = new ExtentHtmlReporter(new File(System.getProperty("user.dir")+"/target/AOSLSEHappyScenario.html"));
+		htmlReporter = new ExtentHtmlReporter(new File(System.getProperty("user.dir")+"/target/HeadLessHappyScenario.html"));
 		htmlReporter.loadXMLConfig(new File(System.getProperty("user.dir")+"/extentReport-config.xml"));
 		report=new ExtentReports();
 		report.setSystemInfo("Environment", "Headless");
 		report.attachReporter(htmlReporter);
 	}
 
-	//@BeforeMethod
+	@BeforeMethod
 	public void authToken() {		
 		/*
 		 * AUTH TOKEN		
@@ -213,6 +225,44 @@ static final Logger logger =
 			}else {
 				logger.info("CartID and View Cart GUID is not equal");
 			}
+			
+			
+			
+			 /*
+			  * EDIT CART
+			  */
+		
+			 resp = given().body("code="+SelectedPC13+"&qty="+testData.get("Qty2")).pathParameter("guid", generatedCartID). 
+					 contentType(ContentType.JSON).auth()
+					 .oauth2(generatedToken).expect().statusCode(200). 
+					 when().put(EDITCART);
+			 
+			 Integer editedQuantity = resp.then().extract().path("quantityAdded");
+			 editedQty = editedQuantity;
+			 
+			 
+			 /*
+			  * VIEW EDITED CART
+			  */
+			 
+			 resp = given().
+						pathParameter("guid", generatedCartID).
+						when().get(VIEWCART);
+				
+				String totalPriceWithTax1 = resp.then().extract().path("totalPriceWithTax.value").toString();
+				editedCartValue = totalPriceWithTax1;
+				if(totalPriceWithTax1.equals(AddedCartValue)) {
+					assertEquals(totalPriceWithTax1, CartValue);
+				}else {
+					System.out.println("Actual cart value is not equal to view cart value");
+				}
+				ViewCartValue=totalPriceWithTax1;
+				 String viewCartGUID1 = resp.then().extract().path("guid");
+				 if(viewCartGUID1.equals(generatedCartID)) {
+					 assertEquals(viewCartGUID1, generatedCartID);
+				 }else {
+					 System.out.println("CartID and View Cart GUID is not equal");
+				 }
 
 		}
 	}

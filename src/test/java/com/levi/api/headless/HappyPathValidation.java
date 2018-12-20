@@ -91,7 +91,12 @@ public class HappyPathValidation {
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
 	List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 
-	@Before
+	public HappyPathValidation() throws Exception {
+		// TODO Auto-generated constructor stub
+		setup();
+	}
+	
+	//@Before
 	public void setup() throws Exception {
 
 		SCAN = reader.getData("scanBarCode");
@@ -139,7 +144,6 @@ public class HappyPathValidation {
 				post(AUTHTOKEN);
 
 		String idToken = resp.then().extract().path("access_token");
-		System.out.println("GeneratedToken:"+ idToken);				
 		generatedToken=idToken;
 		
 		createCartID();
@@ -166,7 +170,6 @@ public class HappyPathValidation {
 				then().extract().
 				path("guid");
 
-		System.out.println("GUID : " + cartID);
 		generatedCartID=cartID;
 
 	}
@@ -204,21 +207,18 @@ public class HappyPathValidation {
 					extract(). 
 					path("code");
 
-			System.out.println("Selected PC9 : " + selectedpc9);
 
 			String maxOrderValue = resp.
 					then().
 					extract().
 					path("maxOrderQuantity").toString();
 
-			System.out.println("Max Order Quantity : " + maxOrderValue);
 
 			String minOrderValue = resp.
 					then().
 					extract().
 					path("minOrderQuantity").toString();
 
-			System.out.println("Min Order Quantity : " + minOrderValue);
 
 			/*
 			 * SWATCH DATA
@@ -240,7 +240,6 @@ public class HappyPathValidation {
 					extract(). 
 					path("swatchAvailabilities[5].code");
 
-			System.out.println("Swatch Selected PC9 : " + swatchSelectedProductCode);
 
 			/*
 			 * SELECT PC13
@@ -252,7 +251,6 @@ public class HappyPathValidation {
 			String pc13 = selectedPC9 + "0" + testData.get("L_W_S1");
 			SelectedPC13 = pc13;
 
-			System.out.println("Selected PC13 : " + pc13);
 
 			/*
 			 * ADD TO CART
@@ -264,7 +262,6 @@ public class HappyPathValidation {
 					when().post(ADDTOCART);
 
 			String Statuscode = resp.then().extract().path("statusCode");
-			System.out.println("Status Code for add to cart : " + Statuscode);
 
 			String addedpc13 = resp.then().extract().path("entry.product.code");
 			if(addedpc13.equals(pc13)) {
@@ -311,7 +308,6 @@ public class HappyPathValidation {
 
 			String uid = resp.then().extract().path("uid");
 			generatedUid=uid;
-			System.out.println(uid);
 
 
 			/*
@@ -349,7 +345,6 @@ public class HappyPathValidation {
 
 
 			List<Integer> quantity = resp.then().extract().path("skus.quantity");
-			System.out.println(quantity);
 
 			List<String> status = resp.then().extract().path("skus.status");
 
@@ -406,21 +401,38 @@ public class HappyPathValidation {
 
 			String reservationStatus = resp.then().extract().path("reservationStatus");
 			reservStatus = reservationStatus;
-			System.out.println(reservationStatus);
 
 			List<Array> reservationQuantity = resp.then().extract().path("itemList.orderedQuantity");
 			reservQty = reservationQuantity;
+			
+			
+			/*
+			 * PLACE ORDER
+			 */
+			
+			resp = given().body("cartId="+generatedCartID). 
+					pathParameter("UID", generatedUid). 
+					contentType(ContentType.JSON).auth().
+					oauth2(generatedToken).expect(). 
+					statusCode(200).when().post(PLACEORDER);
+			
+			String orderNumber = resp.then().extract().path("allocatedOrderNumber");
+			if (orderNumber==AllocatedOrderNumber) {
+				assertEquals(AllocatedOrderNumber, orderNumber);
+			}else {
+				System.out.println("Actual Order Number is not equal to Allocated Order Number");
+			}
 
 			
-			System.out.println("Completed Happy Path Scenario");
 
 			testInfo.log(Status.PASS, "Selected PC9 from Response is : " + selectedPC9);
 			testInfo.log(Status.PASS, "Selected PC13 from Response is : " + SelectedPC13);
 			testInfo.log(Status.PASS, "Acutal Price of the selected PC13 is : " + totalPriceWithTax);
 			testInfo.log(Status.PASS, "Quantity available for the selected PC13 is : " + quantity);
-			testInfo.log(Status.PASS, "Stock Level of the selected PC13 is : " + status);
 			testInfo.log(Status.PASS, "Reservation Status is : " + reservStatus);
 			testInfo.log(Status.PASS, "Reserved Quantity of the PC13 is : " + reservQty);
+			testInfo.log(Status.PASS, "Order Number is : " + orderNumber);
+
 
 		}
 
