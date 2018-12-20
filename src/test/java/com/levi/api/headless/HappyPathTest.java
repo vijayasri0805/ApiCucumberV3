@@ -27,7 +27,7 @@ import com.levi.api.utils.TestDataUtils;
 
 import net.minidev.json.JSONObject;
 
-public class CartValidation {
+public class HappyPathTest {
 
 	public ExtentHtmlReporter htmlReporter;
 
@@ -72,9 +72,6 @@ public class CartValidation {
 	public String PAYMENT;
 
 	public String PLACEORDER;
-
-	public String EDITCART;
-
 	String generatedCartID;
 	String generatedToken;
 	String generatedUid;
@@ -89,8 +86,6 @@ public class CartValidation {
 	String standardShippingName;
 	String expressShippingName;
 	String reservStatus;
-	String editedCartValue;
-	Integer editedQty;
 	List<Array> reservQty;
 
 	PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
@@ -117,28 +112,26 @@ public class CartValidation {
 		PAYMENT = reader.getData("paymentDetails");
 		PLACEORDER = reader.getData("placeOrder");
 		AUTHTOKEN = reader.getData("authToken");
-		EDITCART = reader.getData("editCart");
 
 		testDataMap = TestDataUtils.readFromFileAndConvertToMap(new File("src/test/resource/testdata/HeadLessAPI.csv"));
 
-		htmlReporter = new ExtentHtmlReporter(new File(System.getProperty("user.dir") + "/target/CartValidation.html"));
+		htmlReporter = new ExtentHtmlReporter(
+				new File(System.getProperty("user.dir") + "/target/AOSLSEHappyScenario.html"));
 		htmlReporter.loadXMLConfig(new File(System.getProperty("user.dir") + "/extentReport-config.xml"));
 		report = new ExtentReports();
-		report.setSystemInfo("Environment", "AOSLSE");
+		report.setSystemInfo("Environment", "HeadLessAPI");
 		report.attachReporter(htmlReporter);
 	}
 
 	@BeforeMethod
-	public void editAuthToken() {
+	public void authToken() {
 
 		/*
 		 * AUTH TOKEN
 		 */
-
 		JSONObject requestParams = new JSONObject();
-		requestParams.put("client_id", "headless_rest_client");
-		requestParams.put("client_secret", "Levis1234");
-		requestParams.put("grant_type", "client_credentials");
+		requestParams.put("username", "testaoswebclient");
+		requestParams.put("password", "Test@0swebClient");
 
 		resp = given().body(requestParams.toJSONString()).expect().statusCode(200).contentType(ContentType.JSON).when()
 				.post(AUTHTOKEN);
@@ -150,7 +143,7 @@ public class CartValidation {
 	}
 
 	@BeforeMethod
-	public void editCartID() {
+	public void createCartID() {
 
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
@@ -165,10 +158,11 @@ public class CartValidation {
 		String cartID = resp.then().extract().path("guid");
 
 		generatedCartID = cartID;
+
 	}
 
 	@Test
-	public void editCart() {
+	public void happy() {
 
 		testInfo = report.createTest("Test Scenario : Promo");
 		for (Map<String, String> testData : testDataMap) {
@@ -189,6 +183,34 @@ public class CartValidation {
 			resp = given().pathParam("PC9", selectedPC9).expect().statusCode(200).contentType(ContentType.JSON).when()
 					.get(PRODUCTDATA);
 
+			String itemPrice = resp.then().extract().path("price.formattedValue");
+
+			System.out.println("Price : " + itemPrice);
+
+			String selectedpc9 = resp.then().extract().path("code");
+
+			System.out.println("Selected PC9 : " + selectedpc9);
+
+			String maxOrderValue = resp.then().extract().path("maxOrderQuantity").toString();
+
+			System.out.println("Max Order Quantity : " + maxOrderValue);
+
+			String minOrderValue = resp.then().extract().path("minOrderQuantity").toString();
+
+
+			/*
+			 * SWATCH DATA
+			 */
+			resp = given().pathParam("SelectedPC9", selectedPC9).expect().statusCode(200).contentType(ContentType.JSON)
+					.when().get(SWATCHDATA);
+
+			String swatchAvailability = resp.then().extract().path("swatchAvailabilities[5].variantsAvailability")
+					.toString();
+
+			String swatchSelectedProductCode = resp.then().extract().path("swatchAvailabilities[5].code");
+
+			System.out.println("Swatch Selected PC9 : " + swatchSelectedProductCode);
+
 			/*
 			 * SELECT PC13
 			 */
@@ -207,6 +229,8 @@ public class CartValidation {
 			resp = given().body("code=" + pc13 + "&qty=" + testData.get("Qty1")).pathParam("guid", generatedCartID)
 					.contentType(ContentType.JSON).expect().statusCode(200).when().post(ADDTOCART);
 
+			String Statuscode = resp.then().extract().path("statusCode");
+			System.out.println("Status Code for add to cart : " + Statuscode);
 
 			String addedpc13 = resp.then().extract().path("entry.product.code");
 			if (addedpc13.equals(pc13)) {
@@ -231,46 +255,12 @@ public class CartValidation {
 			if (totalPriceWithTax.equals(AddedCartValue)) {
 				assertEquals(totalPriceWithTax, CartValue);
 			} else {
-				System.out.println("Actual cart value is not equal to view cart value");
 			}
 			ViewCartValue = totalPriceWithTax;
 			String viewCartGUID = resp.then().extract().path("guid");
 			if (viewCartGUID.equals(generatedCartID)) {
 				assertEquals(viewCartGUID, generatedCartID);
 			} else {
-				System.out.println("CartID and View Cart GUID is not equal");
-			}
-
-			/*
-			 * EDIT CART
-			 */
-
-			resp = given().body("code=" + SelectedPC13 + "&qty=" + testData.get("Qty2"))
-					.pathParameter("guid", generatedCartID).contentType(ContentType.JSON).auth().oauth2(generatedToken)
-					.expect().statusCode(200).when().put(EDITCART);
-
-			Integer editedQuantity = resp.then().extract().path("quantityAdded");
-			editedQty = editedQuantity;
-
-			/*
-			 * VIEW EDITED CART
-			 */
-
-			resp = given().pathParameter("guid", generatedCartID).when().get(VIEWCART);
-
-			String totalPriceWithTax1 = resp.then().extract().path("totalPriceWithTax.value").toString();
-			editedCartValue = totalPriceWithTax1;
-			if (totalPriceWithTax1.equals(AddedCartValue)) {
-				assertEquals(totalPriceWithTax1, CartValue);
-			} else {
-				System.out.println("Actual cart value is not equal to view cart value");
-			}
-			ViewCartValue = totalPriceWithTax1;
-			String viewCartGUID1 = resp.then().extract().path("guid");
-			if (viewCartGUID1.equals(generatedCartID)) {
-				assertEquals(viewCartGUID1, generatedCartID);
-			} else {
-				System.out.println("CartID and View Cart GUID is not equal");
 			}
 
 			/*
@@ -283,6 +273,7 @@ public class CartValidation {
 
 			String uid = resp.then().extract().path("uid");
 			generatedUid = uid;
+			System.out.println(uid);
 
 			/*
 			 * CREATE ADDRESS
@@ -297,7 +288,29 @@ public class CartValidation {
 					.contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).when()
 					.post(CREATEADDRESS);
 
-			
+			/*
+			 * STOCK AVAILABILITY
+			 */
+
+			resp = given().pathParameter("UID", generatedUid).pathParameter("guid", generatedCartID)
+					.contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).when()
+					.get(STOCKAVAILABILITY);
+
+			List<String> itemID = resp.then().extract().path("skus.itemId");
+			System.out.println("StockAvailability PC13 is : " + itemID);
+
+			List<Integer> quantity = resp.then().extract().path("skus.quantity");
+			System.out.println(quantity);
+
+			List<String> status = resp.then().extract().path("skus.status");
+
+			if (quantity.get(0) >= 6) {
+				assertEquals(status.get(0), "inStock");
+			} else if (quantity.get(0) <= 6) {
+				assertEquals(status.get(0), "lowStock");
+			} else if (quantity.get(0) <= 0) {
+				assertEquals(status.get(0), "outOfStock");
+			}
 
 			/*
 			 * AVAILABLE DELIVERY MODES
@@ -318,7 +331,13 @@ public class CartValidation {
 			String upsShippingName = resp.then().extract().path("deliveryModes[1].code");
 			expressShippingName = upsShippingName;
 
-			
+			/*
+			 * SELECT DELIVERY METHODS
+			 */
+
+			resp = given().body("deliveryModeId=colisprive").pathParameter("UID", generatedUid)
+					.pathParameter("guid", generatedCartID).contentType(ContentType.JSON).auth().oauth2(generatedToken)
+					.expect().statusCode(200).when().put(SELECTDELIVERYMETHOD);
 
 			/*
 			 * RESERVE INVENTORY
@@ -329,6 +348,7 @@ public class CartValidation {
 
 			String reservationStatus = resp.then().extract().path("reservationStatus");
 			reservStatus = reservationStatus;
+			System.out.println(reservationStatus);
 
 			List<Array> reservationQuantity = resp.then().extract().path("itemList.orderedQuantity");
 			reservQty = reservationQuantity;
@@ -341,16 +361,38 @@ public class CartValidation {
 					.pathParameter("guid", generatedCartID).contentType(ContentType.JSON).auth().oauth2(generatedToken)
 					.expect().statusCode(200).when().put(STOREIDASSOID);
 
-			
+			/*
+			 * PAYMENT DETAILS
+			 */
 
-			
+			resp = given().body("pspReference=32566565633232359&Status=Approved&orderTxnRef=" + AllocatedOrderNumber
+					+ "&pspAuthCode=12343333399&cardBin=679999&cardHolderName=AOSLSE TestAPI&cardNumber=9990&cardType=visa&cardExpiryYear=2020&cardExpiryMonth=8")
+					.pathParameter("UID", generatedUid).pathParameter("guid", generatedCartID)
+					.contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).when()
+					.post(PAYMENT);
+
+			/*
+			 * PLACE ORDER
+			 */
+
+			resp = given().body("cartId=" + generatedCartID).pathParameter("UID", generatedUid)
+					.contentType(ContentType.JSON).auth().oauth2(generatedToken).expect().statusCode(200).when()
+					.post(PLACEORDER);
+
+			String orderNumber = resp.then().extract().path("allocatedOrderNumber");
+			if (orderNumber == AllocatedOrderNumber) {
+				assertEquals(AllocatedOrderNumber, orderNumber);
+			} else {
+				System.out.println("Actual Order Number is not equal to Allocated Order Number");
+			}
 
 			testInfo.log(Status.PASS, "Selected PC9 from Response is : " + selectedPC9);
 			testInfo.log(Status.PASS, "Selected PC13 from Response is : " + SelectedPC13);
 			testInfo.log(Status.PASS, "Acutal Price of the selected PC13 is : " + totalPriceWithTax);
-			testInfo.log(Status.PASS, "Edited Cart Value of the selected PC13 is : " + totalPriceWithTax1);
+			testInfo.log(Status.PASS, "Quantity available for the selected PC13 is : " + quantity);
 			testInfo.log(Status.PASS, "Reservation Status is : " + reservStatus);
 			testInfo.log(Status.PASS, "Reserved Quantity of the PC13 is : " + reservQty);
+			testInfo.log(Status.PASS, "Order Number is : " + orderNumber);
 
 		}
 
@@ -378,5 +420,6 @@ public class CartValidation {
 		// TODO Auto-generated method stub
 
 	}
+
 
 }

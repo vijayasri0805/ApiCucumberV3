@@ -7,31 +7,27 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-	 Properties properties;
+	Properties properties;
 
-	    public PropertyReader(String filePath) {
+	public PropertyReader(String filePath) {
+		if (properties == null) {
+			try {
+				FileInputStream inputStream = new FileInputStream(filePath);
+				properties = new Properties();
+				properties.load(inputStream);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
-	        try {
-	            FileInputStream inputStream = new FileInputStream(filePath);
-	            properties = new Properties();
-	            properties.load(inputStream);
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+	}
 
-	    }
+	public String getData(String ElementName) throws Exception {
+		// Read value using the logical name as Key
+		String data = properties.getProperty(ElementName);
+		return data;
+	}
 
-	    public String getData(String ElementName) throws Exception {
-	        // Read value using the logical name as Key
-	        String data = properties.getProperty(ElementName);
-	        return data;
-	    }
-	
-	
-	
-	
 }
-
-
