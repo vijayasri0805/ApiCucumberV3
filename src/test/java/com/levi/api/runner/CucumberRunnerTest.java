@@ -1,6 +1,5 @@
 package com.levi.api.runner;
 
-
 import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
@@ -11,8 +10,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
         features = "src/test/resource/features",
         glue={"com.levi.api.headless.steps"},
-        plugin = {"pretty","html:target/cucumber/report.html"},
-        monochrome = true
+        plugin = {"pretty","html:target/cucumber/report.html"}
         )
 
 

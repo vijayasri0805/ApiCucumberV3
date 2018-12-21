@@ -1,9 +1,8 @@
-Feature: These test scenario's are used to test the Cart API's of Hybris
+Feature: This feature will check the hybris api features
 
-Scenario: Validate add an item to cart for guest user and  Validate the cart
-	Given initialize the test suite
-	Then get the auth token for EditCart
-	And create the cartID and Allocated Order number for EditCart
-	Then remove products from the cart
-	And capture the status of the EditCart Scenario
-	Then flush the pervious results for the EditCart scenario
+Scenario Outline: Validate add to cart feature
+	Given User adds product to cart for "<Locale>"
+	Examples:
+	|Locale|
+	|US|
+	|CA|
