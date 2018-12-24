@@ -24,7 +24,7 @@ public class PropertyReader {
 
 	}
 
-	public String getData(String ElementName) throws Exception {
+	public String getData(String ElementName) {
 		// Read value using the logical name as Key
 		String data = properties.getProperty(ElementName);
 		return data;
