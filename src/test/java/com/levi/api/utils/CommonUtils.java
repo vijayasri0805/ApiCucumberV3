@@ -11,24 +11,7 @@ import com.levi.api.headless.BaseSetUp;
 
 public class CommonUtils {
 	
-	public Response authToken() {		
-		/*
-		 * AUTH TOKEN		
-		 */
-		Response resp;
-		Map<String,String> params = new HashMap<String,String>();
-		params.put("client_id", "headless_rest_client");
-		params.put("client_secret", "Levis1234");
-		params.put("grant_type", "client_credentials");
-
-		resp = given().parameters(params).
-				expect().statusCode(200).contentType(ContentType.JSON).
-				when().
-				post(BaseSetUp.AUTHTOKEN);
-		return resp;
-		
-
-	}
+	
 
 
 }

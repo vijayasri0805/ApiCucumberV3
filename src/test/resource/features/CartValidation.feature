@@ -1,11 +1,12 @@
 Feature: This feature will check the hybris api features
-
-Background: User prepares environment
-	Given User generates auth token
 	 
-Scenario: Validate add to cart feature
-	Then User creates a cart
-	And User validates PC9 with size
-	Then User adds product to cart
-	And User view the cart and validate
-	
+Scenario Outline: Validate add to cart feature
+	Given User generates auth token for "<Locale>"
+	Then User creates a cart for "<Locale>"
+	And User validates PC9 with size for "<Locale>"
+	Then User adds product to cart for "<Locale>"
+	And User view the cart and validate for "<Locale>"
+Examples:
+|Locale|
+|US|
+|CA|

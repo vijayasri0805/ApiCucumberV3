@@ -10,7 +10,7 @@ import com.levi.api.utils.PropertyReader;
 import cucumber.api.java.Before;
 
 public class Hook {
-	
+	/*
 	@Before
 	public void startUp()
 	{
@@ -46,8 +46,9 @@ public class Hook {
 		BaseSetUp.ADDTOCART = BaseSetUp.BASEURL+reader.getData("addToCart");
 		BaseSetUp.VIEWCART = BaseSetUp.BASEURL+reader.getData("viewCart");
 		BaseSetUp.PLACEORDER = BaseSetUp.BASEURL+reader.getData("placeOrder");
+		BaseSetUp.CHECKOUT = BaseSetUp.BASEURL+reader.getData("checkOut");
 		BaseSetUp.AUTHTOKEN = reader.getData("authToken");
 		
 	}
-
+*/
 }

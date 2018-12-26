@@ -1,8 +1,10 @@
 package com.levi.api.headless;
 
 import static com.jayway.restassured.RestAssured.given;
+import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.io.File;
+
 
 
 import org.testng.ITestResult;
@@ -15,10 +17,11 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
+import com.jayway.restassured.response.ValidatableResponse;
 
 import net.minidev.json.JSONObject;
 
-public class CartValidation extends BaseSetUp{
+public class CartValidation {
 
 
 	public ExtentHtmlReporter htmlReporter;
@@ -38,7 +41,12 @@ public class CartValidation extends BaseSetUp{
 	String AllocatedOrderNumber;
 	String ViewCartValue;
 
-
+	public BaseSetUp baseSetUp;
+	
+	public CartValidation(String locale)
+	{
+		baseSetUp = new BaseSetUp(locale);
+	}
 	
 
 	public void setup(String locale) throws Exception {
@@ -54,10 +62,10 @@ public class CartValidation extends BaseSetUp{
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
-		resp = given().
+		Response resp = given().
 				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
 				when().
-				post(CARTID);
+				post(baseSetUp.CARTID);
 
 		return resp;
 
@@ -68,10 +76,10 @@ public class CartValidation extends BaseSetUp{
 		/*
 		 * PRODUCTDATA + Select PC13
 		 */
-		System.out.println("PRODUCTDATA:"+PRODUCTDATA);
-		resp = given().pathParam("PC9", PC9).
+		System.out.println("PRODUCTDATA:"+baseSetUp.PRODUCTDATA);
+		resp = given().pathParam("PC9", baseSetUp.PC9).
 				expect().statusCode(200).contentType(ContentType.JSON).
-				when().get(PRODUCTDATA);
+				when().get(baseSetUp.PRODUCTDATA);
 		String itemPrice = resp. 
 				then().
 				extract().
@@ -85,11 +93,11 @@ public class CartValidation extends BaseSetUp{
 
 		System.out.println("Selected PC9 : " + selectedpc9);
 		selectedPC9 = selectedpc9;
-		System.out.println("SELECTEDPC13: "+SELECTEDPC13);
+		System.out.println("SELECTEDPC13: "+baseSetUp.SELECTEDPC13);
 		resp = given().pathParam("SelectedPC9", selectedpc9). 
 				expect().statusCode(200).contentType(ContentType.JSON). 
-				when().get(SELECTEDPC13);
-		String pc13 = selectedPC9 + "0" + SIZE;
+				when().get(baseSetUp.SELECTEDPC13);
+		String pc13 = selectedPC9 + "0" + baseSetUp.SIZE;
 		SelectedPC13 = pc13;
 
 		return pc13;
@@ -106,16 +114,16 @@ public class CartValidation extends BaseSetUp{
 		 * ADD TO CART
 		 */
 
-		JSONObject childParams = new JSONObject();
-		childParams.put("code", SelectedPC13); 
-		childParams.put("qty", QTY);
-		JSONObject mainParams = new JSONObject();
-		mainParams.put("product", childParams);
+		JSONObject childBody = new JSONObject();
+		childBody.put("code", SelectedPC13); 
+		childBody.put("qty", baseSetUp.QTY);
+		JSONObject mainBody = new JSONObject();
+		mainBody.put("product", childBody);
 
-		resp = given().body(mainParams).
+		resp = given().body(mainBody).
 				pathParam("guid", generatedCartID).contentType(ContentType.JSON).
 				expect().statusCode(200).
-				when().post(ADDTOCART);
+				when().post(baseSetUp.ADDTOCART);
 
 		return resp;
 
@@ -129,7 +137,7 @@ public class CartValidation extends BaseSetUp{
 
 		resp = given().
 				pathParameter("guid", generatedCartID).
-				when().get(VIEWCART);
+				when().get(baseSetUp.VIEWCART);
 		return resp;
 		
 		

@@ -1,6 +1,7 @@
 package com.levi.api.headless.steps;
 
 
+import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.testng.Assert.assertEquals;
 
 import com.jayway.restassured.response.Response;
@@ -15,30 +16,26 @@ import cucumber.api.java.en.Then;
 
 public class CartValidationSteps {
 
-	public CartValidation product = new CartValidation();
 
-	String generatedCartID;
-	String generatedToken;
+	static String generatedCartID;
 	String SelectedPC13;
 	String generatedUid;
 	String AddedCartValue;
 	String QuantityAdded;
 	String AllocatedOrderNumber;
 	String ViewCartValue;
-	
-	@Given("^User generates auth token$")
-	public void generateAuthToken() throws Throwable
-	{
-		Response resp = new CommonUtils().authToken();
-		System.out.println(resp.body());
-		generatedToken = resp.then().extract().path("access_token");
 
-	}
-
-	@Then("^User creates a cart$")
-	public void createCart() throws Throwable
+	@Then("^User creates a cart for \"([^\"]*)\"$")
+	public void createCart(String locale) throws Throwable
 	{
-		Response resp = product.createCartID(generatedToken);
+		CartValidation product = new CartValidation(locale);
+		Response resp = product.createCartID(BaseSetUp.generatedToken);
+		/*
+		System.out.println(resp.body().prettyPrint());
+		System.out.println(this.getClass().getResource("/").getPath()); 
+		resp.then().
+		body(matchesJsonSchemaInClasspath("../../src/test/resource/json-schema/addCart.json"));
+		*/
 		String allocatedOrdNum = resp. 
 				then(). 
 				extract(). 
@@ -53,16 +50,18 @@ public class CartValidationSteps {
 		generatedCartID=cartID;
 	}
 	
-	@And("^User validates PC9 with size$")
-	public void validatePC9() throws Throwable {
+	@And("^User validates PC9 with size for \"([^\"]*)\"$")
+	public void validatePC9(String locale) throws Throwable {
+		CartValidation product = new CartValidation(locale);
 		String pc13 = product.validatePC9();
 		System.out.println("Selected PC13 : " + pc13);
 		SelectedPC13 = pc13;
 	}
 	
 	
-	@Then("^User adds product to cart$")
-	public void add_product_to_cart() throws Throwable {
+	@Then("^User adds product to cart for \"([^\"]*)\"$")
+	public void add_product_to_cart(String locale) throws Throwable {
+		CartValidation product = new CartValidation(locale);
 		Response resp = product.addToCart(SelectedPC13, generatedCartID);
 		String Statuscode = resp.then().extract().path("statusCode");
 		System.out.println("Status Code for add to cart : " + Statuscode);
@@ -78,11 +77,12 @@ public class CartValidationSteps {
 		AddedCartValue = CartValue;
 
 		String addedQuantity = resp.then().extract().path("quantityAdded").toString();
-		addedQuantity.equals(BaseSetUp.QTY);
+		addedQuantity.equals(product.baseSetUp.QTY);
 	}
 	
-	@And("^User view the cart and validate$")
-	public void viewAndValidateCart() throws Throwable {
+	@And("^User view the cart and validate for \"([^\"]*)\"$")
+	public void viewAndValidateCart(String locale) throws Throwable {
+		CartValidation product = new CartValidation(locale);
 		Response resp = product.viewAndValidateCart(generatedCartID);
 		String totalPriceWithTax = resp.then().extract().path("totalPriceWithTax.value").toString();
 		if(totalPriceWithTax.equals(AddedCartValue)) {
