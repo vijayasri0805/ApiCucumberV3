@@ -7,6 +7,7 @@ import java.io.File;
 
 
 
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -75,13 +76,13 @@ public class CartValidation {
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
-		System.out.println("UID:"+baseSetUp.UID);
 		System.out.println("REGCARTID:"+baseSetUp.REGCARTID.replace("{UID}", baseSetUp.UID));
+		System.out.println("Token: "+generatedToken);
 		Response resp = given().
-				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
+				pathParam("UID", baseSetUp.UID).contentType(ContentType.JSON).
+				header("Authorization", "bearer "+generatedToken).//expect().statusCode(201).
 				when().
-				post(baseSetUp.REGCARTID.replace("{UID}", baseSetUp.UID));
-
+				post(baseSetUp.REGCARTID);
 		return resp;
 
 	}
@@ -163,8 +164,8 @@ public class CartValidation {
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
 				contentType(ContentType.JSON).
-				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
-				when().post(baseSetUp.ADDTOANONCART);
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
+				when().post(baseSetUp.ADDTOREGCART);
 
 		return resp;
 
@@ -194,7 +195,7 @@ public class CartValidation {
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
 				contentType(ContentType.JSON).
-				parameter("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(201).
+				header("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(201).
 				when().post(baseSetUp.CREATEREGADDRESS);				
 		
 		return resp;
@@ -208,7 +209,7 @@ public class CartValidation {
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
 				pathParam("dMode", baseSetUp.deliveryMode).
-				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(200).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
 				when().
 				put(baseSetUp.ADDREGDELIVERY);
 
@@ -244,12 +245,13 @@ public class CartValidation {
 		JSONObject country = new JSONObject();		
 		country.put("isocode", baseSetUp.isocode);
 		billingAddress.put("country", country);
+		paymentDetails.put("billingAddress", billingAddress);
 		
 		paymentDetails.put("saved", true);
 		paymentDetails.put("adyenPaymentMethod", baseSetUp.adyenPaymentMethod);
 		paymentDetails.put("defaultPayment", true);
 		
-		
+		System.out.println(paymentDetails.toJSONString());
 		
 		//mainBody.put("phone", baseSetUp.phone);
 		
@@ -257,7 +259,7 @@ public class CartValidation {
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
 				contentType(ContentType.JSON).
-				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(201).
 				when().post(baseSetUp.ADDPAYMENTREGCART);				
 		
 		return resp;

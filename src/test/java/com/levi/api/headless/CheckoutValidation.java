@@ -71,7 +71,7 @@ public class CheckoutValidation {
 		resp = given().
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
-				parameter("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(201). 
+				header("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(201). 
 				when().post(baseSetUp.CHECKOUTREGORDER);
 		return resp;
 

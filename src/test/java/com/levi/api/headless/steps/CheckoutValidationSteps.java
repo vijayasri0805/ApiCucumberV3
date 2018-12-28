@@ -16,9 +16,6 @@ import cucumber.api.java.en.Then;
 
 public class CheckoutValidationSteps {
 
-	
-
-	static String generatedCartID;	
 	String AllocatedOrderNumber;
 	String generatedUid;
 	Response resp;
@@ -38,7 +35,7 @@ public class CheckoutValidationSteps {
 	public void proceedRegCheckout(String locale) throws Throwable
 	{
 		CheckoutValidation checkOut = new CheckoutValidation(locale);
-		resp = checkOut.proceedRegCheckout(generatedCartID);
+		resp = checkOut.proceedRegCheckout(BaseSetUp.generatedCartID);
 		String orderNumber = resp.then().extract().path("allocatedOrderNumber");
 		
 		System.out.println("orderNumber:"+orderNumber);

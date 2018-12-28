@@ -47,6 +47,7 @@ public class CartValidationSteps {
 	public void createRegCart(String locale) throws Throwable
 	{
 		CartValidation cart = new CartValidation(locale);
+		
 		Response resp = cart.createRegCartID(BaseSetUp.generatedToken);
 		
 		String allocatedOrdNum = resp. 
@@ -129,6 +130,7 @@ public class CartValidationSteps {
 	public void addDeliveryToRegCart(String locale) throws Throwable {
 		
 		CartValidation cart = new CartValidation(locale);
+		System.out.println("generatedCartID:"+BaseSetUp.generatedCartID);
 		Response resp = cart.addDeliveryToRegCart(BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
 		
 		
