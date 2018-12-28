@@ -8,13 +8,13 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resource/features",
+        features = "src/test/resource/features/CartValidation.feature",
         glue={"com.levi.api.headless.steps"},
         plugin = {"pretty","html:target/cucumber/report.html"}
         )
 
-
-public class CucumberRunnerTest extends AbstractTestNGCucumberTests{
+//public class CucumberRunnerTest extends AbstractTestNGCucumberTests
+public class CucumberRunnerTest{
 
 }
 

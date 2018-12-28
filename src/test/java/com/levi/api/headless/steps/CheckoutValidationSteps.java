@@ -33,6 +33,17 @@ public class CheckoutValidationSteps {
 		System.out.println("UID:"+uid);
 		*/
 	}
+	
+	@Then("^User proceed to registered checkout for \"([^\"]*)\"$")
+	public void proceedRegCheckout(String locale) throws Throwable
+	{
+		CheckoutValidation checkOut = new CheckoutValidation(locale);
+		resp = checkOut.proceedRegCheckout(generatedCartID);
+		String orderNumber = resp.then().extract().path("allocatedOrderNumber");
+		
+		System.out.println("orderNumber:"+orderNumber);
+		
+	}
 
 	
 

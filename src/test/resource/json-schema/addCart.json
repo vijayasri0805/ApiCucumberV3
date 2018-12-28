@@ -1,133 +1,18 @@
-  1 {
-  2   "definitions": {},
-  3   "$schema": "http://json-schema.org/draft-07/schema#",
-  4   "$id": "http://example.com/root.json",
-  5   "type": "object",
-  6   "title": "The Root Schema",
-  7   "required": [
-  8     "type",
-  9     "allocatedOrderNumber",
- 10     "code",
- 11     "entries",
- 12     "guid",
- 13     "totalItems",
- 14     "totalPrice",
- 15     "totalPriceWithTax"
- 16   ],
- 17   "properties": {
- 18     "type": {
- 19       "$id": "#/properties/type",
- 20       "type": "string",
- 21       "title": "The Type Schema",
- 22       "default": "",
- 23       "examples": [
- 24         "cartWsDTO"
- 25       ],
- 26       "pattern": "^(.*)$"
- 27     },
- 28     "allocatedOrderNumber": {
- 29       "$id": "#/properties/allocatedOrderNumber",
- 30       "type": "string",
- 31       "title": "The Allocatedordernumber Schema",
- 32       "default": "",
- 33       "examples": [
- 34         "14526021"
- 35       ],
- 36       "pattern": "^(.*)$"
- 37     },
- 38     "code": {
- 39       "$id": "#/properties/code",
- 40       "type": "string",
- 41       "title": "The Code Schema",
- 42       "default": "",
- 43       "examples": [
- 44         "14526020"
- 45       ],
- 46       "pattern": "^(.*)$"
- 47     },
- 48     "entries": {
- 49       "$id": "#/properties/entries",
- 50       "type": "array",
- 51       "title": "The Entries Schema"
- 52     },
- 53     "guid": {
- 54       "$id": "#/properties/guid",
- 55       "type": "string",
- 56       "title": "The Guid Schema",
- 57       "default": "",
- 58       "examples": [
- 59         "f0f56554-19d6-457e-9e4a-2b3f0cb8b205"
- 60       ],
- 61       "pattern": "^(.*)$"
- 62     },
- 63     "totalItems": {
- 64       "$id": "#/properties/totalItems",
- 65       "type": "integer",
- 66       "title": "The Totalitems Schema",
- 67       "default": 0,
- 68       "examples": [
- 69         0
- 70       ]
- 71     },
- 72     "totalPrice": {
- 73       "$id": "#/properties/totalPrice",
- 74       "type": "object",
- 75       "title": "The Totalprice Schema",
- 76       "required": [
- 77         "currencyIso",
- 78         "value"
- 79       ],
- 80       "properties": {
- 81         "currencyIso": {
- 82           "$id": "#/properties/totalPrice/properties/currencyIso",
- 83           "type": "string",
- 84           "title": "The Currencyiso Schema",
- 85           "default": "",
- 86           "examples": [
- 87             "USD"
- 88           ],
- 89           "pattern": "^(.*)$"
- 90         },
- 91         "value": {
- 92           "$id": "#/properties/totalPrice/properties/value",
- 93           "type": "integer",
- 94           "title": "The Value Schema",
- 95           "default": 0,
- 96           "examples": [
- 97             0
- 98           ]
- 99         }
-100       }
-101     },
-102     "totalPriceWithTax": {
-103       "$id": "#/properties/totalPriceWithTax",
-104       "type": "object",
-105       "title": "The Totalpricewithtax Schema",
-106       "required": [
-107         "currencyIso",
-108         "value"
-109       ],
-110       "properties": {
-111         "currencyIso": {
-112           "$id": "#/properties/totalPriceWithTax/properties/currencyIso",
-113           "type": "string",
-114           "title": "The Currencyiso Schema",
-115           "default": "",
-116           "examples": [
-117             "USD"
-118           ],
-119           "pattern": "^(.*)$"
-120         },
-121         "value": {
-122           "$id": "#/properties/totalPriceWithTax/properties/value",
-123           "type": "integer",
-124           "title": "The Value Schema",
-125           "default": 0,
-126           "examples": [
-127             0
-128           ]
-129         }
-130       }
-131     }
-132   }
-133 }
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "Add to Cart",
+  "required": [
+    "type",
+    "allocatedOrderNumber",
+    "code",
+    "entries",
+    "guid",
+    "totalItems",
+    "totalPrice",
+    "totalPriceWithTax"
+  ]
+  }
+}

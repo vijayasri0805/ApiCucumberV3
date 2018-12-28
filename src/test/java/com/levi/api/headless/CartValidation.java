@@ -58,14 +58,29 @@ public class CartValidation {
 		report.attachReporter(htmlReporter);
 	}
 
-	public Response createCartID(String generatedToken) {
+	public Response createAnonCartID(String generatedToken) {
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
 		Response resp = given().
 				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
 				when().
-				post(baseSetUp.CARTID);
+				post(baseSetUp.ANONCARTID);
+
+		return resp;
+
+	}
+	
+	public Response createRegCartID(String generatedToken) {
+		/*
+		 * GUID AND ALLOCATED ORDER NUMBER
+		 */
+		System.out.println("UID:"+baseSetUp.UID);
+		System.out.println("REGCARTID:"+baseSetUp.REGCARTID.replace("{UID}", baseSetUp.UID));
+		Response resp = given().
+				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
+				when().
+				post(baseSetUp.REGCARTID.replace("{UID}", baseSetUp.UID));
 
 		return resp;
 
@@ -104,7 +119,7 @@ public class CartValidation {
 		
 	}
 
-	public Response addToCart(String SelectedPC13, String generatedCartID)
+	public Response addToAnonCart(String SelectedPC13, String generatedCartID)
 	{
 
 		
@@ -123,11 +138,129 @@ public class CartValidation {
 		resp = given().body(mainBody).
 				pathParam("guid", generatedCartID).contentType(ContentType.JSON).
 				expect().statusCode(200).
-				when().post(baseSetUp.ADDTOCART);
+				when().post(baseSetUp.ADDTOANONCART);
 
 		return resp;
 
 		
+	}
+	
+	public Response addToRegCart(String SelectedPC13, String generatedCartID, String generatedToken)
+	{
+		//testInfo = report.createTest("Test Scenario : Product");
+
+		/*
+		 * ADD TO CART
+		 */
+
+		JSONObject childBody = new JSONObject();
+		childBody.put("code", SelectedPC13); 
+		childBody.put("qty", baseSetUp.QTY);
+		JSONObject mainBody = new JSONObject();
+		mainBody.put("product", childBody);
+
+		resp = given().body(mainBody).
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				contentType(ContentType.JSON).
+				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
+				when().post(baseSetUp.ADDTOANONCART);
+
+		return resp;
+
+		
+	}
+	
+	public Response addAddressToRegCart(String generatedCartID)
+	{
+		/*
+		 * ADD ADDRESS TO CART
+		 */
+		JSONObject mainBody = new JSONObject();
+		mainBody.put("lastName", baseSetUp.firstName);
+		mainBody.put("firstName", baseSetUp.lastName);
+		mainBody.put("line1", baseSetUp.addrLine1);
+		mainBody.put("line2", baseSetUp.addrLine2);
+		mainBody.put("town", baseSetUp.town);
+		
+		JSONObject childBody = new JSONObject();		
+		childBody.put("isocode", baseSetUp.isocode);
+		mainBody.put("country", childBody);
+		
+		mainBody.put("postalCode", baseSetUp.postalCode);
+		mainBody.put("phone", baseSetUp.phone);
+		
+		resp = given().body(mainBody).
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				contentType(ContentType.JSON).
+				parameter("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(201).
+				when().post(baseSetUp.CREATEREGADDRESS);				
+		
+		return resp;
+	}
+	
+	public Response addDeliveryToRegCart(String generatedToken, String generatedCartID) {
+		/*
+		 * Add Delivery Method
+		 */
+		Response resp = given().
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				pathParam("dMode", baseSetUp.deliveryMode).
+				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(200).
+				when().
+				put(baseSetUp.ADDREGDELIVERY);
+
+		return resp;
+
+	}
+	
+	public Response addPaymentToRegCart(String generatedToken, String generatedCartID)
+	{
+		/*
+		 * ADD ADDRESS TO CART
+		 */
+		JSONObject paymentDetails = new JSONObject();
+		paymentDetails.put("accountHolderName", baseSetUp.accountHolderName);
+		paymentDetails.put("cardNumber", baseSetUp.visaCardNumber);
+		
+		JSONObject cardType = new JSONObject();
+		cardType.put("code", "visa");
+		paymentDetails.put("cardType", cardType);
+		
+		paymentDetails.put("expiryMonth", baseSetUp.expiryMonth);
+		paymentDetails.put("expiryYear", baseSetUp.expiryYear);
+		
+		
+		JSONObject billingAddress = new JSONObject();
+		billingAddress.put("firstName", baseSetUp.lastName);
+		billingAddress.put("lastName", baseSetUp.firstName);		
+		billingAddress.put("line1", baseSetUp.addrLine1);
+		billingAddress.put("line2", baseSetUp.addrLine2);
+		billingAddress.put("postalCode", baseSetUp.postalCode);
+		billingAddress.put("town", baseSetUp.town);
+		
+		JSONObject country = new JSONObject();		
+		country.put("isocode", baseSetUp.isocode);
+		billingAddress.put("country", country);
+		
+		paymentDetails.put("saved", true);
+		paymentDetails.put("adyenPaymentMethod", baseSetUp.adyenPaymentMethod);
+		paymentDetails.put("defaultPayment", true);
+		
+		
+		
+		//mainBody.put("phone", baseSetUp.phone);
+		
+		resp = given().body(paymentDetails).
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				contentType(ContentType.JSON).
+				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(201).
+				when().post(baseSetUp.ADDPAYMENTREGCART);				
+		
+		return resp;
 	}
 	
 	public Response viewAndValidateCart(String generatedCartID)

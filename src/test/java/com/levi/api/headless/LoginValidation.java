@@ -60,5 +60,26 @@ public class LoginValidation {
 		
 
 	}
+	
+	public Response regAuthToken() {		
+		/*
+		 * AUTH TOKEN		
+		 */
+		Response resp;
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("client_id", "headless_rest_client");
+		params.put("client_secret", "Levis1234");
+		params.put("grant_type", "client_credentials");
+		params.put("username", baseSetUp.UID);
+		params.put("password", baseSetUp.PWD);
+
+		resp = given().parameters(params).
+				expect().statusCode(200).contentType(ContentType.JSON).
+				when().
+				post(baseSetUp.AUTHTOKEN);
+		return resp;
+		
+
+	}
 
 }

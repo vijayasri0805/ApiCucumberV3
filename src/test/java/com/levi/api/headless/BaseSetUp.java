@@ -9,29 +9,55 @@ import com.levi.api.utils.PropertyReader;
 public class BaseSetUp {
 	
 	public String BASEURL;
-	public   String PC9;
-	public   String SIZE;
-	public   String QTY;
+	public String PC9;
+	public String SIZE;
+	public String QTY;
 
-	public   String SCAN;
-	public   String CARTID;
-	public   String AUTHTOKEN;
-	public   String PRODUCTDATA;
-	public   String SWATCHDATA;
-	public   String SELECTEDPC13;
-	public   String ADDTOCART;
-	public   String VIEWCART;
-	public   String PLACEORDER;
-	public   String CHECKOUT;
-	public   String STOCKAVAILABILITY;
-	public   String PROMO;
-	public   String CREATEADDRESS;
-	public   String DELIVERYMETHOD;
-	public   String SELECTDELIVERYMETHOD;
-	public   String RESERVEINVENTORY;
-	public   String STOREIDASSOID;
-	public   String PAYMENT;	
+	public String SCAN;
+	public String ANONCARTID;
+	public String REGCARTID;
+	public String AUTHTOKEN;
+	public String PRODUCTDATA;
+	public String SWATCHDATA;
+	public String SELECTEDPC13;
+	public String ADDTOANONCART;
+	public String ADDTOREGCART;
+	public String VIEWCART;
+	public String PLACEORDER;
+	public String CHECKOUT;
+	public String STOCKAVAILABILITY;
+	public String PROMO;
+	public String CREATEREGADDRESS;
+	public String ADDREGDELIVERY;
+	public String ADDPAYMENTREGCART;
+	public String DELIVERYMETHOD;
+	public String SELECTDELIVERYMETHOD;
+	public String RESERVEINVENTORY;
+	public String CHECKOUTREGORDER;
+	public String STOREIDASSOID;
+	public String PAYMENT;	
+	public String UID;
+	public String PWD;
+	
+	public String firstName;
+	public String lastName;
+	public String addrLine1;
+	public String addrLine2;
+	public String town;
+	public String isocode;
+	public String postalCode;
+	public String phone;
+	public String deliveryMode;
+	public String accountHolderName;
+	public String visaCardNumber;
+	public String expiryMonth;
+	public String expiryYear;
+	public String adyenPaymentMethod;
+	
+	
+	
 	public  static String generatedToken;
+	public static String generatedCartID;
 	
 	public BaseSetUp(String locale)
 	{
@@ -41,34 +67,72 @@ public class BaseSetUp {
 		SCAN = reader.getData("scanBarCode");
 		if(locale.equalsIgnoreCase("us"))
 		{
+			UID = reader.getData("usUID");
+			PWD = reader.getData("usPWD");
 			PC9 = reader.getData("usPC9");
 			SIZE = reader.getData("usSize");
 			QTY = reader.getData("usQty");
+			town = reader.getData("ustown");
+			isocode = reader.getData("usisocode");
+			postalCode = reader.getData("uspostalCode");
+			phone = reader.getData("usphone");
+			deliveryMode = reader.getData("usDeliveryMode");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "US");
+			
 		}
 		else if(locale.equalsIgnoreCase("ca"))
 		{
+			UID = reader.getData("caUID");
+			PWD = reader.getData("caPWD");
 			PC9 = reader.getData("caPC9");
 			SIZE = reader.getData("caSize");
 			QTY = reader.getData("caQty");
+			town = reader.getData("catown");
+			isocode = reader.getData("caisocode");
+			postalCode = reader.getData("capostalCode");
+			phone = reader.getData("caphone");
+			deliveryMode = reader.getData("caDeliveryMode");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "CA");
 		}
-		else if(locale.equalsIgnoreCase("eu"))
+		else if(locale.equalsIgnoreCase("gb"))
 		{
-			PC9 = reader.getData("euPC9");
-			SIZE = reader.getData("euSize");
-			QTY = reader.getData("euQty");
-			BASEURL = reader.getData("baseURL").replace("{locale}", "EU");
+			UID = reader.getData("gbUID");
+			PWD = reader.getData("gbPWD");
+			PC9 = reader.getData("gbPC9");
+			SIZE = reader.getData("gbSize");
+			QTY = reader.getData("gbQty");
+			town = reader.getData("gbtown");
+			isocode = reader.getData("gbisocode");
+			postalCode = reader.getData("gbpostalCode");
+			phone = reader.getData("gbphone");
+			deliveryMode = reader.getData("gbDeliveryMode");
+			BASEURL = reader.getData("baseURL").replace("{locale}", "GB");
 		}
-		CARTID = BASEURL+reader.getData("createCartID");
+		
+		AUTHTOKEN = reader.getData("authToken");
+		ANONCARTID = BASEURL+reader.getData("createAnonCartID");
+		REGCARTID = BASEURL+reader.getData("createRegCartID");
 		PRODUCTDATA = BASEURL+reader.getData("productData");
 		SELECTEDPC13 = BASEURL+reader.getData("selectPC13");
-		ADDTOCART = BASEURL+reader.getData("addToCart");
+		ADDTOANONCART = BASEURL+reader.getData("addToAnonCart");
+		ADDTOREGCART = BASEURL+reader.getData("addToRegCart");
 		VIEWCART = BASEURL+reader.getData("viewCart");
 		PLACEORDER = BASEURL+reader.getData("placeOrder");
-		CHECKOUT = BASEURL+reader.getData("checkOut");
-		AUTHTOKEN = reader.getData("authToken");
+		CHECKOUT = BASEURL+reader.getData("checkOut");		
+		CREATEREGADDRESS = BASEURL+reader.getData("createRegAddress");
+		ADDREGDELIVERY = BASEURL+reader.getData("addRegDeliveryMethod");
+		ADDPAYMENTREGCART = BASEURL+reader.getData("addRegPaymentMethod");
+		CHECKOUTREGORDER = BASEURL+reader.getData("checkoutRegUser");
 		
+		firstName = reader.getData("firstName");
+		lastName = reader.getData("lastName");
+		addrLine1 = reader.getData("line1");
+		addrLine2 = reader.getData("line2");
+		accountHolderName = reader.getData("accountHolderName");
+		visaCardNumber = reader.getData("visaCardNumber");
+		expiryMonth = reader.getData("expiryMonth");
+		expiryYear = reader.getData("expiryYear");
+		adyenPaymentMethod = reader.getData("adyenPaymentMethod");
 	}
 
 }
