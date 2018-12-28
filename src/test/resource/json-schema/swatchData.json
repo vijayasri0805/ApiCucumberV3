@@ -1,0 +1,83 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "swatchAvailabilities"
+  ],
+  "properties": {
+    "swatchAvailabilities": {
+      "$id": "#/properties/swatchAvailabilities",
+      "type": "array",
+      "title": "The Swatchavailabilities Schema",
+      "items": {
+        "$id": "#/properties/swatchAvailabilities/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "available",
+          "code",
+          "variantsAvailability"
+        ],
+        "properties": {
+          "available": {
+            "$id": "#/properties/swatchAvailabilities/items/properties/available",
+            "type": "boolean",
+            "title": "The Available Schema",
+            "default": false,
+            "examples": [
+              true
+            ]
+          },
+          "code": {
+            "$id": "#/properties/swatchAvailabilities/items/properties/code",
+            "type": "string",
+            "title": "The Code Schema",
+            "default": "",
+            "examples": [
+              "393890027"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "variantsAvailability": {
+            "$id": "#/properties/swatchAvailabilities/items/properties/variantsAvailability",
+            "type": "array",
+            "title": "The Variantsavailability Schema",
+            "items": {
+              "$id": "#/properties/swatchAvailabilities/items/properties/variantsAvailability/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "available",
+                "size"
+              ],
+              "properties": {
+                "available": {
+                  "$id": "#/properties/swatchAvailabilities/items/properties/variantsAvailability/items/properties/available",
+                  "type": "boolean",
+                  "title": "The Available Schema",
+                  "default": false,
+                  "examples": [
+                    true
+                  ]
+                },
+                "size": {
+                  "$id": "#/properties/swatchAvailabilities/items/properties/variantsAvailability/items/properties/size",
+                  "type": "string",
+                  "title": "The Size Schema",
+                  "default": "",
+                  "examples": [
+                    "XS"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -123,6 +123,7 @@ public class BaseSetUp {
 		ADDREGDELIVERY = BASEURL+reader.getData("addRegDeliveryMethod");
 		ADDPAYMENTREGCART = BASEURL+reader.getData("addRegPaymentMethod");
 		CHECKOUTREGORDER = BASEURL+reader.getData("checkoutRegUser");
+		SWATCHDATA = BASEURL+reader.getData("swatchData");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");
