@@ -9,6 +9,8 @@ Scenario Outline: Validate registered user checkout feature
 	Then User add delivery method to registered cart for "<Locale>"
 	And User add payment method to registered cart for "<Locale>"
 	Then User proceed to registered checkout for "<Locale>"
-Examples:
-|Locale|
-|GB|
+	Examples:
+	|Locale|
+	|US|
+	|CA|
+	|GB|

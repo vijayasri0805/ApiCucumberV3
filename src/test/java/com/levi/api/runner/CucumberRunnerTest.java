@@ -13,7 +13,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         plugin = {"pretty","html:target/cucumber/report.html"}
         )
 
-//public class CucumberRunnerTest extends AbstractTestNGCucumberTests
+//public class CucumberRunnerTest extends AbstractTestNGCucumberTests{
 public class CucumberRunnerTest{
 
 }

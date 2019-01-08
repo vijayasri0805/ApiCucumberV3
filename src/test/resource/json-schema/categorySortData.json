@@ -1,0 +1,608 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "type",
+    "breadcrumbs",
+    "categoryCode",
+    "currentQuery",
+    "facets",
+    "freeTextSearch",
+    "pagination",
+    "products",
+    "sorts"
+  ],
+  "properties": {
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "title": "The Type Schema",
+      "default": "",
+      "examples": [
+        "productCategorySearchPageWsDTO"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "breadcrumbs": {
+      "$id": "#/properties/breadcrumbs",
+      "type": "array",
+      "title": "The Breadcrumbs Schema"
+    },
+    "categoryCode": {
+      "$id": "#/properties/categoryCode",
+      "type": "string",
+      "title": "The Categorycode Schema",
+      "default": "",
+      "examples": [
+        "levi_clothing_women_jeans"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "currentQuery": {
+      "$id": "#/properties/currentQuery",
+      "type": "object",
+      "title": "The Currentquery Schema",
+      "required": [
+        "query",
+        "url"
+      ],
+      "properties": {
+        "query": {
+          "$id": "#/properties/currentQuery/properties/query",
+          "type": "object",
+          "title": "The Query Schema",
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "$id": "#/properties/currentQuery/properties/query/properties/value",
+              "type": "string",
+              "title": "The Value Schema",
+              "default": "",
+              "examples": [
+                ":price-asc"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "url": {
+          "$id": "#/properties/currentQuery/properties/url",
+          "type": "string",
+          "title": "The Url Schema",
+          "default": "",
+          "examples": [
+            "/clothing/women/jeans/c/levi_clothing_women_jeans/sort/price-asc"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "facets": {
+      "$id": "#/properties/facets",
+      "type": "array",
+      "title": "The Facets Schema",
+      "items": {
+        "$id": "#/properties/facets/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "category",
+          "multiSelect",
+          "name",
+          "priority",
+          "values",
+          "visible"
+        ],
+        "properties": {
+          "category": {
+            "$id": "#/properties/facets/items/properties/category",
+            "type": "boolean",
+            "title": "The Category Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          },
+          "multiSelect": {
+            "$id": "#/properties/facets/items/properties/multiSelect",
+            "type": "boolean",
+            "title": "The Multiselect Schema",
+            "default": false,
+            "examples": [
+              true
+            ]
+          },
+          "name": {
+            "$id": "#/properties/facets/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Fit"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "priority": {
+            "$id": "#/properties/facets/items/properties/priority",
+            "type": "integer",
+            "title": "The Priority Schema",
+            "default": 0,
+            "examples": [
+              4000
+            ]
+          },
+          "values": {
+            "$id": "#/properties/facets/items/properties/values",
+            "type": "array",
+            "title": "The Values Schema",
+            "items": {
+              "$id": "#/properties/facets/items/properties/values/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "count",
+                "name",
+                "query",
+                "selected"
+              ],
+              "properties": {
+                "count": {
+                  "$id": "#/properties/facets/items/properties/values/items/properties/count",
+                  "type": "integer",
+                  "title": "The Count Schema",
+                  "default": 0,
+                  "examples": [
+                    78
+                  ]
+                },
+                "name": {
+                  "$id": "#/properties/facets/items/properties/values/items/properties/name",
+                  "type": "string",
+                  "title": "The Name Schema",
+                  "default": "",
+                  "examples": [
+                    "Skinny"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "query": {
+                  "$id": "#/properties/facets/items/properties/values/items/properties/query",
+                  "type": "object",
+                  "title": "The Query Schema",
+                  "required": [
+                    "query",
+                    "url"
+                  ],
+                  "properties": {
+                    "query": {
+                      "$id": "#/properties/facets/items/properties/values/items/properties/query/properties/query",
+                      "type": "object",
+                      "title": "The Query Schema",
+                      "required": [
+                        "value"
+                      ],
+                      "properties": {
+                        "value": {
+                          "$id": "#/properties/facets/items/properties/values/items/properties/query/properties/query/properties/value",
+                          "type": "string",
+                          "title": "The Value Schema",
+                          "default": "",
+                          "examples": [
+                            ":price-asc:feature-fit:Skinny"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "url": {
+                      "$id": "#/properties/facets/items/properties/values/items/properties/query/properties/url",
+                      "type": "string",
+                      "title": "The Url Schema",
+                      "default": "",
+                      "examples": [
+                        "/clothing/women/jeans/c/levi_clothing_women_jeans/facets/feature-fit/skinny/sort/price-asc"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                },
+                "selected": {
+                  "$id": "#/properties/facets/items/properties/values/items/properties/selected",
+                  "type": "boolean",
+                  "title": "The Selected Schema",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                }
+              }
+            }
+          },
+          "visible": {
+            "$id": "#/properties/facets/items/properties/visible",
+            "type": "boolean",
+            "title": "The Visible Schema",
+            "default": false,
+            "examples": [
+              true
+            ]
+          }
+        }
+      }
+    },
+    "freeTextSearch": {
+      "$id": "#/properties/freeTextSearch",
+      "type": "string",
+      "title": "The Freetextsearch Schema",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "pattern": "^(.*)$"
+    },
+    "pagination": {
+      "$id": "#/properties/pagination",
+      "type": "object",
+      "title": "The Pagination Schema",
+      "required": [
+        "currentPage",
+        "pageSize",
+        "sort",
+        "totalPages",
+        "totalResults"
+      ],
+      "properties": {
+        "currentPage": {
+          "$id": "#/properties/pagination/properties/currentPage",
+          "type": "integer",
+          "title": "The Currentpage Schema",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "pageSize": {
+          "$id": "#/properties/pagination/properties/pageSize",
+          "type": "integer",
+          "title": "The Pagesize Schema",
+          "default": 0,
+          "examples": [
+            20
+          ]
+        },
+        "sort": {
+          "$id": "#/properties/pagination/properties/sort",
+          "type": "string",
+          "title": "The Sort Schema",
+          "default": "",
+          "examples": [
+            "price-asc"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "totalPages": {
+          "$id": "#/properties/pagination/properties/totalPages",
+          "type": "integer",
+          "title": "The Totalpages Schema",
+          "default": 0,
+          "examples": [
+            12
+          ]
+        },
+        "totalResults": {
+          "$id": "#/properties/pagination/properties/totalResults",
+          "type": "integer",
+          "title": "The Totalresults Schema",
+          "default": 0,
+          "examples": [
+            228
+          ]
+        }
+      }
+    },
+    "products": {
+      "$id": "#/properties/products",
+      "type": "array",
+      "title": "The Products Schema",
+      "items": {
+        "$id": "#/properties/products/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "code",
+          "colorGroup",
+          "colorName",
+          "customizable",
+          "description",
+          "findInStoreEligible",
+          "images",
+          "name",
+          "price",
+          "promotionalBadge",
+          "soldIndividually",
+          "soldOutForever",
+          "url"
+        ],
+        "properties": {
+          "code": {
+            "$id": "#/properties/products/items/properties/code",
+            "type": "string",
+            "title": "The Code Schema",
+            "default": "",
+            "examples": [
+              "349630004"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "colorGroup": {
+            "$id": "#/properties/products/items/properties/colorGroup",
+            "type": "string",
+            "title": "The Colorgroup Schema",
+            "default": "",
+            "examples": [
+              "Medium Indigo"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "colorName": {
+            "$id": "#/properties/products/items/properties/colorName",
+            "type": "string",
+            "title": "The Colorname Schema",
+            "default": "",
+            "examples": [
+              "Gimme Danger"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "customizable": {
+            "$id": "#/properties/products/items/properties/customizable",
+            "type": "boolean",
+            "title": "The Customizable Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          },
+          "description": {
+            "$id": "#/properties/products/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema",
+            "default": "",
+            "examples": [
+              "An instant style statement, and your new favorite skirt. This is the adorable mini-skirt silhouette we all love, altered and destructed to perfection. It's cut from classic non-stretch denim that's been seriously upgraded with heavy elements of wear and the lived-in edge Levi's&reg; is known for."
+            ],
+            "pattern": "^(.*)$"
+          },
+          "findInStoreEligible": {
+            "$id": "#/properties/products/items/properties/findInStoreEligible",
+            "type": "boolean",
+            "title": "The Findinstoreeligible Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          },
+          "images": {
+            "$id": "#/properties/products/items/properties/images",
+            "type": "array",
+            "title": "The Images Schema",
+            "items": {
+              "$id": "#/properties/products/items/properties/images/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "format",
+                "imageType",
+                "url"
+              ],
+              "properties": {
+                "format": {
+                  "$id": "#/properties/products/items/properties/images/items/properties/format",
+                  "type": "string",
+                  "title": "The Format Schema",
+                  "default": "",
+                  "examples": [
+                    "Backoffice"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "imageType": {
+                  "$id": "#/properties/products/items/properties/images/items/properties/imageType",
+                  "type": "string",
+                  "title": "The Imagetype Schema",
+                  "default": "",
+                  "examples": [
+                    "PRIMARY"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "url": {
+                  "$id": "#/properties/products/items/properties/images/items/properties/url",
+                  "type": "string",
+                  "title": "The Url Schema",
+                  "default": "",
+                  "examples": [
+                    "https://lsco.scene7.com/is/image/lsco/Levis/clothing/349630004-front-pdp.jpg?$backoffice$"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          },
+          "name": {
+            "$id": "#/properties/products/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Deconstructed Skirt"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "price": {
+            "$id": "#/properties/products/items/properties/price",
+            "type": "object",
+            "title": "The Price Schema",
+            "required": [
+              "currencyIso",
+              "formattedValue",
+              "priceType",
+              "regularPrice",
+              "regularPriceFormattedValue",
+              "value"
+            ],
+            "properties": {
+              "currencyIso": {
+                "$id": "#/properties/products/items/properties/price/properties/currencyIso",
+                "type": "string",
+                "title": "The Currencyiso Schema",
+                "default": "",
+                "examples": [
+                  "GBP"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "formattedValue": {
+                "$id": "#/properties/products/items/properties/price/properties/formattedValue",
+                "type": "string",
+                "title": "The Formattedvalue Schema",
+                "default": "",
+                "examples": [
+                  "£50.00"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "priceType": {
+                "$id": "#/properties/products/items/properties/price/properties/priceType",
+                "type": "string",
+                "title": "The Pricetype Schema",
+                "default": "",
+                "examples": [
+                  "BUY"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "regularPrice": {
+                "$id": "#/properties/products/items/properties/price/properties/regularPrice",
+                "type": "integer",
+                "title": "The Regularprice Schema",
+                "default": 0,
+                "examples": [
+                  50
+                ]
+              },
+              "regularPriceFormattedValue": {
+                "$id": "#/properties/products/items/properties/price/properties/regularPriceFormattedValue",
+                "type": "string",
+                "title": "The Regularpriceformattedvalue Schema",
+                "default": "",
+                "examples": [
+                  "£50.00"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "value": {
+                "$id": "#/properties/products/items/properties/price/properties/value",
+                "type": "integer",
+                "title": "The Value Schema",
+                "default": 0,
+                "examples": [
+                  50
+                ]
+              }
+            }
+          },
+          "promotionalBadge": {
+            "$id": "#/properties/products/items/properties/promotionalBadge",
+            "type": "string",
+            "title": "The Promotionalbadge Schema",
+            "default": "",
+            "examples": [
+              "-30%"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "soldIndividually": {
+            "$id": "#/properties/products/items/properties/soldIndividually",
+            "type": "boolean",
+            "title": "The Soldindividually Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          },
+          "soldOutForever": {
+            "$id": "#/properties/products/items/properties/soldOutForever",
+            "type": "boolean",
+            "title": "The Soldoutforever Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          },
+          "url": {
+            "$id": "#/properties/products/items/properties/url",
+            "type": "string",
+            "title": "The Url Schema",
+            "default": "",
+            "examples": [
+              "/clothing/women/jeans/deconstructed-skirt/p/349630004"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "sorts": {
+      "$id": "#/properties/sorts",
+      "type": "array",
+      "title": "The Sorts Schema",
+      "items": {
+        "$id": "#/properties/sorts/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "code",
+          "name",
+          "selected"
+        ],
+        "properties": {
+          "code": {
+            "$id": "#/properties/sorts/items/properties/code",
+            "type": "string",
+            "title": "The Code Schema",
+            "default": "",
+            "examples": [
+              "relevance"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "name": {
+            "$id": "#/properties/sorts/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Recommended"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "selected": {
+            "$id": "#/properties/sorts/items/properties/selected",
+            "type": "boolean",
+            "title": "The Selected Schema",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        }
+      }
+    }
+  }
+}

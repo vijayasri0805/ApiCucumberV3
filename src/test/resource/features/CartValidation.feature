@@ -10,3 +10,4 @@ Examples:
 |Locale|
 |US|
 |CA|
+|GB|

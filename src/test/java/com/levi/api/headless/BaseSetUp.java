@@ -38,6 +38,7 @@ public class BaseSetUp {
 	public String PAYMENT;	
 	public String UID;
 	public String PWD;
+	public String CATEGORYSORT;
 	
 	public String firstName;
 	public String lastName;
@@ -108,6 +109,20 @@ public class BaseSetUp {
 			deliveryMode = reader.getData("gbDeliveryMode");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "GB");
 		}
+		else if(locale.equalsIgnoreCase("pl"))
+		{
+			UID = reader.getData("plUID");
+			PWD = reader.getData("plPWD");
+			PC9 = reader.getData("plPC9");
+			SIZE = reader.getData("plSize");
+			QTY = reader.getData("plQty");
+			town = reader.getData("pltown");
+			isocode = reader.getData("plisocode");
+			postalCode = reader.getData("plpostalCode");
+			phone = reader.getData("plphone");
+			deliveryMode = reader.getData("plDeliveryMode");
+			BASEURL = reader.getData("baseURL").replace("{locale}", "PL");
+		}
 		
 		AUTHTOKEN = reader.getData("authToken");
 		ANONCARTID = BASEURL+reader.getData("createAnonCartID");
@@ -124,6 +139,7 @@ public class BaseSetUp {
 		ADDPAYMENTREGCART = BASEURL+reader.getData("addRegPaymentMethod");
 		CHECKOUTREGORDER = BASEURL+reader.getData("checkoutRegUser");
 		SWATCHDATA = BASEURL+reader.getData("swatchData");
+		CATEGORYSORT = BASEURL+reader.getData("categorySort");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");
