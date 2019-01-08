@@ -39,6 +39,7 @@ public class BaseSetUp {
 	public String UID;
 	public String PWD;
 	public String CATEGORYSORT;
+	public String CATEGORYPAGE;
 	
 	public String firstName;
 	public String lastName;
@@ -140,6 +141,7 @@ public class BaseSetUp {
 		CHECKOUTREGORDER = BASEURL+reader.getData("checkoutRegUser");
 		SWATCHDATA = BASEURL+reader.getData("swatchData");
 		CATEGORYSORT = BASEURL+reader.getData("categorySort");
+		CATEGORYPAGE = BASEURL+reader.getData("categoryPage");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");

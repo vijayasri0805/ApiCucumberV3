@@ -60,5 +60,20 @@ public class PLPValidation {
 
 	}
 	
+	public Response getCategoryBreadCrumbDetails(String category) {		
+		/*
+		 * PRODUCT DATA		
+		 */
+		Response resp;
+		resp = given().
+				pathParam("category", category).contentType(ContentType.JSON).
+				expect().statusCode(200).
+				when().
+				get(baseSetUp.CATEGORYPAGE);
+		return resp;
+		
+
+	}
+	
 
 }

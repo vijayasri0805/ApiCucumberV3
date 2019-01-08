@@ -26,6 +26,15 @@ public class PLPValidationSteps {
 		resp.then().
 		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categorySortData.json"))));
 	}
+	
+	@Given("^User validates breadcrumbs for \"([^\"]*)\" service for \"([^\"]*)\"$")
+	public void validateBreadCrumbsForCategory(String category, String locale) throws Throwable
+	{
+		PLPValidation plp = new PLPValidation(locale);
+		resp = plp.getCategoryBreadCrumbDetails(category);
+		resp.then().
+		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categoryPage.json"))));
+	}
 
 	
 }
