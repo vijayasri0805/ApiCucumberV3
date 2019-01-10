@@ -40,6 +40,8 @@ public class BaseSetUp {
 	public String PWD;
 	public String CATEGORYSORT;
 	public String CATEGORYPAGE;
+	public String GETSAVEDADDR;
+	public String MARKADDRDEFAULT;
 	
 	public String firstName;
 	public String lastName;
@@ -142,6 +144,8 @@ public class BaseSetUp {
 		SWATCHDATA = BASEURL+reader.getData("swatchData");
 		CATEGORYSORT = BASEURL+reader.getData("categorySort");
 		CATEGORYPAGE = BASEURL+reader.getData("categoryPage");
+		GETSAVEDADDR = BASEURL+reader.getData("getSavedAddress");
+		MARKADDRDEFAULT = BASEURL+reader.getData("markSavedAddrDefault");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");
