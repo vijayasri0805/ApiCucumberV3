@@ -20,6 +20,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
+import com.levi.api.utils.CommonUtils;
 
 import net.minidev.json.JSONObject;
 
@@ -77,6 +78,27 @@ public class LoginValidation {
 				expect().statusCode(200).contentType(ContentType.JSON).
 				when().
 				post(baseSetUp.AUTHTOKEN);
+		return resp;
+		
+
+	}
+	
+	public Response createRegUserWithOptIn() {		
+		/*
+		 * CREATE REG USER		
+		 */
+		Response resp;
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("login", CommonUtils.GenerateRandomEmail());
+		params.put("client_secret", "Dance@floor1");
+		params.put("firstName", "Test FName");
+		params.put("personalizedOffer", true);
+		params.put("optIn", true);
+
+		resp = given().parameters(params).
+				expect().statusCode(200).contentType(ContentType.JSON).
+				when().
+				post(baseSetUp.CREATEUSER);
 		return resp;
 		
 

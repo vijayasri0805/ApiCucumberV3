@@ -42,6 +42,7 @@ public class BaseSetUp {
 	public String CATEGORYPAGE;
 	public String GETSAVEDADDR;
 	public String MARKADDRDEFAULT;
+	public String CREATEUSER;
 	
 	public String firstName;
 	public String lastName;
@@ -146,6 +147,7 @@ public class BaseSetUp {
 		CATEGORYPAGE = BASEURL+reader.getData("categoryPage");
 		GETSAVEDADDR = BASEURL+reader.getData("getSavedAddress");
 		MARKADDRDEFAULT = BASEURL+reader.getData("markSavedAddrDefault");
+		CREATEUSER = BASEURL+reader.getData("createUser");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");

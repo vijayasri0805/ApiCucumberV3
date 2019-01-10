@@ -28,6 +28,13 @@ public class LoginValidationSteps {
 		System.out.println("generatedToken:"+BaseSetUp.generatedToken);
 	}
 	
+	@Given("^User creates registered user with optin for \"([^\"]*)\"$")
+	public void createRegUserWithOptIn(String locale) throws Throwable
+	{
+		LoginValidation login = new LoginValidation(locale);
+		resp = login.createRegUserWithOptIn();
+	}
+	
 
 	
 }
