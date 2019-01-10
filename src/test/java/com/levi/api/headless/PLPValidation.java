@@ -60,6 +60,21 @@ public class PLPValidation {
 
 	}
 	
+	public Response validateCategoryData(String category) {		
+		/*
+		 * PRODUCT DATA		
+		 */
+		Response resp;
+		resp = given().
+				pathParam("category", category).contentType(ContentType.JSON).
+				expect().statusCode(200).
+				when().
+				get(baseSetUp.CATEGORYDETAILS);
+		return resp;
+		
+
+	}
+	
 	public Response getCategoryBreadCrumbDetails(String category) {		
 		/*
 		 * PRODUCT DATA		

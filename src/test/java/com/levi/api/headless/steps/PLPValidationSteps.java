@@ -27,6 +27,15 @@ public class PLPValidationSteps {
 		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categorySortData.json"))));
 	}
 	
+	@Given("^User validates \"([^\"]*)\" detail for \"([^\"]*)\"$")
+	public void validateCategoryData(String category, String locale) throws Throwable
+	{
+		PLPValidation plp = new PLPValidation(locale);
+		resp = plp.validateCategoryData(category);
+		resp.then().
+		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categoryData.json"))));
+	}
+	
 	@Given("^User validates breadcrumbs for \"([^\"]*)\" service for \"([^\"]*)\"$")
 	public void validateBreadCrumbsForCategory(String category, String locale) throws Throwable
 	{

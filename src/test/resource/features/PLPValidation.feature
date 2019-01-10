@@ -13,3 +13,10 @@ Scenario Outline: HEAD-285 - Validate category breadcrumbs
 Examples:
 |Category||Locale|
 |levi_clothing_women_jeans||GB|
+
+@HEAD-139
+Scenario Outline: HEAD-139 - Validate PLP category Services
+	Given User validates "<Category>" detail for "<Locale>"
+Examples:
+|Category||Locale|
+|levi_clothing_women_jeans||GB|
