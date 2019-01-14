@@ -217,26 +217,57 @@ public class CartValidation {
 
 	}
 	
-	public Response addPaymentToRegCart(String generatedToken, String generatedCartID)
+	public Response addPaymentToRegCart(String paymentMethod, String generatedToken, String generatedCartID)
 	{
 		/*
 		 * ADD ADDRESS TO CART
 		 */
 		JSONObject paymentDetails = new JSONObject();
-		paymentDetails.put("accountHolderName", baseSetUp.accountHolderName);
-		paymentDetails.put("cardNumber", baseSetUp.visaCardNumber);
-		
 		JSONObject cardType = new JSONObject();
-		cardType.put("code", "visa");
-		paymentDetails.put("cardType", cardType);
+		paymentDetails.put("accountHolderName", baseSetUp.accountHolderName);
+		switch(paymentMethod.toLowerCase())
+		{
+		case "visa":
+			paymentDetails.put("cardNumber", baseSetUp.visaCardNumber);
+			cardType.put("code", "visa");
+			paymentDetails.put("cardType", cardType);
+			break;
+		case "master":
+			paymentDetails.put("cardNumber", baseSetUp.masterCardNumber);
+			cardType.put("code", "master");
+			paymentDetails.put("cardType", cardType);
+			break;
+		case "amex":
+			paymentDetails.put("cardNumber", baseSetUp.amexCardNumber);
+			cardType.put("code", "amex");
+			paymentDetails.put("cardType", cardType);
+			break;
+		case "maestro":
+			paymentDetails.put("cardNumber", baseSetUp.maestroCardNumber);
+			cardType.put("code", "maestro");
+			paymentDetails.put("cardType", cardType);
+			break;
+		case "discover":
+			paymentDetails.put("cardNumber", baseSetUp.discoverCardNumber);
+			cardType.put("code", "discover");
+			paymentDetails.put("cardType", cardType);
+			break;
+		case "diners":
+			paymentDetails.put("cardNumber", baseSetUp.dinersCardNumber);
+			cardType.put("code", "diners");
+			paymentDetails.put("cardType", cardType);
+			break;
+		default:
+			System.out.println("Wrong Card type selected: "+paymentMethod);
+		}		
 		
 		paymentDetails.put("expiryMonth", baseSetUp.expiryMonth);
 		paymentDetails.put("expiryYear", baseSetUp.expiryYear);
 		
 		
 		JSONObject billingAddress = new JSONObject();
-		billingAddress.put("firstName", baseSetUp.lastName);
-		billingAddress.put("lastName", baseSetUp.firstName);		
+		billingAddress.put("firstName", baseSetUp.firstName);
+		billingAddress.put("lastName", baseSetUp.lastName);		
 		billingAddress.put("line1", baseSetUp.addrLine1);
 		billingAddress.put("line2", baseSetUp.addrLine2);
 		billingAddress.put("postalCode", baseSetUp.postalCode);
@@ -249,7 +280,7 @@ public class CartValidation {
 		
 		paymentDetails.put("saved", true);
 		paymentDetails.put("adyenPaymentMethod", baseSetUp.adyenPaymentMethod);
-		paymentDetails.put("defaultPayment", true);
+		paymentDetails.put("defaultPayment", false);
 		
 		System.out.println(paymentDetails.toJSONString());
 		

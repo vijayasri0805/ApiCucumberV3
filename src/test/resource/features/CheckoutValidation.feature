@@ -8,10 +8,13 @@ Scenario Outline: HEAD-241, HEAD-234 - Validate registered user checkout feature
 	Then User adds product to registered cart for "<Locale>"
 	And User add address to registered cart for "<Locale>"
 	Then User add delivery method to registered cart for "<Locale>"
-	And User add payment method to registered cart for "<Locale>"
+	And User add "<Payment>" method to registered cart for "<Locale>"
 	Then User proceed to registered checkout for "<Locale>"
 	Examples:
-	|Locale|
-	|US|
-	|CA|
-	|GB|
+	|Payment||Locale|
+	|Visa||GB|
+	|Master||GB|
+	|Amex||GB|
+	|Maestro||GB|
+	|Discover||PL|
+	|Diners||PL|

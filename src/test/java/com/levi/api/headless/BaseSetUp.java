@@ -56,6 +56,11 @@ public class BaseSetUp {
 	public String deliveryMode;
 	public String accountHolderName;
 	public String visaCardNumber;
+	public String masterCardNumber;
+	public String amexCardNumber;
+	public String maestroCardNumber;
+	public String discoverCardNumber;
+	public String dinersCardNumber;
 	public String expiryMonth;
 	public String expiryYear;
 	public String adyenPaymentMethod;
@@ -157,6 +162,11 @@ public class BaseSetUp {
 		addrLine2 = reader.getData("line2");
 		accountHolderName = reader.getData("accountHolderName");
 		visaCardNumber = reader.getData("visaCardNumber");
+		masterCardNumber = reader.getData("masterCardNumber");
+		amexCardNumber = reader.getData("amexCardNumber");
+		maestroCardNumber = reader.getData("maestroCardNumber");
+		discoverCardNumber = reader.getData("discoverCardNumber");
+		dinersCardNumber = reader.getData("dinersCardNumber");
 		expiryMonth = reader.getData("expiryMonth");
 		expiryYear = reader.getData("expiryYear");
 		adyenPaymentMethod = reader.getData("adyenPaymentMethod");

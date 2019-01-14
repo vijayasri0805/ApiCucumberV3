@@ -136,11 +136,11 @@ public class CartValidationSteps {
 		
 	}
 	
-	@Then("^User add payment method to registered cart for \"([^\"]*)\"$")
-	public void addPaymentToRegCart(String locale) throws Throwable {
+	@Then("^User add \"([^\"]*)\" method to registered cart for \"([^\"]*)\"$")
+	public void addPaymentToRegCart(String payment, String locale) throws Throwable {
 		
 		CartValidation cart = new CartValidation(locale);
-		Response resp = cart.addPaymentToRegCart(BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
+		Response resp = cart.addPaymentToRegCart(payment, BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
 		String id = resp.then().extract().path("id").toString();
 		System.out.println("Add Payment ID: "+id);
 	}
