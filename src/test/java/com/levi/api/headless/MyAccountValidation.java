@@ -60,12 +60,11 @@ public class MyAccountValidation {
 		/*
 		 * GET SAVED ADDRESS
 		 */
-
 		resp = given().
 				pathParam("UID", baseSetUp.UID).
 				contentType(ContentType.JSON).
 				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
-				when().post(baseSetUp.GETSAVEDADDR);
+				when().get(baseSetUp.GETSAVEDADDR);
 
 		return resp;
 
@@ -85,13 +84,16 @@ public class MyAccountValidation {
 		childBody.put("qty", baseSetUp.QTY);
 		JSONObject mainBody = new JSONObject();
 		mainBody.put("product", childBody);*/
-
+		JSONObject body = new JSONObject();
+		body.put("", ""); 
+		
 		resp = given().
+				body(body).
 				pathParam("UID", baseSetUp.UID).
 				pathParam("ADDRID", addressID).
 				contentType(ContentType.JSON).
-				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
-				when().post(baseSetUp.MARKADDRDEFAULT);
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).				
+				when().patch(baseSetUp.MARKADDRDEFAULT);
 
 		return resp;
 

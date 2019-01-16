@@ -1,5 +1,7 @@
 package com.levi.api.headless.steps;
 
+import static org.testng.Assert.assertEquals;
+
 import com.jayway.restassured.response.Response;
 import com.levi.api.headless.BaseSetUp;
 import com.levi.api.headless.LoginValidation;
@@ -28,8 +30,8 @@ public class MyAccountValidationSteps {
 	{
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
 		resp = myAccount.markSavedAddressDefault(BaseSetUp.generatedToken, addressID);
-		String status = resp.then().extract().path("status");
 		
+		assertEquals(resp.getStatusCode(),200);
 	}
 	
 
