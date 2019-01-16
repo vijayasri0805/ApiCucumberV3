@@ -45,6 +45,7 @@ public class BaseSetUp {
 	public String GETSAVEDADDR;
 	public String MARKADDRDEFAULT;
 	public String CREATEUSER;
+	public String BASESTOREDETAILS;
 	
 	public String firstName;
 	public String lastName;
@@ -65,6 +66,7 @@ public class BaseSetUp {
 	public String expiryMonth;
 	public String expiryYear;
 	public String adyenPaymentMethod;
+	public String baseStoreID;
 	
 	
 	
@@ -89,6 +91,7 @@ public class BaseSetUp {
 			postalCode = reader.getData("uspostalCode");
 			phone = reader.getData("usphone");
 			deliveryMode = reader.getData("usDeliveryMode");
+			baseStoreID = reader.getData("usBaseStoreID");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "US");
 			
 		}
@@ -104,6 +107,7 @@ public class BaseSetUp {
 			postalCode = reader.getData("caPostalCode");
 			phone = reader.getData("caPhone");
 			deliveryMode = reader.getData("caDeliveryMode");
+			baseStoreID = reader.getData("caBaseStoreID");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "CA");
 		}
 		else if(locale.equalsIgnoreCase("gb"))
@@ -118,6 +122,7 @@ public class BaseSetUp {
 			postalCode = reader.getData("gbPostalCode");
 			phone = reader.getData("gbPhone");
 			deliveryMode = reader.getData("gbDeliveryMode");
+			baseStoreID = reader.getData("gbBaseStoreID");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "GB");
 		}
 		else if(locale.equalsIgnoreCase("pl"))
@@ -132,6 +137,7 @@ public class BaseSetUp {
 			postalCode = reader.getData("plPostalCode");
 			phone = reader.getData("plPhone");
 			deliveryMode = reader.getData("plDeliveryMode");
+			baseStoreID = reader.getData("plBaseStoreID");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "PL");
 		}
 		
@@ -157,6 +163,7 @@ public class BaseSetUp {
 		MARKADDRDEFAULT = BASEURL+reader.getData("markSavedAddrDefault");
 		CREATEUSER = BASEURL+reader.getData("createUser");
 		CATEGORYDETAILS = BASEURL+reader.getData("categoryDetails");
+		BASESTOREDETAILS = BASEURL+reader.getData("baseStoreDetails");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");
