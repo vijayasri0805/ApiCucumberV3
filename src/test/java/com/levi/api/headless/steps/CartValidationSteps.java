@@ -136,6 +136,37 @@ public class CartValidationSteps {
 		
 	}
 	
+	@Then("^User verifies delivery method to registered cart for \"([^\"]*)\"$")
+	public void verifyDeliveryToRegCart(String locale) throws Throwable {
+		
+		CartValidation cart = new CartValidation(locale);
+		System.out.println("generatedCartID:"+BaseSetUp.generatedCartID);
+		Response resp = cart.verifyDeliveryToRegCart(BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
+		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/getDeliveryMethod.json"))));
+		
+	}
+	@Then("^User verifies delivery method for invalid UID for \"([^\"]*)\"$")
+	public void verifyDeliveryToRegCartForInvalidUID(String locale) throws Throwable {
+		
+		CartValidation cart = new CartValidation(locale);
+		System.out.println("generatedCartID:"+BaseSetUp.generatedCartID);
+		Response resp = cart.verifyDeliveryToRegCartForInvalidUID(BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
+		//resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/getDeliveryMethod.json"))));
+		System.out.println("resp"+resp);
+		String errorMessage = resp.then().extract().path("errors[0].message").toString();
+		assertEquals(errorMessage.contains("Cannot find user with uid"),true);
+	}
+	
+	@Then("^User verifies delivery method for invalid GUID for \"([^\"]*)\"$")
+	public void verifyDeliveryToRegCartForInvalidGUID(String locale) throws Throwable {
+		
+		CartValidation cart = new CartValidation(locale);
+		//System.out.println("generatedCartID:"+BaseSetUp.generatedCartID);
+		Response resp = cart.verifyDeliveryToRegCartForInvalidGUID(BaseSetUp.generatedToken,"c0s2770-0178-4ea4-9ac5-974b76250ec8");
+		//resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/getDeliveryMethod.json"))));
+		String errorMessage = resp.then().extract().path("errors[0].message").toString();
+		assertEquals(errorMessage.contains("Cart not found."),true);
+	}
 	@Then("^User add \"([^\"]*)\" method to registered cart for \"([^\"]*)\"$")
 	public void addPaymentToRegCart(String payment, String locale) throws Throwable {
 		

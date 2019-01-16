@@ -217,6 +217,49 @@ public class CartValidation {
 
 	}
 	
+	public Response verifyDeliveryToRegCart(String generatedToken, String generatedCartID) {
+		/*
+		 * Verify Delivery Method
+		 */
+		Response resp = given().
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
+				when().
+				get(baseSetUp.GETREGDELIVERY);
+
+		return resp;
+
+	}
+	public Response verifyDeliveryToRegCartForInvalidUID(String generatedToken, String generatedCartID) {
+		/*
+		 * Verify Delivery Method-- Invalid UID
+		 */
+		Response resp = given().
+				pathParam("UID", "somail@gmail.com").
+				pathParam("guid", generatedCartID).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(400).
+				when().
+				get(baseSetUp.GETREGDELIVERY);
+
+		return resp;
+
+	}
+	public Response verifyDeliveryToRegCartForInvalidGUID(String generatedToken, String generatedCartID) {
+		/*
+		 * Add Delivery Method--Invalid GUID
+		 */
+		Response resp = given().
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(400).
+				when().
+				get(baseSetUp.GETREGDELIVERY);
+
+		return resp;
+
+	}
+	
 	public Response addPaymentToRegCart(String paymentMethod, String generatedToken, String generatedCartID)
 	{
 		/*
