@@ -29,6 +29,7 @@ public class BaseSetUp {
 	public String PROMO;
 	public String CREATEREGADDRESS;
 	public String ADDREGDELIVERY;
+	public String GETREGDELIVERY; 
 	public String ADDPAYMENTREGCART;
 	public String DELIVERYMETHOD;
 	public String SELECTDELIVERYMETHOD;
@@ -145,6 +146,7 @@ public class BaseSetUp {
 		PLACEORDER = BASEURL+reader.getData("placeOrder");
 		CHECKOUT = BASEURL+reader.getData("checkOut");		
 		CREATEREGADDRESS = BASEURL+reader.getData("createRegAddress");
+		GETREGDELIVERY = BASEURL+reader.getData("getRegDeliveryMethod");
 		ADDREGDELIVERY = BASEURL+reader.getData("addRegDeliveryMethod");
 		ADDPAYMENTREGCART = BASEURL+reader.getData("addRegPaymentMethod");
 		CHECKOUTREGORDER = BASEURL+reader.getData("checkoutRegUser");
