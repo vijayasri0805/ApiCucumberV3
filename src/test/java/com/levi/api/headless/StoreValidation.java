@@ -73,6 +73,33 @@ public class StoreValidation {
 
 	}
 	
+	public Response getCountryDetails() {
+		/*
+		 * GUID AND ALLOCATED ORDER NUMBER
+		 */
+		Response resp = given().
+				expect().statusCode(200).
+				when().
+				post(baseSetUp.COUNTRYDETAILS);
+
+		return resp;
+
+	}
+	
+	public Response getRegionDetails() {
+		/*
+		 * GUID AND ALLOCATED ORDER NUMBER
+		 */
+		Response resp = given().
+				pathParam("countyIsoCode",baseSetUp.isocode).
+				expect().statusCode(200).
+				when().
+				post(baseSetUp.REGIONDETAILS);
+
+		return resp;
+
+	}
+	
 	
 
 

@@ -23,13 +23,35 @@ public class StoreValidationSteps {
 	String ViewCartValue;
 
 	@Then("^User validates detail of BaseStore for \"([^\"]*)\"$")
-	public void createAnonCart(String baseStore, String locale) throws Throwable
+	public void getBaseStoreDetails(String locale) throws Throwable
 	{
 		StoreValidation store = new StoreValidation(locale);
 		Response resp = store.getBaseStoreDetails();
 		
 		resp.then().
 		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/baseStore.json"))));
+		
+	}
+	
+	@Then("^User validates country detail of BaseStore for \"([^\"]*)\"$")
+	public void getCountryDetails(String locale) throws Throwable
+	{
+		StoreValidation store = new StoreValidation(locale);
+		Response resp = store.getCountryDetails();
+		
+		resp.then().
+		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/country.json"))));
+		
+	}
+	
+	@Then("^User validates region detail of BaseStore for \"([^\"]*)\"$")
+	public void getRegionDetails(String locale) throws Throwable
+	{
+		StoreValidation store = new StoreValidation(locale);
+		Response resp = store.getRegionDetails();
+		
+		resp.then().
+		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/region.json"))));
 		
 	}
 	

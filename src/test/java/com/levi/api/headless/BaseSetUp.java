@@ -46,6 +46,8 @@ public class BaseSetUp {
 	public String MARKADDRDEFAULT;
 	public String CREATEUSER;
 	public String BASESTOREDETAILS;
+	public String COUNTRYDETAILS;
+	public String REGIONDETAILS;
 	
 	public String firstName;
 	public String lastName;
@@ -164,6 +166,8 @@ public class BaseSetUp {
 		CREATEUSER = BASEURL+reader.getData("createUser");
 		CATEGORYDETAILS = BASEURL+reader.getData("categoryDetails");
 		BASESTOREDETAILS = BASEURL+reader.getData("baseStoreDetails");
+		COUNTRYDETAILS = BASEURL+reader.getData("countryDetails");
+		REGIONDETAILS = BASEURL+reader.getData("regionDetails");
 		
 		firstName = reader.getData("firstName");
 		lastName = reader.getData("lastName");
