@@ -282,7 +282,7 @@ public class CartValidation {
 		paymentDetails.put("adyenPaymentMethod", baseSetUp.adyenPaymentMethod);
 		paymentDetails.put("defaultPayment", false);
 		
-		System.out.println(paymentDetails.toJSONString());
+		//System.out.println(paymentDetails.toJSONString());
 		
 		//mainBody.put("phone", baseSetUp.phone);
 		

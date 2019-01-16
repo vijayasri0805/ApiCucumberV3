@@ -98,10 +98,10 @@ public class BaseSetUp {
 			PC9 = reader.getData("caPC9");
 			SIZE = reader.getData("caSize");
 			QTY = reader.getData("caQty");
-			town = reader.getData("catown");
-			isocode = reader.getData("caisocode");
-			postalCode = reader.getData("capostalCode");
-			phone = reader.getData("caphone");
+			town = reader.getData("caTown");
+			isocode = reader.getData("caIsocode");
+			postalCode = reader.getData("caPostalCode");
+			phone = reader.getData("caPhone");
 			deliveryMode = reader.getData("caDeliveryMode");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "CA");
 		}
@@ -112,10 +112,10 @@ public class BaseSetUp {
 			PC9 = reader.getData("gbPC9");
 			SIZE = reader.getData("gbSize");
 			QTY = reader.getData("gbQty");
-			town = reader.getData("gbtown");
-			isocode = reader.getData("gbisocode");
-			postalCode = reader.getData("gbpostalCode");
-			phone = reader.getData("gbphone");
+			town = reader.getData("gbTown");
+			isocode = reader.getData("gbIsocode");
+			postalCode = reader.getData("gbPostalCode");
+			phone = reader.getData("gbPhone");
 			deliveryMode = reader.getData("gbDeliveryMode");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "GB");
 		}
@@ -126,10 +126,10 @@ public class BaseSetUp {
 			PC9 = reader.getData("plPC9");
 			SIZE = reader.getData("plSize");
 			QTY = reader.getData("plQty");
-			town = reader.getData("pltown");
-			isocode = reader.getData("plisocode");
-			postalCode = reader.getData("plpostalCode");
-			phone = reader.getData("plphone");
+			town = reader.getData("plTown");
+			isocode = reader.getData("plIsocode");
+			postalCode = reader.getData("plPostalCode");
+			phone = reader.getData("plPhone");
 			deliveryMode = reader.getData("plDeliveryMode");
 			BASEURL = reader.getData("baseURL").replace("{locale}", "PL");
 		}
