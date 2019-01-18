@@ -8,9 +8,12 @@
     "type",
     "breadcrumbs",
     "categoryCode",
+    "categoryHierarchy",
+    "categoryName",
     "currentQuery",
     "facets",
     "freeTextSearch",
+    "lscoBreadcrumbs",
     "pagination",
     "products",
     "sorts"

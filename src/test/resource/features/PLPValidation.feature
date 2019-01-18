@@ -15,7 +15,7 @@ Examples:
 |levi_clothing_women_jeans||GB|
 
 @HEAD-383
-Scenario Outline: HEAD-139,HEAD-383 - Validate PLP category Services
+Scenario Outline: HEAD-139,HEAD-383,HEAD-283 - Validate PLP category Services
 	Given User validates "<Category>" detail for "<Locale>"
 Examples:
 |Category||Locale|

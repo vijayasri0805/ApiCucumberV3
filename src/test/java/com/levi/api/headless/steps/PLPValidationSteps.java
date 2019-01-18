@@ -33,7 +33,8 @@ public class PLPValidationSteps {
 		PLPValidation plp = new PLPValidation(locale);
 		resp = plp.validateCategoryData(category);
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categoryService.json"))));
+		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categoryService.json"))))
+		.extract().path("categoryName").toString().matches("\\w+\\.?");
 	}
 	
 	@Given("^User validates breadcrumbs for \"([^\"]*)\" service for \"([^\"]*)\"$")
