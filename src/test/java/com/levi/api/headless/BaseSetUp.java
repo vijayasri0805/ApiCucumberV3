@@ -18,6 +18,12 @@ public class BaseSetUp {
 	public String REGCARTID;
 	public String AUTHTOKEN;
 	public String PRODUCTDATA;
+	public String LISTOFCONSENTSDATA;
+	public String SPECIFICCONSENTDATA;
+	public String DELETECONSENTDATA;
+	public String CONSENTTEMPLATEID;
+	public String CONSENTTEMPLATEVERSION;
+	public String ADDCONSENT;
 	public String SWATCHDATA;
 	public String SELECTEDPC13;
 	public String ADDTOANONCART;
@@ -147,6 +153,12 @@ public class BaseSetUp {
 		ANONCARTID = BASEURL+reader.getData("createAnonCartID");
 		REGCARTID = BASEURL+reader.getData("createRegCartID");
 		PRODUCTDATA = BASEURL+reader.getData("productData");
+		LISTOFCONSENTSDATA = BASEURL+reader.getData("listOfConsents");
+		SPECIFICCONSENTDATA = BASEURL+reader.getData("getSpecificConsents");
+		DELETECONSENTDATA = BASEURL+reader.getData("deleteSpecificConsents");
+		CONSENTTEMPLATEID = reader.getData("consentTemplateId");
+		CONSENTTEMPLATEVERSION = reader.getData("consentTemplateVersion");
+		ADDCONSENT = BASEURL+reader.getData("addConsents");
 		SELECTEDPC13 = BASEURL+reader.getData("selectPC13");
 		ADDTOANONCART = BASEURL+reader.getData("addToAnonCart");
 		ADDTOREGCART = BASEURL+reader.getData("addToRegCart");

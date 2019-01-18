@@ -99,8 +99,59 @@ public class MyAccountValidation {
 
 		
 	}
+	public Response getListofConsents(String generatedToken)
+	{
+		JSONObject body = new JSONObject();
+		body.put("", ""); 
+		resp= given().
+			body(body).
+			pathParam("UID", baseSetUp.UID).
+			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
+			.when().get(baseSetUp.LISTOFCONSENTSDATA);
+				
+	return resp;
+	}
+	public Response geSpecificofConsents(String consentTemplateId,String generatedToken)
+	{
+		JSONObject body = new JSONObject();
+		body.put("", ""); 
+		resp= given().
+			body(body).
+			pathParam("UID", baseSetUp.UID).
+			pathParam("consentTemplateId", consentTemplateId).
+			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
+			.when().get(baseSetUp.SPECIFICCONSENTDATA);
+				
+	return resp;
+	}
+	public Response addConsent(String generatedToken)
+	{
+		/*JSONObject body = new JSONObject();
 
-
+		body.put("", ""); */
+		resp= given().
+			//body(body).
+			pathParam("UID", baseSetUp.UID).
+			contentType(ContentType.URLENC).
+			formParam("consentTemplateId",baseSetUp.CONSENTTEMPLATEID).
+			formParam("consentTemplateVersion",baseSetUp.CONSENTTEMPLATEVERSION).
+			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
+			.when().post(baseSetUp.ADDCONSENT);
+				
+	return resp;
+	}
+	public Response deleteConsent(String consentId,String generatedToken){
+		JSONObject body = new JSONObject();
+		body.put("", ""); 
+		resp= given().
+			body(body).
+			pathParam("UID", baseSetUp.UID).
+			pathParam("consentCode", consentId).
+			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
+			.when().delete(baseSetUp.DELETECONSENTDATA);
+				
+	return resp;
+	}
 	@AfterMethod
 	public void captureStatus(ITestResult result) {
 		if (result.getStatus() == ITestResult.SUCCESS) {
