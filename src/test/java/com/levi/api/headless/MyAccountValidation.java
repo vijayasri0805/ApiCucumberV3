@@ -1,13 +1,10 @@
 package com.levi.api.headless;
 
 import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.io.File;
 
-
-
-
+import net.minidev.json.JSONObject;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -17,11 +14,9 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
-import com.jayway.restassured.response.ValidatableResponse;
-
-import net.minidev.json.JSONObject;
 
 public class MyAccountValidation {
 
@@ -120,6 +115,18 @@ public class MyAccountValidation {
 			pathParam("UID", baseSetUp.UID).
 			pathParam("consentTemplateId", consentTemplateId).
 			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
+			.when().get(baseSetUp.SPECIFICCONSENTDATA);		
+	return resp;
+	}
+	public Response checkWithdrawnConsent(String consentTemplateId,String generatedToken)
+	{
+		JSONObject body = new JSONObject();
+		body.put("", ""); 
+		resp= given().
+			body(body).
+			pathParam("UID", baseSetUp.UID).
+			pathParam("consentTemplateId", consentTemplateId).
+			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
 			.when().get(baseSetUp.SPECIFICCONSENTDATA);
 				
 	return resp;
@@ -129,13 +136,14 @@ public class MyAccountValidation {
 		/*JSONObject body = new JSONObject();
 
 		body.put("", ""); */
+		
 		resp= given().
 			//body(body).
 			pathParam("UID", baseSetUp.UID).
 			contentType(ContentType.URLENC).
 			formParam("consentTemplateId",baseSetUp.CONSENTTEMPLATEID).
 			formParam("consentTemplateVersion",baseSetUp.CONSENTTEMPLATEVERSION).
-			header("Authorization", "bearer "+generatedToken).expect().statusCode(200)
+			header("Authorization", "bearer "+generatedToken).expect().statusCode(201)
 			.when().post(baseSetUp.ADDCONSENT);
 				
 	return resp;

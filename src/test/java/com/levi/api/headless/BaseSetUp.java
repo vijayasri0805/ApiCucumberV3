@@ -54,6 +54,7 @@ public class BaseSetUp {
 	public String BASESTOREDETAILS;
 	public String COUNTRYDETAILS;
 	public String REGIONDETAILS;
+	public String UPDATECART;
 	
 	public String firstName;
 	public String lastName;
@@ -75,6 +76,7 @@ public class BaseSetUp {
 	public String expiryYear;
 	public String adyenPaymentMethod;
 	public String baseStoreID;
+	public String estimatedDeliveryDate;
 	
 	
 	
@@ -163,6 +165,7 @@ public class BaseSetUp {
 		ADDTOANONCART = BASEURL+reader.getData("addToAnonCart");
 		ADDTOREGCART = BASEURL+reader.getData("addToRegCart");
 		VIEWCART = BASEURL+reader.getData("viewCart");
+		UPDATECART = BASEURL+reader.getData("updateCart");
 		PLACEORDER = BASEURL+reader.getData("placeOrder");
 		CHECKOUT = BASEURL+reader.getData("checkOut");		
 		CREATEREGADDRESS = BASEURL+reader.getData("createRegAddress");
@@ -182,6 +185,7 @@ public class BaseSetUp {
 		REGIONDETAILS = BASEURL+reader.getData("regionDetails");
 		
 		firstName = reader.getData("firstName");
+		estimatedDeliveryDate = reader.getData("estimatedDeliveryDate");
 		lastName = reader.getData("lastName");
 		addrLine1 = reader.getData("line1");
 		addrLine2 = reader.getData("line2");

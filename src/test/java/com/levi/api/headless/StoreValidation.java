@@ -80,7 +80,7 @@ public class StoreValidation {
 		Response resp = given().
 				expect().statusCode(200).
 				when().
-				post(baseSetUp.COUNTRYDETAILS);
+				get(baseSetUp.COUNTRYDETAILS);
 
 		return resp;
 
@@ -92,10 +92,9 @@ public class StoreValidation {
 		 */
 		Response resp = given().
 				pathParam("countyIsoCode",baseSetUp.isocode).
-				expect().statusCode(200).
+				//expect().statusCode(200).
 				when().
-				post(baseSetUp.REGIONDETAILS);
-
+				get(baseSetUp.REGIONDETAILS);
 		return resp;
 
 	}

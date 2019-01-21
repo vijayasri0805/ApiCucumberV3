@@ -13,10 +13,14 @@ Scenario Outline: HEAD-101 - Validate Store Services
 Examples:
 |Locale|
 |GB|
+|US|
+|CA|
 
 @HEAD-101
 Scenario Outline: HEAD-101 - Validate Store Services
 	Then User validates region detail of BaseStore for "<Locale>"
 Examples:
 |Locale|
-|GB|
+|US|
+|CA|
+

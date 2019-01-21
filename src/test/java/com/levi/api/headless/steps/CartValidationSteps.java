@@ -126,6 +126,18 @@ public class CartValidationSteps {
 		
 	}
 	
+
+	@Then("^User update product to registered cart for \"([^\"]*)\"$")
+	public void updateAddressToRegCart(String locale) throws Throwable {
+		
+		CartValidation cart = new CartValidation(locale);
+		Response resp = cart.updateAddressToRegCart(BaseSetUp.generatedCartID);
+		//String id = resp.then().extract().path("id").toString();
+		//System.out.println("Add address ID: "+id);
+		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/updateCart.json"))));
+		
+	}
+	
 	@Then("^User add delivery method to registered cart for \"([^\"]*)\"$")
 	public void addDeliveryToRegCart(String locale) throws Throwable {
 		

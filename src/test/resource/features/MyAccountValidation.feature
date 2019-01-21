@@ -12,10 +12,11 @@ Examples:
 @HEAD-100
 Scenario Outline: HEAD-100 - Fetch List of Consents
 	Given User generates registered auth token for "<Locale>"
+	Given User adds consents for "<Locale>"
 	Given User pulls list of consents used by Customer "<Locale>"
 	Then User pulls specific consent "<consentTemplateId>" for customer in "<Locale>"
-	Then User Delete consent "<consentId>" for customer in "<Locale>"
+	Given User Delete consent "<consentTemplateId>" for customer in "<Locale>"
 Examples:
-|Locale|consentTemplateId|consentId|
-|GB|3TH_PARTY|0000JUXA|
+|Locale|consentTemplateId|
+|GB|TERMS_OF_USE|
 

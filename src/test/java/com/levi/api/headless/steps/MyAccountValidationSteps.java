@@ -4,10 +4,11 @@ import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonS
 import static org.testng.Assert.assertEquals;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.jayway.restassured.response.Response;
 import com.levi.api.headless.BaseSetUp;
-import com.levi.api.headless.LoginValidation;
 import com.levi.api.headless.MyAccountValidation;
 
 import cucumber.api.java.en.Given;
@@ -65,14 +66,27 @@ public class MyAccountValidationSteps {
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
 		resp = myAccount.addConsent(BaseSetUp.generatedToken);
 		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/addConsents.json"))));
-		assertEquals(resp.getStatusCode(),200);
+		assertEquals(resp.getStatusCode(),201);
 	}
 	@Then("^User Delete consent \"([^\"]*)\" for customer in \"([^\"]*)\"$")
-	public void deleteConsent(String consentId,String locale) throws Throwable
+	public void deleteConsent(String consentTemplateId,String locale) throws Throwable
 	{
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
+		resp = myAccount.geSpecificofConsents(consentTemplateId,BaseSetUp.generatedToken);
+		assertEquals(resp.getStatusCode(),200);
+		String consentId = resp. 
+				then().
+				extract().
+				path("consentData.code");
 		resp = myAccount.deleteConsent(consentId,BaseSetUp.generatedToken);
 		assertEquals(resp.getStatusCode(),200);
+		resp = myAccount.geSpecificofConsents(consentTemplateId,BaseSetUp.generatedToken);
+		assertEquals(resp.getStatusCode(),200);
+		String consentWithdrawnDate = resp. 
+				then().
+				extract().
+				path("consentData.consentWithdrawnDate").toString();
+		
 	}
 	
 	

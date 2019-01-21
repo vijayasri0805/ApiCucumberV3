@@ -23,3 +23,12 @@ Scenario Outline: HEAD-129 - Validate registered user checkout feature
 	Examples:
 	|Locale|
 	|GB|
+@HEAD-261	
+Scenario Outline: HEAD-129 - Validate update cart feature
+	Given User generates registered auth token for "<Locale>"
+	Then User creates a registered cart for "<Locale>"
+	And User validates PC9 with size for "<Locale>"
+	Then User update product to registered cart for "<Locale>"
+	Examples:
+	|Locale|
+	|GB|
