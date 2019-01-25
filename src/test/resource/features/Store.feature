@@ -5,7 +5,7 @@ Scenario Outline: HEAD-99 - Validate Store Services
 	Then User validates detail of BaseStore for "<Locale>"
 Examples:
 |Locale|
-|GB|
+|US|
 
 @HEAD-101
 Scenario Outline: HEAD-101 - Validate Store Services

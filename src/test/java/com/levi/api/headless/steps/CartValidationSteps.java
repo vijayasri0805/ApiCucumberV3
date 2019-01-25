@@ -4,9 +4,11 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 
+import com.cucumber.listener.Reporter;
 import com.jayway.restassured.response.Response;
 import com.levi.api.headless.BaseSetUp;
 import com.levi.api.headless.CartValidation;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
@@ -55,13 +57,11 @@ public class CartValidationSteps {
 				extract(). 
 				path("allocatedOrderNumber");
 		AllocatedOrderNumber=allocatedOrdNum;
-		System.out.println("AllocatedOrderNumber: "+AllocatedOrderNumber);
 		String cartID = resp. 
 				then().extract().
 				path("guid");
-
-		System.out.println("GUID : " + cartID);
 		BaseSetUp.generatedCartID=cartID;
+		Reporter.addStepLog("Create Cart Successful with GUID " + cartID);
 	}
 	
 	@And("^User validates PC9 with size for \"([^\"]*)\"$")
@@ -70,6 +70,7 @@ public class CartValidationSteps {
 		String pc13 = cart.validatePC9();
 		System.out.println("Selected PC13 : " + pc13);
 		SelectedPC13 = pc13;
+		Reporter.addStepLog("PC13: "+pc13+" selected successfully ");
 	}
 	
 	
@@ -99,7 +100,9 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		Response resp = cart.addToRegCart(SelectedPC13, BaseSetUp.generatedCartID, BaseSetUp.generatedToken);
 		String Statuscode = resp.then().extract().path("statusCode");
+		
 		System.out.println("Status Code for add to cart : " + Statuscode);
+		Reporter.addStepLog("Add to cart status: "+Statuscode);
 
 		String addedpc13 = resp.then().extract().path("entry.product.code");
 		if(addedpc13.equals(SelectedPC13)) {

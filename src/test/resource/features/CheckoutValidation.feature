@@ -1,6 +1,6 @@
 Feature: This feature will check the hybris api features
 
-@HEAD-241 @testTag
+@HEAD-241
 Scenario Outline: HEAD-241, HEAD-234 - Validate registered user checkout feature
 	Given User generates registered auth token for "<Locale>"
 	Then User creates a registered cart for "<Locale>"

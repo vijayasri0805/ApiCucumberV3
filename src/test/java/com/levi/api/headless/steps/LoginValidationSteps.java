@@ -1,8 +1,10 @@
 package com.levi.api.headless.steps;
 
+import com.cucumber.listener.Reporter;
 import com.jayway.restassured.response.Response;
 import com.levi.api.headless.BaseSetUp;
 import com.levi.api.headless.LoginValidation;
+
 import cucumber.api.java.en.Given;
 
 
@@ -25,7 +27,7 @@ public class LoginValidationSteps {
 		LoginValidation login = new LoginValidation(locale);
 		resp = login.authToken();
 		BaseSetUp.generatedToken = resp.then().extract().path("access_token");
-		System.out.println("generatedToken:"+BaseSetUp.generatedToken);
+		Reporter.addStepLog("User Login Successful with token " + BaseSetUp.generatedToken);
 	}
 	
 	@Given("^User creates registered user with optin for \"([^\"]*)\"$")

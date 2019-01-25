@@ -63,11 +63,12 @@ public class StoreValidation {
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
+		System.out.println(baseSetUp.BASESTOREDETAILS.replace("baseStoreUid", baseSetUp.baseStoreID));
 		Response resp = given().
 				pathParam("baseStoreUid", baseSetUp.baseStoreID).
 				expect().statusCode(200).
 				when().
-				post(baseSetUp.BASESTOREDETAILS);
+				get(baseSetUp.BASESTOREDETAILS);
 
 		return resp;
 
