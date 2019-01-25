@@ -49,7 +49,6 @@ public class StoreValidationSteps {
 	{
 		StoreValidation store = new StoreValidation(locale);
 		Response resp = store.getRegionDetails();
-		
 		resp.then().
 		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/region.json"))));
 		

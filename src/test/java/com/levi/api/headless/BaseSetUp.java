@@ -18,6 +18,12 @@ public class BaseSetUp {
 	public String REGCARTID;
 	public String AUTHTOKEN;
 	public String PRODUCTDATA;
+	public String LISTOFCONSENTSDATA;
+	public String SPECIFICCONSENTDATA;
+	public String DELETECONSENTDATA;
+	public String CONSENTTEMPLATEID;
+	public String CONSENTTEMPLATEVERSION;
+	public String ADDCONSENT;
 	public String SWATCHDATA;
 	public String SELECTEDPC13;
 	public String ADDTOANONCART;
@@ -48,6 +54,7 @@ public class BaseSetUp {
 	public String BASESTOREDETAILS;
 	public String COUNTRYDETAILS;
 	public String REGIONDETAILS;
+	public String UPDATECART;
 	
 	public String firstName;
 	public String lastName;
@@ -69,6 +76,7 @@ public class BaseSetUp {
 	public String expiryYear;
 	public String adyenPaymentMethod;
 	public String baseStoreID;
+	public String estimatedDeliveryDate;
 	
 	
 	
@@ -147,10 +155,17 @@ public class BaseSetUp {
 		ANONCARTID = BASEURL+reader.getData("createAnonCartID");
 		REGCARTID = BASEURL+reader.getData("createRegCartID");
 		PRODUCTDATA = BASEURL+reader.getData("productData");
+		LISTOFCONSENTSDATA = BASEURL+reader.getData("listOfConsents");
+		SPECIFICCONSENTDATA = BASEURL+reader.getData("getSpecificConsents");
+		DELETECONSENTDATA = BASEURL+reader.getData("deleteSpecificConsents");
+		CONSENTTEMPLATEID = reader.getData("consentTemplateId");
+		CONSENTTEMPLATEVERSION = reader.getData("consentTemplateVersion");
+		ADDCONSENT = BASEURL+reader.getData("addConsents");
 		SELECTEDPC13 = BASEURL+reader.getData("selectPC13");
 		ADDTOANONCART = BASEURL+reader.getData("addToAnonCart");
 		ADDTOREGCART = BASEURL+reader.getData("addToRegCart");
 		VIEWCART = BASEURL+reader.getData("viewCart");
+		UPDATECART = BASEURL+reader.getData("updateCart");
 		PLACEORDER = BASEURL+reader.getData("placeOrder");
 		CHECKOUT = BASEURL+reader.getData("checkOut");		
 		CREATEREGADDRESS = BASEURL+reader.getData("createRegAddress");
@@ -170,6 +185,7 @@ public class BaseSetUp {
 		REGIONDETAILS = BASEURL+reader.getData("regionDetails");
 		
 		firstName = reader.getData("firstName");
+		estimatedDeliveryDate = reader.getData("estimatedDeliveryDate");
 		lastName = reader.getData("lastName");
 		addrLine1 = reader.getData("line1");
 		addrLine2 = reader.getData("line2");

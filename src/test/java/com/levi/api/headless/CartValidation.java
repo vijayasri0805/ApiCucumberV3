@@ -200,7 +200,18 @@ public class CartValidation {
 		
 		return resp;
 	}
-	
+	public Response updateAddressToRegCart( String generatedCartID){
+		JSONObject updateBody = new JSONObject();
+		updateBody.put("estimatedDeliveryDate", baseSetUp.estimatedDeliveryDate);
+		resp = given().body(updateBody).
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				contentType(ContentType.JSON).
+				header("Authorization", "bearer "+BaseSetUp.generatedToken).expect().
+				when().post(baseSetUp.UPDATECART);
+		System.out.println(resp.body().toString());
+		return resp;
+	}
 	public Response addDeliveryToRegCart(String generatedToken, String generatedCartID) {
 		/*
 		 * Add Delivery Method
