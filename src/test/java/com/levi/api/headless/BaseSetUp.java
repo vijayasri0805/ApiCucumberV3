@@ -50,6 +50,8 @@ public class BaseSetUp {
 	public String CATEGORYPAGE;
 	public String GETSAVEDADDR;
 	public String MARKADDRDEFAULT;
+	public String GETSAVEDPAYMENT;
+	public String MARKPAYMENTDEFAULT;
 	public String CREATEUSER;
 	public String BASESTOREDETAILS;
 	public String COUNTRYDETAILS;
@@ -178,6 +180,8 @@ public class BaseSetUp {
 		CATEGORYPAGE = BASEURL+reader.getData("categoryPage");
 		GETSAVEDADDR = BASEURL+reader.getData("getSavedAddress");
 		MARKADDRDEFAULT = BASEURL+reader.getData("markSavedAddrDefault");
+		GETSAVEDPAYMENT = BASEURL+reader.getData("getSavedPayment");
+		MARKPAYMENTDEFAULT = BASEURL+reader.getData("markSavedPaymentDefault");
 		CREATEUSER = BASEURL+reader.getData("createUser");
 		CATEGORYDETAILS = BASEURL+reader.getData("categoryDetails");
 		BASESTOREDETAILS = BASEURL+reader.getData("baseStoreDetails");

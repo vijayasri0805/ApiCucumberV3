@@ -94,6 +94,44 @@ public class MyAccountValidation {
 
 		
 	}
+	
+	public Response getSavedPayment(String generatedToken)
+	{
+		//testInfo = report.createTest("Test Scenario : Product");
+
+		/*
+		 * GET SAVED ADDRESS
+		 */
+		resp = given().
+				pathParam("UID", baseSetUp.UID).
+				contentType(ContentType.JSON).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
+				when().get(baseSetUp.GETSAVEDPAYMENT);
+
+		return resp;
+
+		
+	}
+	
+	public Response markSavedPaymentDefault(String generatedToken, String paymentID)
+	{
+
+		JSONObject body = new JSONObject();
+		body.put("", ""); 
+		
+		resp = given().
+				body(body).
+				pathParam("UID", baseSetUp.UID).
+				pathParam("PAYMENTID", paymentID).
+				contentType(ContentType.JSON).
+				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).				
+				when().patch(baseSetUp.MARKPAYMENTDEFAULT);
+
+		return resp;
+
+		
+	}
+	
 	public Response getListofConsents(String generatedToken)
 	{
 		JSONObject body = new JSONObject();

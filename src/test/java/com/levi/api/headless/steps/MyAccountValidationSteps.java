@@ -38,6 +38,25 @@ public class MyAccountValidationSteps {
 		
 		assertEquals(resp.getStatusCode(),200);
 	}
+	
+	@Given("^User pulls first non default payment method for \"([^\"]*)\"$")
+	public void pullSavedPaymentID(String locale) throws Throwable
+	{
+		MyAccountValidation myAccount = new MyAccountValidation(locale);
+		resp = myAccount.getSavedAddress(BaseSetUp.generatedToken);
+		addressID = resp.then().extract().path("payments[1].id");
+		
+	}
+	
+	@Given("^User marks one payment as default for \"([^\"]*)\"$")
+	public void markSavedPaymentDefault(String locale) throws Throwable
+	{
+		MyAccountValidation myAccount = new MyAccountValidation(locale);
+		resp = myAccount.markSavedPaymentDefault(BaseSetUp.generatedToken, addressID);
+		
+		assertEquals(resp.getStatusCode(),200);
+	}
+	
 	@Given("^User pulls list of consents used by Customer \"([^\"]*)\"$")
 	public void getListofConsents(String locale) throws Throwable
 	{
