@@ -200,6 +200,34 @@ public class CartValidation {
 		
 		return resp;
 	}
+	public Response addInvalidAddressToRegCart(String generatedCartID, String locale)
+	{
+		/*
+		 * ADD ADDRESS TO CART
+		 */
+		JSONObject mainBody = new JSONObject();
+		mainBody.put("lastName", baseSetUp.firstName);
+		mainBody.put("firstName", baseSetUp.lastName);
+		mainBody.put("line1", baseSetUp.addrLine1);
+		mainBody.put("line2", baseSetUp.addrLine2);
+		mainBody.put("town", baseSetUp.town);
+		
+		JSONObject childBody = new JSONObject();		
+		childBody.put("isocode", "XZ");
+		mainBody.put("country", childBody);
+		
+		mainBody.put("postalCode", baseSetUp.postalCode);
+		mainBody.put("phone", baseSetUp.phone);
+		
+		resp = given().body(mainBody).
+				pathParam("UID", baseSetUp.UID).
+				pathParam("guid", generatedCartID).
+				contentType(ContentType.JSON).
+				header("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(400).
+				when().post(baseSetUp.CREATEREGADDRESS);				
+		
+		return resp;
+	}
 	public Response updateAddressToRegCart( String generatedCartID){
 		JSONObject updateBody = new JSONObject();
 		updateBody.put("estimatedDeliveryDate", baseSetUp.estimatedDeliveryDate);

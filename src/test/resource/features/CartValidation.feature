@@ -12,7 +12,7 @@ Examples:
 |CA|
 |GB|
 @HEAD-129	
-Scenario Outline: HEAD-129 - Validate registered user checkout feature
+Scenario Outline: HEAD-129, HEAD-554 - Validate registered user checkout feature
 	Given User generates registered auth token for "<Locale>"
 	Then User creates a registered cart for "<Locale>"
 	And User validates PC9 with size for "<Locale>"
@@ -39,5 +39,15 @@ Scenario Outline: HEAD-655 - Validate update cart feature for Annonymous User
 	And User validates PC9 with size for "<Locale>"
 	Then User adds product to cart for "<Locale>"
 	Examples:
+	|Locale|
+	|GB|
+@HEAD-561
+Scenario Outline: HEAD-561 - Validate registered user checkout feature
+	Given User generates registered auth token for "<Locale>"
+	Then User creates a registered cart for "<Locale>"
+	And User validates PC9 with size for "<Locale>"
+	Then User adds product to registered cart for "<Locale>"
+	And User add invalid address to registered cart for "<Locale>"
+Examples:
 	|Locale|
 	|GB|

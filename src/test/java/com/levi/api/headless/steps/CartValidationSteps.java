@@ -129,6 +129,16 @@ public class CartValidationSteps {
 		
 	}
 	
+	@Then("^User add invalid address to registered cart for \"([^\"]*)\"$")
+	public void addInvalidAddressToRegCart(String locale) throws Throwable {
+		
+		CartValidation cart = new CartValidation(locale);
+		Response resp = cart.addInvalidAddressToRegCart(BaseSetUp.generatedCartID, locale);
+		String errorMessage = resp.then().extract().path("errors[0].type").toString();
+		assertEquals(errorMessage.contains("CartAddressError"),true);	
+		
+	}
+	
 
 	@Then("^User update product to registered cart for \"([^\"]*)\"$")
 	public void updateAddressToRegCart(String locale) throws Throwable {
