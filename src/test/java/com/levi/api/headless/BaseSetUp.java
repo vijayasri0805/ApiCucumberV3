@@ -15,6 +15,7 @@ public class BaseSetUp {
 
 	public String SCAN;
 	public String ANONCARTID;
+	public String ANONCARTTOGUEST;
 	public String REGCARTID;
 	public String AUTHTOKEN;
 	public String PRODUCTDATA;
@@ -155,6 +156,7 @@ public class BaseSetUp {
 		
 		AUTHTOKEN = reader.getData("authToken");
 		ANONCARTID = BASEURL+reader.getData("createAnonCartID");
+		ANONCARTTOGUEST = BASEURL+reader.getData("convertAnonCartToGuest");
 		REGCARTID = BASEURL+reader.getData("createRegCartID");
 		PRODUCTDATA = BASEURL+reader.getData("productData");
 		LISTOFCONSENTSDATA = BASEURL+reader.getData("listOfConsents");

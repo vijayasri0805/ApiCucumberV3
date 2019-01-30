@@ -51,3 +51,14 @@ Scenario Outline: HEAD-561 - Validate registered user checkout feature
 Examples:
 	|Locale|
 	|GB|
+	
+@HEAD-656
+Scenario Outline: HEAD-656 - Convert anon cart to Guest cart
+	Given User generates auth token for "<Locale>"
+	Then User creates a anonymous cart for "<Locale>"
+	And User validates PC9 with size for "<Locale>"
+	Then User adds product to cart for "<Locale>"
+	Then User converts anon cart to guest cart for "<Locale>"
+	Examples:
+	|Locale|
+	|GB|

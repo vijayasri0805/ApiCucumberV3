@@ -45,6 +45,15 @@ public class CartValidationSteps {
 		BaseSetUp.generatedCartID=cartID;
 	}
 	
+	@Then("^User converts anon cart to guest cart for \"([^\"]*)\"$")
+	public void convertAnonCartToGuest(String locale) throws Throwable
+	{
+		CartValidation cart = new CartValidation(locale);
+		Response resp = cart.convertAnonCartToGuest(BaseSetUp.generatedToken);
+		
+	}
+	
+	
 	@Then("^User creates a registered cart for \"([^\"]*)\"$")
 	public void createRegCart(String locale) throws Throwable
 	{

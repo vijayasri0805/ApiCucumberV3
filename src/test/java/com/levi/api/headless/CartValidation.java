@@ -72,6 +72,21 @@ public class CartValidation {
 
 	}
 	
+	public Response convertAnonCartToGuest(String generatedToken) {
+		/*
+		 * GUID AND ALLOCATED ORDER NUMBER
+		 */
+		Response resp = given().
+				pathParam("UID", baseSetUp.UID).contentType(ContentType.JSON).
+				pathParam("guid", baseSetUp.generatedCartID).
+				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(200).				
+				when().
+				put(baseSetUp.ANONCARTTOGUEST);
+
+		return resp;
+
+	}
+	
 	public Response createRegCartID(String generatedToken) {
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
