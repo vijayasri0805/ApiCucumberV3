@@ -45,6 +45,7 @@ public class BaseSetUp {
 	public String STOREIDASSOID;
 	public String PAYMENT;	
 	public String UID;
+	public String SAVEDPAYUID;
 	public String PWD;
 	public String CATEGORYSORT;
 	public String CATEGORYDETAILS;
@@ -83,7 +84,9 @@ public class BaseSetUp {
 	
 	
 	
-	public  static String generatedToken;
+	public static String generatedToken;
+	public static String generatedTokenSavedPayment;
+	public static String generatedAnonToken;
 	public static String generatedCartID;
 	
 	public BaseSetUp(String locale)
@@ -126,6 +129,7 @@ public class BaseSetUp {
 		else if(locale.equalsIgnoreCase("gb"))
 		{
 			UID = reader.getData("gbUID");
+			SAVEDPAYUID = reader.getData("gbSAVEDUID");
 			PWD = reader.getData("gbPWD");
 			PC9 = reader.getData("gbPC9");
 			SIZE = reader.getData("gbSize");

@@ -62,7 +62,7 @@ public class LoginValidation {
 
 	}
 	
-	public Response regAuthToken() {		
+	public Response regAuthToken(String UID, String PWD) {		
 		/*
 		 * AUTH TOKEN		
 		 */
@@ -71,8 +71,8 @@ public class LoginValidation {
 		params.put("client_id", "headless_rest_client");
 		params.put("client_secret", "Levis1234");
 		params.put("grant_type", "client_credentials");
-		params.put("username", baseSetUp.UID);
-		params.put("password", baseSetUp.PWD);
+		params.put("username", UID);
+		params.put("password", PWD);
 
 		resp = given().parameters(params).
 				expect().statusCode(200).contentType(ContentType.JSON).
@@ -92,6 +92,7 @@ public class LoginValidation {
 		params.put("login", CommonUtils.GenerateRandomEmail());
 		params.put("client_secret", "Dance@floor1");
 		params.put("firstName", "Test FName");
+		params.put("lastName", "Test LName");
 		params.put("personalizedOffer", true);
 		params.put("optIn", true);
 

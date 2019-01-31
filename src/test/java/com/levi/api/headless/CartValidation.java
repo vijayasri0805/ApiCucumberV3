@@ -8,6 +8,7 @@ import java.io.File;
 
 
 
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -19,6 +20,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.response.ValidatableResponse;
+import com.levi.api.utils.CommonUtils;
 
 import net.minidev.json.JSONObject;
 
@@ -77,12 +79,12 @@ public class CartValidation {
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
 		Response resp = given().
-				pathParam("UID", baseSetUp.UID).contentType(ContentType.JSON).
+				pathParam("UID", CommonUtils.GenerateRandomEmail() ).contentType(ContentType.JSON).
 				pathParam("guid", baseSetUp.generatedCartID).
-				parameter("Authorization", "bearer "+generatedToken).expect().statusCode(200).				
+				parameter("Authorization", "bearer "+generatedToken).//.expect().statusCode(200).				
 				when().
 				put(baseSetUp.ANONCARTTOGUEST);
-
+		System.out.println(resp.body().asString());
 		return resp;
 
 	}
@@ -91,7 +93,7 @@ public class CartValidation {
 		/*
 		 * GUID AND ALLOCATED ORDER NUMBER
 		 */
-		System.out.println("REGCARTID:"+baseSetUp.REGCARTID.replace("{UID}", baseSetUp.UID));
+		//System.out.println("REGCARTID:"+baseSetUp.REGCARTID.replace("{UID}", baseSetUp.UID));
 		System.out.println("Token: "+generatedToken);
 		Response resp = given().
 				pathParam("UID", baseSetUp.UID).contentType(ContentType.JSON).
@@ -107,7 +109,7 @@ public class CartValidation {
 		/*
 		 * PRODUCTDATA + Select PC13
 		 */
-		System.out.println("PRODUCTDATA:"+baseSetUp.PRODUCTDATA);
+		//System.out.println("PRODUCTDATA:"+baseSetUp.PRODUCTDATA);
 		resp = given().pathParam("PC9", baseSetUp.PC9).
 				expect().statusCode(200).contentType(ContentType.JSON).
 				when().get(baseSetUp.PRODUCTDATA);
@@ -122,7 +124,7 @@ public class CartValidation {
 				extract(). 
 				path("code");
 
-		System.out.println("Selected PC9 : " + selectedpc9);
+		//System.out.println("Selected PC9 : " + selectedpc9);
 		selectedPC9 = selectedpc9;
 		System.out.println("SELECTEDPC13: "+baseSetUp.SELECTEDPC13);
 		resp = given().pathParam("SelectedPC9", selectedpc9). 
@@ -137,9 +139,6 @@ public class CartValidation {
 
 	public Response addToAnonCart(String SelectedPC13, String generatedCartID)
 	{
-
-		
-		//testInfo = report.createTest("Test Scenario : Product");
 
 		/*
 		 * ADD TO CART

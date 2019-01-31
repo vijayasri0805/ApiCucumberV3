@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resource/features/",
+        features = "src/test/resource/features",
         glue={"com.levi.api.headless.steps"},
         plugin = {"pretty","html:target/cucumber/report.html","com.cucumber.listener.ExtentCucumberFormatter:REPORTS/cucumber-reports/extentReport.html"}
         )

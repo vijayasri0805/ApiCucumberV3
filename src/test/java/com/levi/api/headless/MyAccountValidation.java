@@ -55,12 +55,13 @@ public class MyAccountValidation {
 		/*
 		 * GET SAVED ADDRESS
 		 */
+		
 		resp = given().
 				pathParam("UID", baseSetUp.UID).
 				contentType(ContentType.JSON).
 				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
 				when().get(baseSetUp.GETSAVEDADDR);
-
+		
 		return resp;
 
 		
@@ -102,12 +103,13 @@ public class MyAccountValidation {
 		/*
 		 * GET SAVED ADDRESS
 		 */
+		
 		resp = given().
-				pathParam("UID", baseSetUp.UID).
+				pathParam("UID", baseSetUp.SAVEDPAYUID).
 				contentType(ContentType.JSON).
 				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).
 				when().get(baseSetUp.GETSAVEDPAYMENT);
-
+		
 		return resp;
 
 		
@@ -118,15 +120,14 @@ public class MyAccountValidation {
 
 		JSONObject body = new JSONObject();
 		body.put("", ""); 
-		
 		resp = given().
 				body(body).
-				pathParam("UID", baseSetUp.UID).
+				pathParam("UID", baseSetUp.SAVEDPAYUID).
 				pathParam("PAYMENTID", paymentID).
 				contentType(ContentType.JSON).
 				header("Authorization", "bearer "+generatedToken).expect().statusCode(200).				
 				when().patch(baseSetUp.MARKPAYMENTDEFAULT);
-
+		
 		return resp;
 
 		

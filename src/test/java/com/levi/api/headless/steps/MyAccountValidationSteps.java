@@ -43,7 +43,7 @@ public class MyAccountValidationSteps {
 	public void pullSavedPaymentID(String locale) throws Throwable
 	{
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
-		resp = myAccount.getSavedAddress(BaseSetUp.generatedToken);
+		resp = myAccount.getSavedPayment(BaseSetUp.generatedToken);
 		addressID = resp.then().extract().path("payments[1].id");
 		
 	}

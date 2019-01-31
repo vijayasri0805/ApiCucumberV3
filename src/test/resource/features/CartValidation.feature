@@ -1,7 +1,8 @@
 Feature: This feature will check the hybris api features
  
+@AddCart
 Scenario Outline: Validate add to cart feature
-	Given User generates auth token for "<Locale>"
+	Given User generates anon auth token for "<Locale>"
 	Then User creates a anonymous cart for "<Locale>"
 	And User validates PC9 with size for "<Locale>"
 	Then User adds product to cart for "<Locale>"
@@ -11,7 +12,7 @@ Examples:
 |US|
 |CA|
 |GB|
-@HEAD-129	
+@HEAD-129, @HEAD-554
 Scenario Outline: HEAD-129, HEAD-554 - Validate registered user checkout feature
 	Given User generates registered auth token for "<Locale>"
 	Then User creates a registered cart for "<Locale>"
@@ -34,7 +35,7 @@ Scenario Outline: HEAD-261 - Validate update cart feature
 	|GB|
 @HEAD-655
 Scenario Outline: HEAD-655 - Validate update cart feature for Annonymous User
-	Given User generates auth token for "<Locale>"
+	Given User generates anon auth token for "<Locale>"
 	Then User creates a anonymous cart for "<Locale>"
 	And User validates PC9 with size for "<Locale>"
 	Then User adds product to cart for "<Locale>"
@@ -54,7 +55,7 @@ Examples:
 	
 @HEAD-656
 Scenario Outline: HEAD-656 - Convert anon cart to Guest cart
-	Given User generates auth token for "<Locale>"
+	Given User generates anon auth token for "<Locale>"
 	Then User creates a anonymous cart for "<Locale>"
 	And User validates PC9 with size for "<Locale>"
 	Then User adds product to cart for "<Locale>"

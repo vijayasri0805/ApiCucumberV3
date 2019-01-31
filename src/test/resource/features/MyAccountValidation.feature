@@ -10,8 +10,8 @@ Examples:
 |GB|
 
 @HEAD-125
-Scenario Outline: HEAD-144 - Make shipping address default
-	Given User generates registered auth token for "<Locale>"
+Scenario Outline: HEAD-125 - Make shipping address default
+	Given User generates registered auth token of savedaddress user for "<Locale>"
 	Given User pulls first non default payment method for "<Locale>"
 	Given User marks one payment as default for "<Locale>"
 Examples:

@@ -1,6 +1,7 @@
 package com.levi.api.headless.steps;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 
@@ -26,7 +27,7 @@ public class CartValidationSteps {
 	public void createAnonCart(String locale) throws Throwable
 	{
 		CartValidation cart = new CartValidation(locale);
-		Response resp = cart.createAnonCartID(BaseSetUp.generatedToken);
+		Response resp = cart.createAnonCartID(BaseSetUp.generatedAnonToken);
 		
 		resp.then().
 		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/addCart.json"))));
@@ -36,12 +37,12 @@ public class CartValidationSteps {
 				extract(). 
 				path("allocatedOrderNumber");
 		AllocatedOrderNumber=allocatedOrdNum;
-		System.out.println("AllocatedOrderNumber: "+AllocatedOrderNumber);
+		Reporter.addStepLog("AllocatedOrderNumber: "+AllocatedOrderNumber);
 		String cartID = resp. 
 				then().extract().
 				path("guid");
-
-		System.out.println("GUID : " + cartID);
+		Reporter.addStepLog("GUID : " + cartID);
+		
 		BaseSetUp.generatedCartID=cartID;
 	}
 	
@@ -49,7 +50,7 @@ public class CartValidationSteps {
 	public void convertAnonCartToGuest(String locale) throws Throwable
 	{
 		CartValidation cart = new CartValidation(locale);
-		Response resp = cart.convertAnonCartToGuest(BaseSetUp.generatedToken);
+		Response resp = cart.convertAnonCartToGuest(BaseSetUp.generatedAnonToken);
 		
 	}
 	
@@ -71,6 +72,7 @@ public class CartValidationSteps {
 				path("guid");
 		BaseSetUp.generatedCartID=cartID;
 		Reporter.addStepLog("Create Cart Successful with GUID " + cartID);
+		Reporter.addStepLog("AllocatedOrderNumber : " + AllocatedOrderNumber);
 	}
 	
 	@And("^User validates PC9 with size for \"([^\"]*)\"$")
@@ -88,13 +90,13 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		Response resp = cart.addToAnonCart(SelectedPC13, BaseSetUp.generatedCartID);
 		String Statuscode = resp.then().extract().path("statusCode");
-		System.out.println("Status Code for add to cart : " + Statuscode);
-
+		Reporter.addStepLog("Status Code for add to cart : " + Statuscode);
+		
 		String addedpc13 = resp.then().extract().path("entry.product.code");
 		if(addedpc13.equals(SelectedPC13)) {
 			assertEquals(addedpc13, SelectedPC13);
 		}else {
-			System.out.println("Selected PC13 is not equals to Added PC13");
+			Reporter.addStepLog("Status Code for add to cart : " + Statuscode);
 		}
 
 		String CartValue = resp.then().extract().path("entry.totalPrice.value").toString();
@@ -124,7 +126,7 @@ public class CartValidationSteps {
 		AddedCartValue = CartValue;
 
 		String addedQuantity = resp.then().extract().path("quantityAdded").toString();
-		addedQuantity.equals(cart.baseSetUp.QTY);
+		assertTrue(addedQuantity.equals(cart.baseSetUp.QTY));
 	}
 	
 	@Then("^User add address to registered cart for \"([^\"]*)\"$")
@@ -133,8 +135,8 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		Response resp = cart.addAddressToRegCart(BaseSetUp.generatedCartID);
 		String id = resp.then().extract().path("id").toString();
-		System.out.println("Add address ID: "+id);
-		
+		Reporter.addStepLog("Add address ID: "+id);
+			
 		
 	}
 	
@@ -144,7 +146,7 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		Response resp = cart.addInvalidAddressToRegCart(BaseSetUp.generatedCartID, locale);
 		String errorMessage = resp.then().extract().path("errors[0].type").toString();
-		assertEquals(errorMessage.contains("CartAddressError"),true);	
+		assertEquals(errorMessage.contains("ConversionError"),true);	
 		
 	}
 	
@@ -186,7 +188,6 @@ public class CartValidationSteps {
 		System.out.println("generatedCartID:"+BaseSetUp.generatedCartID);
 		Response resp = cart.verifyDeliveryToRegCartForInvalidUID(BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
 		//resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/getDeliveryMethod.json"))));
-		System.out.println("resp"+resp);
 		String errorMessage = resp.then().extract().path("errors[0].message").toString();
 		assertEquals(errorMessage.contains("Cannot find user with uid"),true);
 	}
@@ -207,7 +208,8 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		Response resp = cart.addPaymentToRegCart(payment, BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
 		String id = resp.then().extract().path("id").toString();
-		System.out.println("Add Payment ID: "+id);
+		Reporter.addStepLog("Add Payment ID: "+id);
+		
 	}
 	
 	@And("^User view the cart and validate for \"([^\"]*)\"$")
@@ -218,14 +220,15 @@ public class CartValidationSteps {
 		if(totalPriceWithTax.equals(AddedCartValue)) {
 			assertEquals(totalPriceWithTax, AddedCartValue);
 		}else {
-			System.out.println("Actual cart value is not equal to view cart value");
+			Reporter.addStepLog("Actual cart value is not equal to view cart value");
+			
 		}
 		ViewCartValue=totalPriceWithTax;
 		String viewCartGUID = resp.then().extract().path("guid");
 		if(viewCartGUID.equals(BaseSetUp.generatedCartID)) {
 			assertEquals(viewCartGUID, BaseSetUp.generatedCartID);
 		}else {
-			System.out.println("CartID and View Cart GUID is not equal");
+			Reporter.addStepLog("CartID and View Cart GUID is not equal");
 		}
 	}
 
