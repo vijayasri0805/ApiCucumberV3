@@ -158,7 +158,7 @@ public class CartValidationSteps {
 		Response resp = cart.updateAddressToRegCart(BaseSetUp.generatedCartID);
 		//String id = resp.then().extract().path("id").toString();
 		//System.out.println("Add address ID: "+id);
-		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/updateCart.json"))));
+		resp.then().body(matchesJsonSchema(new File("src/test/resource/json-schema/updateCart.json")));
 		
 	}
 	
@@ -178,7 +178,7 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		System.out.println("generatedCartID:"+BaseSetUp.generatedCartID);
 		Response resp = cart.verifyDeliveryToRegCart(BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
-		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/getDeliveryMethod.json"))));
+		resp.then().body(matchesJsonSchema(new File("src/test/resource/json-schema/getDeliveryMethod.json")));
 		
 	}
 	@Then("^User verifies delivery method for invalid UID for \"([^\"]*)\"$")

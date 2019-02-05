@@ -25,7 +25,7 @@ public class PDPValidationSteps {
 		PDPValidation pdp = new PDPValidation(locale);
 		resp = pdp.getProductDetails();
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/productDetail.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/productDetail.json")));
 		assertTrue(resp.then().extract().path("code").toString().contains(pdp.baseSetUp.PC9));
 		Reporter.addStepLog("Product Detail shown properly");
 	}
@@ -36,7 +36,7 @@ public class PDPValidationSteps {
 		PDPValidation pdp = new PDPValidation(locale);
 		resp = pdp.validateSwatchData();
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/swatchData.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/swatchData.json")));
 		Reporter.addStepLog("Product Swatch shown properly");
 	}
 

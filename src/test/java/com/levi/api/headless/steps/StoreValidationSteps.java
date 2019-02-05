@@ -29,7 +29,7 @@ public class StoreValidationSteps {
 		Response resp = store.getBaseStoreDetails();
 		
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/baseStore.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/baseStore.json")));
 		
 		assertTrue(resp.then().extract().path("country.isocode").toString().equals(store.baseSetUp.isocode));
 		
@@ -43,7 +43,7 @@ public class StoreValidationSteps {
 		Response resp = store.getCountryDetails();
 		
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/country.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/country.json")));
 		
 		Reporter.addStepLog("Country Details are shown properly");
 	}
@@ -54,7 +54,7 @@ public class StoreValidationSteps {
 		StoreValidation store = new StoreValidation(locale);
 		Response resp = store.getRegionDetails();
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/region.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/region.json")));
 		
 		assertTrue(resp.then().extract().path("regions[0].isocode").toString().matches(".*"));
 		Reporter.addStepLog("Region Details are shown properly");

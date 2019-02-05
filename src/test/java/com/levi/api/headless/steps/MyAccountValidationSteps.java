@@ -62,7 +62,7 @@ public class MyAccountValidationSteps {
 	{
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
 		resp = myAccount.getListofConsents(BaseSetUp.generatedToken);
-		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/getListofConsents.json"))));
+		resp.then().body(matchesJsonSchema(new File("src/test/resource/json-schema/getListofConsents.json")));
 		assertEquals(resp.getStatusCode(),200);
 	}
 	@Then("^User pulls specific consent \"([^\"]*)\" for customer in \"([^\"]*)\"$")
@@ -70,7 +70,7 @@ public class MyAccountValidationSteps {
 	{
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
 		resp = myAccount.geSpecificofConsents(consentTemplateId,BaseSetUp.generatedToken);
-		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/addConsents.json"))));
+		resp.then().body(matchesJsonSchema(new File("src/test/resource/json-schema/addConsents.json")));
 		assertEquals(resp.getStatusCode(),200);
 		String id = resp. 
 				then().
@@ -84,7 +84,7 @@ public class MyAccountValidationSteps {
 	{
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
 		resp = myAccount.addConsent(BaseSetUp.generatedToken);
-		resp.then().body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/addConsents.json"))));
+		resp.then().body(matchesJsonSchema(new File("src/test/resource/json-schema/addConsents.json")));
 		assertEquals(resp.getStatusCode(),201);
 	}
 	@Then("^User Delete consent \"([^\"]*)\" for customer in \"([^\"]*)\"$")

@@ -36,7 +36,7 @@ public class CheckoutValidationSteps {
 	{
 		CheckoutValidation checkOut = new CheckoutValidation(locale);
 		resp = checkOut.proceedRegCheckout(BaseSetUp.generatedCartID);
-		String orderNumber = resp.then().extract().path("allocatedOrderNumber");
+		String orderNumber = resp.then().extract().path("code");
 		
 		System.out.println("orderNumber:"+orderNumber);
 		

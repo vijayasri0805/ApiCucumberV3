@@ -26,7 +26,7 @@ public class PLPValidationSteps {
 		PLPValidation plp = new PLPValidation(locale);
 		resp = plp.getCategorySortedDetails(category, sortType);
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categorySortData.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/categorySortData.json")));
 		
 		assertTrue(resp.then().extract().path("categoryCode").toString().contains(category));
 		assertTrue(resp.then().extract().path("currentQuery.query.value").toString().contains(sortType));
@@ -39,7 +39,7 @@ public class PLPValidationSteps {
 		PLPValidation plp = new PLPValidation(locale);
 		resp = plp.validateCategoryData(category);
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categoryService.json"))))
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/categoryService.json")))
 		.extract().path("categoryName").toString().matches("\\w+\\.?");
 		
 		Reporter.addStepLog("Category Details are showing properly");
@@ -51,7 +51,7 @@ public class PLPValidationSteps {
 		PLPValidation plp = new PLPValidation(locale);
 		resp = plp.getCategoryBreadCrumbDetails(category);
 		resp.then().
-		body(matchesJsonSchema(new File(System.getProperty("user.dir").concat("/src/test/resource/json-schema/categoryPage.json"))));
+		body(matchesJsonSchema(new File("src/test/resource/json-schema/categoryPage.json")));
 		
 		assertTrue(resp.then().extract().path("lscoBreadcrumbs[0].name").toString().matches("\\w+\\.?"));
 		

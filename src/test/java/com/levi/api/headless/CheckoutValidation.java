@@ -68,11 +68,29 @@ public class CheckoutValidation {
 		 * PROCEED TO CUSTOMER CHECKOUT
 		 */
 		
+		JSONObject mainBody = new JSONObject();
+		
+		JSONObject childBody = new JSONObject();
+		childBody.put("expiryDate", "10/2020");
+		childBody.put("fraudOffset", "0");
+		childBody.put("liabilityShift", "false");
+		childBody.put("fraudResultType", "GREEN");
+		childBody.put("fraudManualReview", "false");
+		
+		mainBody.put("additionalData", childBody);
+		
+		mainBody.put("pspReference", "8835468052288536");
+		mainBody.put("resultCode", "Authorised");
+		mainBody.put("authCode", "81493");
+		
 		resp = given().
+				body(mainBody).contentType(ContentType.JSON). 
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
-				header("Authorization", "bearer "+BaseSetUp.generatedToken).expect().statusCode(201). 
+				header("Authorization", "bearer "+BaseSetUp.generatedToken).//expect().statusCode(201). 
 				when().post(baseSetUp.CHECKOUTREGORDER);
+		
+		
 		return resp;
 
 
