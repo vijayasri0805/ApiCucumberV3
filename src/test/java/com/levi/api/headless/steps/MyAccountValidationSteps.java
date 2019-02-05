@@ -2,6 +2,7 @@ package com.levi.api.headless.steps;
 
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,9 @@ public class MyAccountValidationSteps {
 		resp = myAccount.getSavedAddress(BaseSetUp.generatedToken);
 		addressID = resp.then().extract().path("addresses[1].id");
 		
+		assertTrue(resp.then().extract().path("addresses[0].id").toString().matches("[0-9]+"));
+		assertTrue(resp.then().extract().path("addresses[0].town").toString().matches("\\w+\\.?"));
+		
 	}
 	
 	@Given("^User marks one address as default for \"([^\"]*)\"$")
@@ -45,6 +49,9 @@ public class MyAccountValidationSteps {
 		MyAccountValidation myAccount = new MyAccountValidation(locale);
 		resp = myAccount.getSavedPayment(BaseSetUp.generatedToken);
 		addressID = resp.then().extract().path("payments[1].id");
+		
+		assertTrue(resp.then().extract().path("payments[0].cardNumber").toString().matches(".*[0-9]+.*"));
+		assertTrue(resp.then().extract().path("payments[0].cardType.name").toString().matches("[a-zA-Z\\s]+"));
 		
 	}
 	

@@ -2,7 +2,9 @@ package com.levi.api.headless.steps;
 
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
+import com.cucumber.listener.Reporter;
 import com.jayway.restassured.response.Response;
 import com.levi.api.headless.BaseSetUp;
 import com.levi.api.headless.CartValidation;
@@ -38,7 +40,9 @@ public class CheckoutValidationSteps {
 		resp = checkOut.proceedRegCheckout(BaseSetUp.generatedCartID);
 		String orderNumber = resp.then().extract().path("code");
 		
-		System.out.println("orderNumber:"+orderNumber);
+		assertTrue(resp.then().extract().path("code").toString().matches("[0-9]+"));
+		assertTrue(resp.then().extract().path("user.uid").toString().contains("[a-z]+@[a-z]+[.][a-z]+"));
+		Reporter.addStepLog("orderNumber:"+orderNumber);
 		
 	}
 

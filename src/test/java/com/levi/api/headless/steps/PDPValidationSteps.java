@@ -37,6 +37,8 @@ public class PDPValidationSteps {
 		resp = pdp.validateSwatchData();
 		resp.then().
 		body(matchesJsonSchema(new File("src/test/resource/json-schema/swatchData.json")));
+		
+		assertTrue(resp.then().extract().path("swatchAvailabilities[0].code").toString().matches("[0-9]+"));
 		Reporter.addStepLog("Product Swatch shown properly");
 	}
 

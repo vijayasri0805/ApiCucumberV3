@@ -71,6 +71,9 @@ public class CartValidationSteps {
 				then().extract().
 				path("guid");
 		BaseSetUp.generatedCartID=cartID;
+		
+		assertTrue(AllocatedOrderNumber.matches("[0-9]+"));
+		
 		Reporter.addStepLog("Create Cart Successful with GUID " + cartID);
 		Reporter.addStepLog("AllocatedOrderNumber : " + AllocatedOrderNumber);
 	}
@@ -95,6 +98,7 @@ public class CartValidationSteps {
 		String addedpc13 = resp.then().extract().path("entry.product.code");
 		if(addedpc13.equals(SelectedPC13)) {
 			assertEquals(addedpc13, SelectedPC13);
+			assertEquals(resp.then().extract().path("statusCode"),"success");
 		}else {
 			Reporter.addStepLog("Status Code for add to cart : " + Statuscode);
 		}
@@ -103,7 +107,7 @@ public class CartValidationSteps {
 		AddedCartValue = CartValue;
 
 		String addedQuantity = resp.then().extract().path("quantityAdded").toString();
-		addedQuantity.equals(cart.baseSetUp.QTY);
+		assertTrue(addedQuantity.equals(cart.baseSetUp.QTY));
 	}
 	
 	@Then("^User adds product to registered cart for \"([^\"]*)\"$")
@@ -118,6 +122,7 @@ public class CartValidationSteps {
 		String addedpc13 = resp.then().extract().path("entry.product.code");
 		if(addedpc13.equals(SelectedPC13)) {
 			assertEquals(addedpc13, SelectedPC13);
+			assertEquals(resp.then().extract().path("statusCode"),"success");
 		}else {
 			System.out.println("Selected PC13 is not equals to Added PC13");
 		}
@@ -208,6 +213,9 @@ public class CartValidationSteps {
 		CartValidation cart = new CartValidation(locale);
 		Response resp = cart.addPaymentToRegCart(payment, BaseSetUp.generatedToken, BaseSetUp.generatedCartID);
 		String id = resp.then().extract().path("id").toString();
+		
+		assertTrue(resp.then().extract().path("cardNumber").toString().matches("[0-9]+"));
+		//assertTrue(resp.then().extract().path("cardType.code").toString().matches(payment.toLowerCase()));
 		Reporter.addStepLog("Add Payment ID: "+id);
 		
 	}

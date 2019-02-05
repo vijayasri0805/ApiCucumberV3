@@ -70,6 +70,7 @@ public class PDPValidation {
 				expect().statusCode(200).
 				when().
 				get(baseSetUp.SWATCHDATA);
+		
 		return resp;
 		
 
