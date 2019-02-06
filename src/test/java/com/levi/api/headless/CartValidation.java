@@ -330,7 +330,7 @@ public class CartValidation {
 			break;
 		case "master":
 			paymentDetails.put("cardNumber", baseSetUp.masterCardNumber);
-			cardType.put("code", "master");
+			cardType.put("code", "mc");
 			paymentDetails.put("cardType", cardType);
 			break;
 		case "amex":
@@ -386,9 +386,9 @@ public class CartValidation {
 				pathParam("UID", baseSetUp.UID).
 				pathParam("guid", generatedCartID).
 				contentType(ContentType.JSON).
-				header("Authorization", "bearer "+generatedToken).expect().statusCode(201).
+				header("Authorization", "bearer "+generatedToken).//expect().statusCode(201).
 				when().post(baseSetUp.ADDPAYMENTREGCART);				
-		
+		System.out.println(resp.body().asString());
 		return resp;
 	}
 	

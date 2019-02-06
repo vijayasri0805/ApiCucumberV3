@@ -91,7 +91,24 @@ public class BaseSetUp {
 	
 	public BaseSetUp(String locale)
 	{
-		PropertyReader reader = new PropertyReader("src/test/resource/testdata/test-data.properties");
+		String testData = System.getProperty("testData").toLowerCase();
+		String path = "src/test/resource/testdata/";
+		String filePath = null;
+		
+		if(testData.contains("reg"))
+		{
+			filePath = "reg-test-data.properties";
+		}
+		else if(testData.contains("sprint"))
+		{
+			filePath = "sprint-test-data.properties";
+		}
+		else if(testData.contains("test"))
+		{
+			filePath = "test-data.properties";
+		}
+		
+		PropertyReader reader = new PropertyReader(path.concat(filePath));
 		List<Map<String, String>> testDataMap = new LinkedList<Map<String,String>>();
 		
 		SCAN = reader.getData("scanBarCode");
