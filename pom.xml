@@ -150,6 +150,7 @@
 				</executions>
 				<configuration>
 					<!-- Suite testng xml file to consider for test execution -->
+					<jvm>${env.JAVA_HOME}/bin/java</jvm>
 					<executableDependency>
 						<groupId>info.cukes</groupId>
 						<artifactId>cucumber-core</artifactId>
